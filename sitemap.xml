@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/</loc>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
   </url>
@@ -14,13 +19,13 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/blog/</loc>
-    <lastmod>2018-11-13T18:17:57+08:00</lastmod>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://bbsonlin.github.io/</loc>
-    <lastmod>2018-11-13T18:17:57+08:00</lastmod>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -30,26 +35,32 @@
   </url>
   
   <url>
+    <loc>https://bbsonlin.github.io/tags/github/</loc>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/tags/hugo/</loc>
-    <lastmod>2018-11-13T18:17:57+08:00</lastmod>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://bbsonlin.github.io/post/</loc>
-    <lastmod>2018-11-13T18:17:57+08:00</lastmod>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://bbsonlin.github.io/tags/</loc>
-    <lastmod>2018-11-13T18:17:57+08:00</lastmod>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://bbsonlin.github.io/categories/tech/</loc>
-    <lastmod>2018-11-13T18:17:57+08:00</lastmod>
+    <lastmod>2018-11-14T11:35:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   

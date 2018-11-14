@@ -8,14 +8,14 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="">
+    <meta name="description" content="如何讓大家都看到我?, 初出江湖 - 佈署到 Github Page">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>Blog-</title>
+    <title>用 Hugo 建置我的部落格 - 2-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/tags/blog/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -111,14 +111,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')">
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Bobson&#39;s Blog </h1>
-                    
-		    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/blog" title="blog">
+                           blog
+                        </a>
+                        
+                       <a class="tag" href="/tags/hugo" title="Hugo">
+                           Hugo
+                        </a>
+                        
+                       <a class="tag" href="/tags/github" title="Github">
+                           Github
+                        </a>
+                        
+                    </div>
+                    <h1>用 Hugo 建置我的部落格 - 2</h1>
+                    <h2 class="subheading"></h2>
+                    <span  class="meta">Posted by Bobson Lin on Wednesday, November 14, 2018
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -127,126 +150,125 @@
 
 
 
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+        		
+                        <header>
+                        <h2>TOC</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li><a href="#如何讓大家都看到我">如何讓大家都看到我?</a></li>
+<li><a href="#初出江湖-佈署到-github-page">初出江湖 - 佈署到 Github Page</a></li>
+<li><a href="#接下來">接下來?</a></li>
+</ul>
+</nav>
+        		
+        		
+
+<p><em>上一篇 - <a href="https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/">用 Hugo 建置我的部落格 - 1</a></em></p>
+
+<h1 id="如何讓大家都看到我">如何讓大家都看到我?</h1>
+
+<p>其實 Hugo 官方文件裡有一篇 <a href="https://gohugo.io/hosting-and-deployment/">託管與佈署</a>，裡頭有佈署到不同托管服務的方法。
+不過我想這邊我就直接先使用 Github Pages 吧。</p>
+
+<h1 id="初出江湖-佈署到-github-page">初出江湖 - 佈署到 Github Page</h1>
+
+<p>官方文件一開始看有點雜亂，後來是找到這位大老的<a href="https://www.youtube.com/watch?v=4W9sVoVYMLo">教學影片</a>才順利佈署完成</p>
+
+<p><strong>建立 Repository</strong></p>
+
+<ul>
+<li>主要是建立兩個程式碼倉庫 <code>blog</code> 和 <code>&lt;USERNAME&gt;.github.io</code>，前者是主要編輯文章內容；後者是放置靜態網頁的部份。</li>
+<li>啟用 <code>&lt;USERNAME&gt;.github.io</code> Github Pages 服務。(在 Repo 的 Settings -&gt; Github Pages)</li>
+<li>Github Pages 的形式有兩種：
+
+<ol>
+<li><code>https://&lt;USERNAME|ORGANIZATION&gt;.github.io/</code> - 這種是給帳戶放置首頁的，必須要對應到 <code>&lt;USERNAME|ORGANIZATION&gt;.github.io</code> 的 Repo</li>
+<li><code>https://&lt;USERNAME|ORGANIZATION&gt;.github.io/&lt;PROJECT&gt;/</code> - 其餘你創建的 Poject Repo 的靜態網頁都可以佈署到相對應的 URL。</li>
+</ol></li>
+</ul>
+
+<p><strong>輸出靜態網頁</strong></p>
+
+<pre><code>$ hugo -d ../&lt;USERNAME&gt;.github.io
+</code></pre>
+
+<ul>
+<li>在編輯文章內容的 Repo 下，輸出靜態網頁到放置靜態網頁 Repo</li>
+<li>接著在將你輸出的內容 push 到 github 上就行囉~ 😃</li>
+</ul>
+
+<p><em>備註:</em><br />
+- <em>所有的 <code>&lt;USERNAME&gt;</code> 或 <code>&lt;USERNAME|ORGANIZATION&gt;</code> 記得更換成你的 Github 帳戶名稱 🤭</em></p>
+
+<h1 id="接下來">接下來?</h1>
+
+<ul>
+<li>[]</li>
+</ul>
+
+        
+                
+        
+              <hr>
+              <ul class="pager">
+                  
+                  
+                  <li class="next">
+                      <a href="/post/2018-11-13-use-hugo-to-build-my-blog-1/" data-toggle="tooltip" data-placement="top" title="用 Hugo 建置我的部落格 - 1">Next Post &rarr;</a>
+                  </li>
+                  
+              </ul>
   
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
+              
+<div id="disqus-comment"></div>
+
+
+
+            </div>
             
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-<div class="post-preview">
-    <a href="https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/">
-        <h2 class="post-title">
-            用 Hugo 建置我的部落格 - 2
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            如何讓大家都看到我?, 初出江湖 - 佈署到 Github Page
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by Bobson Lin Wednesday, November 14, 2018
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/">
-        <h2 class="post-title">
-            用 Hugo 建置我的部落格 - 1
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            為什麼選 Hugo, 尋找巨人們(資源), 初探身手 - 準備開始弄髒手手
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by Bobson Lin Tuesday, November 13, 2018
-    </p>
-</div>
-<hr>
-
-
-            
-
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-            
-                
-            
-                
-            
-        </div>
-    </section>
-    
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    </div>
+                </section>
 
-    
-    <section class="visible-md visible-lg">
-        <hr><h5><a href="">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
                 </ul>
             </div>
-    </section>
-   
-   <hr>
-   <h5>FRIENDS</h5>
-   <ul class="list-inline">
-       
-   </ul>
-   
-    
-   <hr>
-   <h5>BOOKMARKS</h5>
-   <ul class="list-inline">
-   
-   </ul>
-</div>
-
-	</div>
-</div>
-
+        </div>
+    </div>
+</article>
 
 
 

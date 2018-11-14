@@ -6,10 +6,24 @@
     <description>Recent content on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Nov 2018 18:17:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Nov 2018 11:35:17 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Hugo 建置我的部落格 - 2</title>
+      <link>https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/</link>
+      <pubDate>Wed, 14 Nov 2018 11:35:17 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/</guid>
+      <description>上一篇 - 用 Hugo 建置我的部落格 - 1
+如何讓大家都看到我? 其實 Hugo 官方文件裡有一篇 託管與佈署，裡頭有佈署到不同托管服務的方法。 不過我想這邊我就直接先使用 Github Pages 吧。
+初出江湖 - 佈署到 Github Page 官方文件一開始看有點雜亂，後來是找到這位大老的教學影片才順利佈署完成
+建立 Repository
+ 主要是建立兩個程式碼倉庫 blog 和 &amp;lt;USERNAME&amp;gt;.github.io，前者是主要編輯文章內容；後者是放置靜態網頁的部份。 啟用 &amp;lt;USERNAME&amp;gt;.github.io Github Pages 服務。(在 Repo 的 Settings -&amp;gt; Github Pages) Github Pages 的形式有兩種：  https://&amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io/ - 這種是給帳戶放置首頁的，必須要對應到 &amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io 的 Repo https://&amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io/&amp;lt;PROJECT&amp;gt;/ - 其餘你創建的 Poject Repo 的靜態網頁都可以佈署到相對應的 URL。   輸出靜態網頁
+$ hugo -d ../&amp;lt;USERNAME&amp;gt;.github.io   在編輯文章內容的 Repo 下，輸出靜態網頁到放置靜態網頁 Repo 接著在將你輸出的內容 push 到 github 上就行囉~ 😃  備註:</description>
+    </item>
     
     <item>
       <title>用 Hugo 建置我的部落格 - 1</title>

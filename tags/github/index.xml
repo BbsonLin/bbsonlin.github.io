@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tech on Bobson&#39;s Blog</title>
-    <link>https://bbsonlin.github.io/categories/tech/</link>
-    <description>Recent content in Tech on Bobson&#39;s Blog</description>
+    <title>Github on Bobson&#39;s Blog</title>
+    <link>https://bbsonlin.github.io/tags/github/</link>
+    <description>Recent content in Github on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Nov 2018 11:35:17 +0800</lastBuildDate>
     
-	<atom:link href="https://bbsonlin.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bbsonlin.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -23,25 +23,6 @@
 建立 Repository
  主要是建立兩個程式碼倉庫 blog 和 &amp;lt;USERNAME&amp;gt;.github.io，前者是主要編輯文章內容；後者是放置靜態網頁的部份。 啟用 &amp;lt;USERNAME&amp;gt;.github.io Github Pages 服務。(在 Repo 的 Settings -&amp;gt; Github Pages) Github Pages 的形式有兩種：  https://&amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io/ - 這種是給帳戶放置首頁的，必須要對應到 &amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io 的 Repo https://&amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io/&amp;lt;PROJECT&amp;gt;/ - 其餘你創建的 Poject Repo 的靜態網頁都可以佈署到相對應的 URL。   輸出靜態網頁
 $ hugo -d ../&amp;lt;USERNAME&amp;gt;.github.io   在編輯文章內容的 Repo 下，輸出靜態網頁到放置靜態網頁 Repo 接著在將你輸出的內容 push 到 github 上就行囉~ 😃  備註:</description>
-    </item>
-    
-    <item>
-      <title>用 Hugo 建置我的部落格 - 1</title>
-      <link>https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/</link>
-      <pubDate>Tue, 13 Nov 2018 18:17:57 +0800</pubDate>
-      
-      <guid>https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/</guid>
-      <description>為什麼選 Hugo 比較了幾個常見的部落格建置工具以及其開發的語言:
- Jekyll - Ruby
- Hugo - Golang
- Hexo - Javascript
-  主要原因:
- Hugo 是用 Golang 寫的，安裝的時候不用其他 package manager (Ruby 要用 gem, JS 要用 npm) Hugo 是用 Golang 寫的，整體操作的速度會較快 (詳細可能要多接觸後才了解)  個人(非必要)原因:
- 開發環境大多都用 Ubuntu (沒錢買 Mac&amp;hellip;)，剛好 Ubuntu 16.04 後有 snapcraft 做軟體的管理，而 Hugo 剛好在上面有版本，安裝起來非常快。
- 對於 JS 較熟(前端接觸了一年多)，Ruby 稍微有點退燒了，而 Golang 越來越火，看順便能不能藉此機會接觸一些 Golang 的專案。  備註:
-- 比較的部落格建置工具均為 static site generater
-- 選擇工具為個人喜好決定，並無絕對的好壞，自己用的上手最重要
-尋找巨人們(資源) 經過一天的尋找，找到了些巨人們:</description>
     </item>
     
   </channel>

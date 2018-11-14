@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Nov 2018 18:17:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Nov 2018 11:35:17 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,25 @@
     <item>
       <title>Blog</title>
       <link>https://bbsonlin.github.io/tags/blog/</link>
-      <pubDate>Tue, 13 Nov 2018 18:17:57 +0800</pubDate>
+      <pubDate>Wed, 14 Nov 2018 11:35:17 +0800</pubDate>
       
       <guid>https://bbsonlin.github.io/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Github</title>
+      <link>https://bbsonlin.github.io/tags/github/</link>
+      <pubDate>Wed, 14 Nov 2018 11:35:17 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hugo</title>
       <link>https://bbsonlin.github.io/tags/hugo/</link>
-      <pubDate>Tue, 13 Nov 2018 18:17:57 +0800</pubDate>
+      <pubDate>Wed, 14 Nov 2018 11:35:17 +0800</pubDate>
       
       <guid>https://bbsonlin.github.io/tags/hugo/</guid>
       <description></description>
