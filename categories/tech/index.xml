@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tech on Bobson&#39;s Blog</title>
-    <link>http://example.org/categories/tech/</link>
+    <link>https://bbsonlin.github.io/categories/tech/</link>
     <description>Recent content in Tech on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 13 Nov 2018 18:17:57 +0800</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bbsonlin.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>用 Hugo 建置我的部落格 - 1</title>
-      <link>http://example.org/post/2018-11-13-use-hugo-to-build-my-blog-1/</link>
+      <link>https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/</link>
       <pubDate>Tue, 13 Nov 2018 18:17:57 +0800</pubDate>
       
-      <guid>http://example.org/post/2018-11-13-use-hugo-to-build-my-blog-1/</guid>
+      <guid>https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/</guid>
       <description>為什麼選 Hugo 比較了幾個常見的部落格建置工具以及其開發的語言:
  Jekyll - Ruby
  Hugo - Golang

@@ -3,52 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/post/2018-11-13-use-hugo-to-build-my-blog-1/</loc>
+    <loc>https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/2018-11-13-first-post/</loc>
+    <loc>https://bbsonlin.github.io/post/2018-11-13-first-post/</loc>
     <lastmod>2018-11-13T12:17:57+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/tags/blog/</loc>
+    <loc>https://bbsonlin.github.io/tags/blog/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://bbsonlin.github.io/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://bbsonlin.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/hugo/</loc>
+    <loc>https://bbsonlin.github.io/tags/hugo/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/post/</loc>
+    <loc>https://bbsonlin.github.io/post/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://bbsonlin.github.io/tags/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/categories/tech/</loc>
+    <loc>https://bbsonlin.github.io/categories/tech/</loc>
     <lastmod>2018-11-13T18:17:57+08:00</lastmod>
     <priority>0</priority>
   </url>
