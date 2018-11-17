@@ -8,14 +8,14 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="如何讓大家都看到我?, 初出江湖 - 佈署到 Github Page">
+    <meta name="description" content="移動端的開發框架 起步 初步了解">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Hugo 建置我的部落格 - 2-</title>
+    <title>Flutter 開始探索-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-11-15-flutter-getting-start/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -124,22 +124,18 @@
                 <div class="post-heading">
                     <div class="tags">
                        
-                       <a class="tag" href="/tags/blog" title="blog">
-                           blog
+                       <a class="tag" href="/tags/mobile" title="Mobile">
+                           Mobile
                         </a>
                         
-                       <a class="tag" href="/tags/hugo" title="Hugo">
-                           Hugo
-                        </a>
-                        
-                       <a class="tag" href="/tags/github" title="Github">
-                           Github
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
                         </a>
                         
                     </div>
-                    <h1>用 Hugo 建置我的部落格 - 2</h1>
+                    <h1>Flutter 開始探索</h1>
                     <h2 class="subheading"></h2>
-                    <span  class="meta">Posted by Bobson Lin on Wednesday, November 14, 2018
+                    <span  class="meta">Posted by Bobson&#39;s Blog on Thursday, November 15, 2018
                         
                     </span>
                 </div>
@@ -167,55 +163,108 @@
                         </header>
                         <nav id="TableOfContents">
 <ul>
-<li><a href="#如何讓大家都看到我">如何讓大家都看到我?</a></li>
-<li><a href="#初出江湖-佈署到-github-page">初出江湖 - 佈署到 Github Page</a></li>
+<li><a href="#移動端的開發框架">移動端的開發框架</a></li>
+<li><a href="#起步">起步</a></li>
+<li><a href="#初步了解">初步了解</a></li>
 <li><a href="#接下來">接下來?</a></li>
 </ul>
 </nav>
         		
         		
 
-<p><em>上一篇 - <a href="https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/">用 Hugo 建置我的部落格 - 1</a></em></p>
+<h1 id="移動端的開發框架">移動端的開發框架</h1>
 
-<h1 id="如何讓大家都看到我">如何讓大家都看到我?</h1>
-
-<p>其實 Hugo 官方文件裡有一篇 <a href="https://gohugo.io/hosting-and-deployment/">託管與佈署</a>，裡頭有佈署到不同托管服務的方法。
-不過我想這邊我就直接先使用 Github Pages 吧。</p>
-
-<h1 id="初出江湖-佈署到-github-page">初出江湖 - 佈署到 Github Page</h1>
-
-<p>官方文件一開始看有點雜亂，後來是找到這位大老的<a href="https://www.youtube.com/watch?v=4W9sVoVYMLo">教學影片</a>才順利佈署完成</p>
-
-<p><strong>建立 Repository</strong></p>
+<p><strong>主要考慮 React Native 和 Flutter</strong></p>
 
 <ul>
-<li>主要是建立兩個程式碼倉庫 <code>blog</code> 和 <code>&lt;USERNAME&gt;.github.io</code>，前者是主要編輯文章內容；後者是放置靜態網頁的部份。</li>
-<li>啟用 <code>&lt;USERNAME&gt;.github.io</code> Github Pages 服務。(在 Repo 的 Settings -&gt; Github Pages)</li>
-<li>Github Pages 的形式有兩種：
-
-<ol>
-<li><code>https://&lt;USERNAME|ORGANIZATION&gt;.github.io/</code> - 這種是給帳戶放置首頁的，必須要對應到 <code>&lt;USERNAME|ORGANIZATION&gt;.github.io</code> 的 Repo</li>
-<li><code>https://&lt;USERNAME|ORGANIZATION&gt;.github.io/&lt;PROJECT&gt;/</code> - 其餘你創建的 Poject Repo 的靜態網頁都可以佈署到相對應的 URL。</li>
-</ol></li>
-</ul>
-
-<p><strong>輸出靜態網頁</strong></p>
-
-<pre><code>$ hugo -d ../&lt;USERNAME&gt;.github.io
-</code></pre>
+<li>Android/iOS - Java &amp; Kotlin/Objective-C &amp; Swift
 
 <ul>
-<li>在編輯文章內容的 Repo 下，輸出靜態網頁到放置靜態網頁 Repo</li>
-<li>接著在將你輸出的內容 push 到 github 上就行囉~ 😃</li>
+<li>優勢:
+
+<ul>
+<li>用原生的語言開發，效能很好</li>
+<li>由於推出時間很久了，非常穩定以及能搜尋到的資源也很多</li>
+</ul></li>
+<li>劣勢:
+
+<ul>
+<li>兩種平台須寫兩份不同語言的程式碼，開發及維護上需要較多人力資源</li>
+</ul></li>
+</ul></li>
+<li>React Native - Javascript
+
+<ul>
+<li>優勢:
+
+<ul>
+<li>只須一種語言能編成兩種平台的 App</li>
+<li>用前端語言開發，對於前端開發者較好上手</li>
+<li>推出時間有五年了，整體框架算穩定以及社群也較多</li>
+</ul></li>
+<li>劣勢:
+
+<ul>
+<li>需要先學習過 React 這框架會比較好，但 React 上手難度較高</li>
+<li>由於使用叫高級的程式語言，效能上容易被詬病</li>
+</ul></li>
+</ul></li>
+<li>Flutter - Dartlang
+
+<ul>
+<li>優勢:
+
+<ul>
+<li>只須一種語言能編成兩種平台的 App</li>
+<li>Dartlang 為 Java-Like 的語言，學習過 Java 會滿好上手的</li>
+<li>Dartlang 是能需要編譯的，效能上比較好</li>
+</ul></li>
+<li>劣勢:
+
+<ul>
+<li>推出時間短(約一年半)，整體框架以及社群尚在發展中</li>
+</ul></li>
+</ul></li>
 </ul>
 
 <p><em>備註:</em><br />
-- <em>所有的 <code>&lt;USERNAME&gt;</code> 或 <code>&lt;USERNAME|ORGANIZATION&gt;</code> 記得更換成你的 Github 帳戶名稱 🤭</em></p>
+- <em>Flutter 於今年五月釋出 Beta 3、六月發出 Preview 1、九月發出 Preview 2，滿看好他的發展。</em><br />
+- <em>在稍微接觸了 RN 和 Flutter 後，個人覺得 Flutter 還是較親近也比較好上手，所以決定以 Flutter 這框架用來開發移動端的專案。</em><br />
+- <em>選擇工具為個人喜好決定，並無絕對的好壞，自己用的上手最重要。</em></p>
+
+<h1 id="起步">起步</h1>
+
+<p>個人滿推薦起步時，能按照 <a href="https://flutter.io/docs/get-started/install"><strong><em>官方起步文檔</em></strong></a> 或 <a href="https://flutterchina.club/get-started/install/"><strong><em>中文起步文檔</em></strong></a>
+，主要可以先將一到四步完整跑完一次。</p>
+
+<p><strong>編輯器的選擇</strong></p>
+
+<ul>
+<li>一開始我使用 VScode 上安裝 Dart 和 Flutter 的插件後開發，後來發現很多好用的功能還沒有</li>
+<li>建議用 Android Studio 上安裝 Flutter 的插件後開發會比較好喔。</li>
+</ul>
+
+<h1 id="初步了解">初步了解</h1>
+
+<p>Flutter 目前的學習文檔，寫的非常詳細，接下來的步驟可以從 <a href="https://flutterchina.club/get-started/learn-more/">了解更多</a>(<a href="https://flutter.io/docs/get-started/learn-more">原文</a>) 開始。</p>
+
+<p>個人建議以下的閱讀順序:</p>
+
+<ol>
+<li><a href="https://flutterchina.club/widgets-intro/">Flutter Widget 框架概述</a>(<a href="https://flutter.io/docs/development/ui/widgets-intro">原文</a>)</li>
+<li><a href="https://flutterchina.club/tutorials/layout/">在 Flutter 布局UI</a>(<a href="https://flutter.io/docs/development/ui/layout">原文</a>)</li>
+<li><a href="https://flutterchina.club/tutorials/interactive/">添加交互</a>(<a href="https://flutter.io/docs/development/ui/interactive">原文</a>)</li>
+<li><a href="https://flutterchina.club/flutter-for-android/">Flutter for Android 開發者</a>(<a href="https://flutter.io/docs/get-started/flutter-for/android-devs">原文</a>)</li>
+</ol>
+
+<p>另外也建議可以稍微了解一下 Dart 的基本用法:<br />
+<a href="https://codelabs.flutter-io.cn/codelabs/from-java-to-dart-cn/index.html#0"><strong>为 Java 开发人员准备的 Dart 教程</strong></a>(<a href="https://codelabs.developers.google.com/codelabs/from-java-to-dart/index.html?index=..%2F..index#0">原文</a>)</p>
 
 <h1 id="接下來">接下來?</h1>
 
 <ul>
-<li>[]</li>
+<li>更多進階內容可以慢慢的把 <a href="https://flutter.io/docs/development"><strong>官方文檔</strong></a> 其餘的地方讀完。</li>
+<li></li>
 </ul>
 
         
@@ -224,13 +273,9 @@
               <hr>
               <ul class="pager">
                   
-                  <li class="previous">
-                      <a href="/post/2018-11-15-flutter-getting-start/" data-toggle="tooltip" data-placement="top" title="Flutter 開始探索">&larr; Previous Post</a>
-                  </li>
-                  
                   
                   <li class="next">
-                      <a href="/post/2018-11-13-use-hugo-to-build-my-blog-1/" data-toggle="tooltip" data-placement="top" title="用 Hugo 建置我的部落格 - 1">Next Post &rarr;</a>
+                      <a href="/post/2018-11-14-use-hugo-to-build-my-blog-2/" data-toggle="tooltip" data-placement="top" title="用 Hugo 建置我的部落格 - 2">Next Post &rarr;</a>
                   </li>
                   
               </ul>
