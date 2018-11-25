@@ -56,5 +56,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Tag2</title>
+      <link>https://bbsonlin.github.io/tags/tag2/</link>
+      <pubDate>Tue, 20 Nov 2018 09:45:59 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/tags/tag2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Think</title>
+      <link>https://bbsonlin.github.io/tags/think/</link>
+      <pubDate>Tue, 20 Nov 2018 09:45:59 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/tags/think/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

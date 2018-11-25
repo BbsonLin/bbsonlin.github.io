@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tag2 on Bobson&#39;s Blog</title>
+    <link>https://bbsonlin.github.io/tags/tag2/</link>
+    <description>Recent content in Tag2 on Bobson&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Nov 2018 09:45:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://bbsonlin.github.io/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>關於&#39;數據&#39;的異想天開</title>
+      <link>https://bbsonlin.github.io/post/2018-11-20-whimsical-thoughts-about-data/</link>
+      <pubDate>Tue, 20 Nov 2018 09:45:59 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2018-11-20-whimsical-thoughts-about-data/</guid>
+      <description>近幾年來特別火的字眼像是&amp;rdquo;大數據&amp;rdquo;、&amp;rdquo;人工智能&amp;rdquo;。
+稍微研究後會發現現在的&amp;rdquo;人工智能&amp;rdquo;，最常講的就是深度學習以及機器學習。
+機器學習本人研究較多，其實最早提出來的名詞叫做&amp;rdquo;統計學習&amp;rdquo;；
+從名稱上不外乎就是和統計、數學有關，另外還佔有一個很大的角色就是&amp;rdquo;數據&amp;rdquo;(Data)。
+要統計出有用的模型就必定要有大量的數據。
+然而稍微了解下生物學會知道我們現在普遍的人類，我們稱作智人；
+最早出現的時間點是 25萬~40萬年前 (來自維基百科)。
+但歷史上或考古上最早的紀錄或遺跡都只在大約離現在不到 5000 年。
+大約只佔智人出現時間的 1&amp;frasl;50
+古夫金字塔 B.C.2530 聖經上的大洪水 B.C.2370 大禹治水 B.C.2050±150 黃帝 B.C.2717 ~ B.C.2599  雖說中國是10000年前才進入農耕時期，難到過去二十多萬年都只是採集時期嗎?
+而現今電腦不過發展不到 100 年，就出現人工智能；這種發展速度頗為奇葩。
+或許在以前人類就遭到資料毀滅過，以至於現在根本找不到10000年以前的資料?
+備註: 一切都為作者云云，別太認真了~</description>
+    </item>
+    
+  </channel>
+</rss>
