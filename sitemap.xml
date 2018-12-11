@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://bbsonlin.github.io/post/2018-12-11-opencv-tutorial-1/</loc>
+    <lastmod>2018-12-11T14:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/post/2018-11-20-whimsical-thoughts-about-data/</loc>
     <lastmod>2018-11-20T09:45:59+08:00</lastmod>
   </url>
@@ -35,7 +40,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/</loc>
-    <lastmod>2018-11-20T09:45:59+08:00</lastmod>
+    <lastmod>2018-12-11T14:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -53,6 +58,12 @@
   <url>
     <loc>https://bbsonlin.github.io/tags/github/</loc>
     <lastmod>2018-11-14T11:35:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/tags/gossip/</loc>
+    <lastmod>2018-11-20T09:45:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,14 +86,20 @@
   </url>
   
   <url>
-    <loc>https://bbsonlin.github.io/post/</loc>
-    <lastmod>2018-11-20T09:45:59+08:00</lastmod>
+    <loc>https://bbsonlin.github.io/tags/opencv/</loc>
+    <lastmod>2018-12-11T14:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://bbsonlin.github.io/tags/tag2/</loc>
-    <lastmod>2018-11-20T09:45:59+08:00</lastmod>
+    <loc>https://bbsonlin.github.io/post/</loc>
+    <lastmod>2018-12-11T14:18:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/tags/python/</loc>
+    <lastmod>2018-12-11T14:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,13 +111,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/categories/tech/</loc>
-    <lastmod>2018-11-15T12:23:48+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://bbsonlin.github.io/tags/think/</loc>
-    <lastmod>2018-11-20T09:45:59+08:00</lastmod>
+    <lastmod>2018-12-11T14:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   

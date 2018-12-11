@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Bobson&#39;s Blog</title>
+    <link>https://bbsonlin.github.io/tags/python/</link>
+    <description>Recent content in Python on Bobson&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Dec 2018 14:18:33 +0800</lastBuildDate>
+    
+	<atom:link href="https://bbsonlin.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Opencv-Python 學習之旅 - 1</title>
+      <link>https://bbsonlin.github.io/post/2018-12-11-opencv-tutorial-1/</link>
+      <pubDate>Tue, 11 Dec 2018 14:18:33 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2018-12-11-opencv-tutorial-1/</guid>
+      <description>安裝 筆者的環境使用 Ubuntu 18.04，利用 pipenv 安裝 opencv-python 套件
+起步 - 照片(影像) import cv2 img = cv2.imread(&#39;data/messi5.jpg&#39;, 0) cv2.imshow(&#39;image&#39;, img) k = cv2.waitKey(0) if k == 27: # wait for ESC key to exit cv2.destroyAllWindows() elif k == ord(&#39;s&#39;): # wait for &#39;s&#39; key to save and exit cv2.imwrite(&#39;out/messigray.png&#39;, img) cv2.destroyAllWindows()   用 cv2.imread 讀取影像檔案，第一個參數為檔案位置(String);第二個參數為讀取影像檔的顏色參數。 第二個參數有很多選項，如 cv2.IMREAD_COLOR、cv2.IMREAD_GREYSCALE、cv2.IMREAD_UNCHANGED &amp;hellip; 更多 用 cv2.imshow 可顯示用 cv2.imread 讀取進來的影像資訊 cv2.waitKey 會等待任何鍵盤事件；cv2.destroyAllWindows 會關閉所有視窗。 按下鍵盤 s，會調用 cv2.</description>
+    </item>
+    
+  </channel>
+</rss>
