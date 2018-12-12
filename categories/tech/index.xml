@@ -6,10 +6,19 @@
     <description>Recent content in Tech on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Dec 2018 14:18:33 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Dec 2018 16:39:26 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Opencv-Python 學習之旅 - 2</title>
+      <link>https://bbsonlin.github.io/post/2018-12-12-opencv-tutorial-2/</link>
+      <pubDate>Wed, 12 Dec 2018 16:39:26 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2018-12-12-opencv-tutorial-2/</guid>
+      <description>影像基本運算 import cv2 img = cv2.imread(&#39;data/messi5.jpg&#39;) px = img[100, 100] print(px, px.shape, px.size, px.dtype, type(px)) # accessing only blue pixel blue = img[100, 100, 0] print(blue, type(blue)) img[100, 100] = [255, 255, 255] img[100, 101] = [255, 255, 255] print(img[100, 100]) # accessing RED value print(img.item(10, 10, 2)) # modifying RED value img.itemset((10, 10, 2), 100) print(img.item(10, 10, 2)) print(img.shape, img.size, img.dtype, type(img)) ball = img[280:340, 330:390] img[273:333, 100:160] = ball b, g, r = cv2.</description>
+    </item>
     
     <item>
       <title>Opencv-Python 學習之旅 - 1</title>

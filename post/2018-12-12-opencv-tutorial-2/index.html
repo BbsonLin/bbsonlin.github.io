@@ -8,14 +8,14 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="為什麼選 Hugo, 尋找巨人們(資源), 初探身手 - 準備開始弄髒手手">
+    <meta name="description" content="核心操作">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Hugo 建置我的部落格 - 1-</title>
+    <title>Opencv-Python 學習之旅 - 2-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-11-13-use-hugo-to-build-my-blog-1/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-12-12-opencv-tutorial-2/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -128,18 +128,18 @@
                 <div class="post-heading">
                     <div class="tags">
                        
-                       <a class="tag" href="/tags/blog" title="blog">
-                           blog
+                       <a class="tag" href="/tags/opencv" title="Opencv">
+                           Opencv
                         </a>
                         
-                       <a class="tag" href="/tags/hugo" title="Hugo">
-                           Hugo
+                       <a class="tag" href="/tags/python" title="Python">
+                           Python
                         </a>
                         
                     </div>
-                    <h1>用 Hugo 建置我的部落格 - 1</h1>
-                    <h2 class="subheading"></h2>
-                    <span  class="meta">Posted by Bobson Lin on Tuesday, November 13, 2018
+                    <h1>Opencv-Python 學習之旅 - 2</h1>
+                    <h2 class="subheading">Core Operations</h2>
+                    <span  class="meta">Posted by Bobson Lin on Wednesday, December 12, 2018
                         
                     </span>
                 </div>
@@ -167,116 +167,162 @@
                         </header>
                         <nav id="TableOfContents">
 <ul>
-<li><a href="#為什麼選-hugo">為什麼選 Hugo</a></li>
-<li><a href="#尋找巨人們-資源">尋找巨人們(資源)</a></li>
-<li><a href="#初探身手-準備開始弄髒手手">初探身手 - 準備開始弄髒手手</a></li>
-<li><a href="#接下來-你可以瞧瞧">接下來? 你可以瞧瞧&hellip;</a></li>
+<li><a href="#影像基本運算">影像基本運算</a></li>
+<li><a href="#影像算術運算">影像算術運算</a></li>
+<li><a href="#效能測量與優化技術">效能測量與優化技術</a></li>
+<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
 </ul>
 </nav>
         		
         		
 
-<h1 id="為什麼選-hugo">為什麼選 Hugo</h1>
+<h1 id="影像基本運算">影像基本運算</h1>
 
-<p><strong>比較了幾個常見的部落格建置工具以及其開發的語言:</strong></p>
+<hr />
+
+<pre><code>import cv2
+
+img = cv2.imread('data/messi5.jpg')
+px = img[100, 100]
+print(px, px.shape, px.size, px.dtype, type(px))
+
+# accessing only blue pixel
+blue = img[100, 100, 0]
+print(blue, type(blue))
+
+img[100, 100] = [255, 255, 255]
+img[100, 101] = [255, 255, 255]
+print(img[100, 100])
+
+# accessing RED value
+print(img.item(10, 10, 2))
+
+# modifying RED value
+img.itemset((10, 10, 2), 100)
+print(img.item(10, 10, 2))
+
+print(img.shape, img.size, img.dtype, type(img))
+
+ball = img[280:340, 330:390]
+img[273:333, 100:160] = ball
+
+b, g, r = cv2.split(img)
+img_m = cv2.merge((b, g, r))
+img[:, :, 2] = 0
+print(id(img), id(img_m))
+</code></pre>
+
+<blockquote>
+<p>[157 166 200] | (3,) 3 uint8 <class 'numpy.ndarray'><br />
+157 | () 1 uint8 <class 'numpy.uint8'><br />
+[255 255 255]<br />
+59<br />
+100<br />
+(342, 548, 3) 562248 uint8 <class 'numpy.ndarray'><br />
+140225644633904 140225188020512</p>
+</blockquote>
 
 <ul>
-<li>Jekyll - Ruby<br /></li>
-<li>Hugo   - Golang<br /></li>
-<li>Hexo   - Javascript<br /></li>
+<li><code>cv2.imread</code> 讀取進影像的數據矩陣，利用 <code>Numpy</code> 套件的資料結構儲存，而每格的型態為<code>numpy.uint8</code> (0~255)。</li>
+<li>基本上讀取進來彩色影像是三維矩陣(<code>numpy.ndarray</code>)。</li>
+<li>影像的矩陣；<code>img[列, 行, (顏色資訊)]</code>，若是預設的 flag 應為 BGR，也就是彩色影像；彩色影像的顏色資訊有3個[藍 綠 紅]數值，而灰階影像只會有1個數值。</li>
+<li>對於矩陣的操作可以使用 Operations on Arrays 裡的函數，或直接操作 Numpy Array</li>
+<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/core/doc/operations_on_arrays.html">Operations on Arrays</a>、<a href="https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html">Numpy Indexing</a></li>
 </ul>
 
-<p><strong>主要原因:</strong></p>
+<h1 id="影像算術運算">影像算術運算</h1>
 
-<ol>
-<li>Hugo 是用 Golang 寫的，安裝的時候不用其他 package manager (Ruby 要用 gem, JS 要用 npm)</li>
-<li>Hugo 是用 Golang 寫的，整體操作的速度會較快 (<em>詳細可能要多接觸後才了解</em>)</li>
-</ol>
+<hr />
 
-<p><strong>個人(非必要)原因:</strong></p>
+<pre><code>import cv2
 
-<ol>
-<li>開發環境大多都用 Ubuntu (沒錢買 Mac&hellip;)，剛好 Ubuntu 16.04 後有 <a href="https://snapcraft.io/">snapcraft</a> 做軟體的管理，而 Hugo 剛好在上面有版本，安裝起來非常快。<br /></li>
-<li>對於 JS 較熟(前端接觸了一年多)，Ruby 稍微有點退燒了，而 Golang 越來越火，看順便能不能藉此機會接觸一些 Golang 的專案。</li>
-</ol>
+ml_img = cv2.imread('data/ml.png')
+logo_img = cv2.imread('data/opencv-logo.png')
+logo_imgROI = logo_img[179:559, 146:454]
+print(ml_img.shape, logo_img.shape, logo_imgROI.shape)
 
-<p><em>備註:</em><br />
-- <em>比較的部落格建置工具均為 <a href="https://en.wikipedia.org/wiki/Web_template_system#Static_site_generators">static site generater</a></em><br />
-- <em>選擇工具為個人喜好決定，並無絕對的好壞，自己用的上手最重要</em></p>
+# dst = cv2.addWeighted(ml_img, 0.7, logo_img, 0.3, 0)
+dst = cv2.addWeighted(ml_img, 0.7, logo_imgROI, 0.3, 0)
 
-<h1 id="尋找巨人們-資源">尋找巨人們(資源)</h1>
+cv2.imshow('dst', dst)
+cv2.imshow('ml', ml_img)
+cv2.imshow('logo', logo_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+</code></pre>
 
-<p><strong>經過一天的尋找，找到了些巨人們:</strong></p>
-
-<p><strong><em>文檔類</em></strong></p>
+<blockquote>
+<p>注意：<br />
+Opencv 的相加函數 和 Numpy Array 的相加 的結果會不一樣。<br />
+舉例來說:<br />
+&gt;&gt;&gt; x = np.uint8([250])<br />
+&gt;&gt;&gt; y = np.uint8([10])<br />
+&gt;&gt;&gt; print(cv2.add(x,y)) # 250+10 = 260 =&gt; 255<br />
+&gt;&gt;&gt; print(x+y)          # 250+10 = 260 % 256 = 4</p>
+</blockquote>
 
 <ul>
-<li><a href="https://gohugo.io/documentation/">Hugo 官方文件</a> - 這是一定要參考的，而且寫的算詳細。</li>
+<li>影像相加時須用 <code>cv2.add</code> 或 <code>cv2.addWeighted</code> 函數。</li>
+<li>另外相加的影像大小不一樣時需要先定義 <code>感興趣區域(ROI)</code>，否則會出現 <code>error: (-209:Sizes of input arguments do not match)</code> 的錯誤訊息。</li>
+<li>合成結果: <img src="/images/2018-12-12-opencv-tutorial-2/addWeighted_dst.png" alt="addWeighted_dst" /></li>
 </ul>
 
-<p><strong><em>影片類</em></strong></p>
+<pre><code>import cv2
 
-<ul>
-<li><a href="https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3">Hugo - Static Site Generator | Tutorial</a> - Mike Dane 的 Hugo 教學影片，涵蓋了大部分官方文檔講的內容，再加上一些實做。</li>
-</ul>
+# Load two images
+img1 = cv2.imread('data/messi5.jpg')
+img2 = cv2.imread('data/opencv-logo-white.png')
 
-<p><strong><em>程序猿用</em></strong></p>
+# I want to put logo on top-left corner, So I create a ROI
+rows, cols, channels = img2.shape
+print(img1.shape, img2.shape)
+roi = img1[0:rows, 0:cols]
 
-<ul>
-<li><a href="https://github.com/zhaohuabing/hugo-theme-cleanwhite">Hugo Theme CleanWhite</a> - 本部落格套用的主題</li>
-</ul>
+# Now create a mask of logo and create its inverse mask also
+img2gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
+mask_inv = cv2.bitwise_not(mask)
 
-<p><em>多虧尋找到這些巨人才得以快速理解 Hugo 😏</em></p>
+# Now black-out the area of logo in ROI
+img1_bg = cv2.bitwise_and(roi, roi, mask=mask_inv)
 
-<h1 id="初探身手-準備開始弄髒手手">初探身手 - 準備開始弄髒手手</h1>
+# Take only region of logo from logo image.
+img2_fg = cv2.bitwise_and(img2, img2, mask=mask)
 
-<p><em>筆主使用的環境是 Ubuntu 18.04LTS</em></p>
+# Put logo in ROI and modify the main image
+dst = cv2.add(img1_bg, img2_fg)
+img1[0:rows, 0:cols] = dst
 
-<p><strong>安裝 Hugo 指令</strong></p>
-
-<pre><code>$ snap install hugo --devmode
+cv2.imshow('res', img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 </code></pre>
 
 <ul>
-<li>使用 <code>--devmode</code> 是因為碰上後面用 hugo 指令初始化資料夾結構時出現了 pemission denied；後來是加上此參數才解決</li>
+<li>另外也可以用邏輯運算去作合成，如 <code>cv2.bitwise_and</code>、<code>cv2.bitwise_not</code></li>
+<li><code>cv2.threshold</code> 可以設置的門檻來過濾或處理圖片，後面章節會在提。</li>
+<li>合成結果: <img src="/images/2018-12-12-opencv-tutorial-2/bitwise_dst.png" alt="bitwise_dst" /></li>
 </ul>
 
-<p><strong>初始化資料夾</strong></p>
+<h1 id="效能測量與優化技術">效能測量與優化技術</h1>
 
-<pre><code>$ hugo new site myblog
-$ cd myblog
-</code></pre>
+<hr />
+
+<p>由於這需要與實作上後更容易了解這塊，之後再更新。<br />
+<a href="https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_core/py_optimization/py_optimization.html">參考</a></p>
+
+<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
+
+<p><em>參考</em></p>
 
 <ul>
-<li>hugo 會幫我們建立一大堆預設的資料夾(大部份是空的)，初使用的話比較需要注意的是 <code>content</code>、<code>themes</code>、<code>config.toml</code>。</li>
+<li><a href="https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_core/py_table_of_contents_core/py_table_of_contents_core.html">官方教學文檔 - Core Operations</a></li>
 </ul>
 
-<p><strong>安裝主題</strong></p>
-
-<pre><code>$ git init
-$ git submodule add https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite
-$ echo 'theme = &quot;hugo-theme-cleanwhite&quot;' &gt;&gt; config.toml
-</code></pre>
-
-<ul>
-<li>滿建議用 git submodule，可以版控又方便更新。</li>
-</ul>
-
-<p><strong>第一個博文</strong></p>
-
-<pre><code>$ hugo new post/first-post.md
-$ hugo server -D
-</code></pre>
-
-<ul>
-<li>在 <code>http://localhost:1313/</code> 上有顯示第一則博文，就大功告成拉~ 😃</li>
-</ul>
-
-<h1 id="接下來-你可以瞧瞧">接下來? 你可以瞧瞧&hellip;</h1>
-
-<ul>
-<li><a href="https://bbsonlin.github.io/post/2018-11-14-use-hugo-to-build-my-blog-2/">如何將 Hugo 放到 Github Pages 上</a></li>
-</ul>
+<blockquote>
+<p><em>系列文</em><br />
+待補</p>
+</blockquote>
 
         
                 
@@ -285,13 +331,9 @@ $ hugo server -D
               <ul class="pager">
                   
                   <li class="previous">
-                      <a href="/post/2018-11-13-first-post/" data-toggle="tooltip" data-placement="top" title="First Post">&larr; Previous Post</a>
+                      <a href="/post/2018-12-11-opencv-tutorial-1/" data-toggle="tooltip" data-placement="top" title="Opencv-Python 學習之旅 - 1">&larr; Previous Post</a>
                   </li>
                   
-                  
-                  <li class="next">
-                      <a href="/post/2018-11-14-use-hugo-to-build-my-blog-2/" data-toggle="tooltip" data-placement="top" title="用 Hugo 建置我的部落格 - 2">Next Post &rarr;</a>
-                  </li>
                   
               </ul>
   
