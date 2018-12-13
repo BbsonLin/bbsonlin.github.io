@@ -351,6 +351,7 @@ cv2.destroyAllWindows()
 <li><code>cv2.setMouseCallback</code> 中第二個參數 <code>onMouse</code> 可以監聽視窗的滑鼠事件並調用回調函數。</li>
 <li><code>draw_circle</code> 函數內利用 <code>event</code> 判斷之後再調用畫畫函數來達成像小畫家的筆刷功能。</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html">drawing functions</a>、<a href="https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html">user interface</a></li>
+<li>結果: <img src="/images/2018-12-11-opencv-tutorial-1/mouse_as_paint_brush.gif" alt="mouse_as_paint_brush" /></li>
 </ul>
 
 <h1 id="滑動軸來控制調色盤">滑動軸來控制調色盤</h1>
@@ -401,6 +402,7 @@ cv2.destroyAllWindows()
 <ul>
 <li><code>cv2.createTrackbar</code> 創建滑動軸，<code>cv2.getTrackbarPos</code> 獲取滑動軸的數值；用來更新視窗的點陣矩陣 <code>img[:] = [b, g, r]</code>。</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html">user interface</a></li>
+<li>結果: <img src="/images/2018-12-11-opencv-tutorial-1/trackbar_as_color_palette.gif" alt="trackbar_as_color_palette" /></li>
 </ul>
 
 <h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
