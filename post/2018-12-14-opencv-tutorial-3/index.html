@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="OpenCV 中的影像處理, 色彩空間轉換, 影像閾值, 影像的幾何轉換">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>Opencv-Python 學習之旅 - 3-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-12-14-opencv-tutorial-3/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/opencv" title="Opencv">
+                           Opencv
+                        </a>
+                        
+                       <a class="tag" href="/tags/python" title="Python">
+                           Python
+                        </a>
+                        
+                    </div>
+                    <h1>Opencv-Python 學習之旅 - 3</h1>
+                    <h2 class="subheading">Image Processing in OpenCV</h2>
+                    <span  class="meta">Posted by Bobson Lin on Friday, December 14, 2018
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+        		
+                        <header>
+                        <h2>TOC</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li><a href="#色彩空間轉換">色彩空間轉換</a></li>
+<li><a href="#影像閾值-門檻值">影像閾值(門檻值)</a></li>
+<li><a href="#影像的幾何轉換">影像的幾何轉換</a></li>
+<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
+</ul>
+</nav>
+        		
+        		
+
+<h1 id="色彩空間轉換">色彩空間轉換</h1>
+
+<hr />
+
+<blockquote>
+<p>在 <a href="/post/2018-12-11-opencv-tutorial-1/#起步-照片-影像">Opencv-Python 學習之旅 - 1 起步 - 照片(影像)</a> 中<code>imread</code>函數就有選擇讀取照片時你想要的<code>色彩標誌</code>參數 (BGR, HSV &hellip; 等)。<br />
+在 OpenCV 中還有其他的函數來作色彩空間轉換的處理。</p>
+</blockquote>
+
+<pre><code>import cv2
+
+img = cv2.imread('data/starry_night.jpg')
+
+# Convert BGR to HSV
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+# (600, 752, 3) 1353600 &lt;class 'numpy.ndarray'&gt;
+print(hsv.shape, hsv.size, type(hsv))
+
+# define range of blue color in HSV
+lower_blue = np.array([110, 50, 50])
+upper_blue = np.array([130, 255, 255])
+
+# Threshold the HSV image to get only blue colors
+mask = cv2.inRange(hsv, lower_blue, upper_blue)
+
+# Bitwise-AND mask and original image
+res = cv2.bitwise_and(img, img, mask=mask)
+
+cv2.imshow('frame', img)
+cv2.imshow('mask', mask)
+cv2.imshow('res', res)
+k = cv2.waitKey(0)
+if k == 27:         # wait for ESC key to exit
+    cv2.destroyAllWindows()
+</code></pre>
+
+<ul>
+<li><code>cv2.cvtColor</code> 可以轉換色彩空間，用 <code>cv2.inRange</code> 來定義藍色上下限值製作遮罩圖。</li>
+<li>遮罩圖中白色為1；黑色為0，最後再例用 <code>cv2.bitwise_and</code> 將圖片中藍色值過濾出來。</li>
+<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/core/doc/operations_on_arrays.html">Operations on Arrays</a>、<a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/miscellaneous_transformations.html">miscellaneous transformations</a></li>
+<li>結果: <img src="/images/2018-12-14-opencv-tutorial-3/change_colorspace.png" alt="change_colorspace" /></li>
+</ul>
+
+<h1 id="影像閾值-門檻值">影像閾值(門檻值)</h1>
+
+<hr />
+
+<p><strong>固定閾值(簡單閾值)</strong></p>
+
+<ul>
+<li>cv2.THRESH_BINARY</li>
+<li>cv2.THRESH_BINARY_INV</li>
+<li>cv2.THRESH_TRUNC</li>
+<li>cv2.THRESH_TOZERO</li>
+<li>cv2.THRESH_TOZERO_INV</li>
+</ul>
+
+<pre><code>import cv2
+
+from matplotlib import pyplot as plt
+
+img = cv2.imread('data/gradient.png', 0)
+ret, thresh1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+ret, thresh2 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
+ret, thresh3 = cv2.threshold(img, 127, 255, cv2.THRESH_TRUNC)
+ret, thresh4 = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO)
+ret, thresh5 = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO_INV)
+
+titles = ['Original Image', 'BINARY',
+          'BINARY_INV', 'TRUNC', 'TOZERO', 'TOZERO_INV']
+images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]
+
+for i in range(6):
+    plt.subplot(2, 3, i+1), plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+
+plt.show()
+</code></pre>
+
+<ul>
+<li>以固定值去作二值化，藉以過濾影像。</li>
+<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/miscellaneous_transformations.html#threshold">miscellaneous transformations - threshold</a></li>
+<li>結果: <img src="/images/2018-12-14-opencv-tutorial-3/image_simple_threshold.png" alt="image_simple_threshold" /></li>
+</ul>
+
+<p><strong>調整性閾值</strong></p>
+
+<blockquote>
+<p>有時候由於拍照時光線不均，所以影像每個區域的灰階值基準不同，這時很難找到一個閾值能適用整張影像，然後得到良好的二值化結果，這時我們可以將影像分成幾個區域，每個區域有各自的閾值，再分別將各個區域進行二值化，OpenCV用adaptiveThreshold()函式來進行此作法。</p>
+</blockquote>
+
+<ul>
+<li>cv2.ADAPTIVE_THRESH_MEAN_C : 以鄰近格的平均值減去 C 當作閾值。</li>
+<li>cv2.ADAPTIVE_THRESH_GAUSSIAN_C : 以鄰近格的高斯加權平均值減去 C 當作閾值。</li>
+</ul>
+
+<pre><code>import cv2
+
+from matplotlib import pyplot as plt
+
+img = cv2.imread('data/sudoku.png', 0)
+img = cv2.medianBlur(img, 5)
+
+ret, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+th2 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
+                            cv2.THRESH_BINARY, 11, 2)
+th3 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                            cv2.THRESH_BINARY, 11, 2)
+
+titles = ['Original Image', 'Global Thresholding (v = 127)',
+          'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
+images = [img, th1, th2, th3]
+
+for i in range(4):
+    plt.subplot(2, 2, i+1), plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+plt.show()
+</code></pre>
+
+<ul>
+<li>以 <code>adaptiveMethod</code> 調整性函數去作二值化，藉以過濾影像。</li>
+<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/miscellaneous_transformations.html#adaptivethreshold">miscellaneous transformations - adaptiveThreshold</a></li>
+<li>結果: <img src="/images/2018-12-14-opencv-tutorial-3/image_adaptive_threshold.png" alt="image_adaptive_threshold" /></li>
+</ul>
+
+<p><strong>大津演算法二值化</strong></p>
+
+<blockquote>
+<p>Otsu流程：<br />
+* 先計算影像的直方圖<br />
+* 把直方圖強度大於閾值的像素分成一組，把小於閾值的像素分成另一組。<br />
+* 分別計算這兩組的組內變異數，並把兩個組內變異數相加。<br />
+* 將0~255依序當作閾值來計算組內變異數和，總和值最小的就是結果閾值。</p>
+</blockquote>
+
+<pre><code>import cv2
+
+from matplotlib import pyplot as plt
+
+img = cv2.imread('data/sudoku.png', 0)
+
+# global thresholding
+ret1, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+
+# Otsu's thresholding
+ret2, th2 = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+
+# Otsu's thresholding after Gaussian filtering
+blur = cv2.GaussianBlur(img, (5, 5), 0)
+ret3, th3 = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+
+# plot all the images and their histograms
+images = [img, 0, th1,
+          img, 0, th2,
+          blur, 0, th3]
+titles = ['Original Noisy Image', 'Histogram', 'Global Thresholding (v=127)',
+          'Original Noisy Image', 'Histogram', &quot;Otsu's Thresholding&quot;,
+          'Gaussian filtered Image', 'Histogram', &quot;Otsu's Thresholding&quot;]
+
+for i in range(3):
+    plt.subplot(3, 3, i*3+1), plt.imshow(images[i*3], 'gray')
+    plt.title(titles[i*3]), plt.xticks([]), plt.yticks([])
+    plt.subplot(3, 3, i*3+2), plt.hist(images[i*3].ravel(), 256)
+    plt.title(titles[i*3+1]), plt.xticks([]), plt.yticks([])
+    plt.subplot(3, 3, i*3+3), plt.imshow(images[i*3+2], 'gray')
+    plt.title(titles[i*3+2]), plt.xticks([]), plt.yticks([])
+
+plt.show()
+</code></pre>
+
+<ul>
+<li>此方式較複雜，利用大津演算法算出閾值</li>
+<li>結果: <img src="/images/2018-12-14-opencv-tutorial-3/image_threshold_otsu_binarization.png" alt="image_threshold_otsu_binarization" /></li>
+</ul>
+
+<h1 id="影像的幾何轉換">影像的幾何轉換</h1>
+
+<hr />
+
+<pre><code>import cv2
+import numpy as np
+
+from matplotlib import pyplot as plt
+
+ori_img = cv2.imread('data/messi5.jpg')
+
+# Resize
+resize = cv2.resize(ori_img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+# OR
+# height, width = img.shape[:2]
+# res = cv2.resize(img, (2*width, 2*height), interpolation=cv2.INTER_CUBIC)
+
+grey_img = cv2.imread('data/messi5.jpg', 0)
+rows, cols = grey_img.shape
+
+# Translation
+M = np.float32([[1, 0, 100], [0, 1, 50]])
+translation = cv2.warpAffine(grey_img, M, (cols, rows))
+
+# Rotate
+M = cv2.getRotationMatrix2D((cols/2, rows/2), 90, 1)
+rotate = cv2.warpAffine(grey_img, M, (cols, rows))
+
+plt.subplot(331), plt.imshow(ori_img), plt.title('Origin')
+plt.subplot(332), plt.imshow(resize), plt.title('Resize')
+plt.subplot(333), plt.imshow(grey_img), plt.title('Grey')
+plt.subplot(334), plt.imshow(translation), plt.title('Translation')
+plt.subplot(335), plt.imshow(rotate), plt.title('Rotate')
+
+# Affine Transformation
+rows, cols, ch = ori_img.shape
+
+pts1 = np.float32([[50, 50], [200, 50], [50, 200]])
+pts2 = np.float32([[10, 100], [200, 50], [100, 250]])
+
+M = cv2.getAffineTransform(pts1, pts2)
+
+dst = cv2.warpAffine(ori_img, M, (cols, rows))
+
+plt.subplot(336), plt.imshow(dst), plt.title('Affine Transform')
+
+# Perspective Transformation
+img = cv2.imread('data/sudoku.png')
+rows, cols, ch = img.shape
+
+pts1 = np.float32([[56, 65], [368, 52], [28, 387], [389, 390]])
+pts2 = np.float32([[0, 0], [300, 0], [0, 300], [300, 300]])
+
+M = cv2.getPerspectiveTransform(pts1, pts2)
+
+dst = cv2.warpPerspective(img, M, (300, 300))
+
+plt.subplot(337), plt.imshow(img), plt.title('Origin')
+plt.subplot(338), plt.imshow(dst), plt.title('Perspective Transform')
+
+plt.show()
+</code></pre>
+
+<ul>
+<li>將一幅影像的座標位置，映射到新座標，但不改變像素值。簡單說就是矩陣的幾何運算。</li>
+<li><code>cv2.warpAffine</code> 為仿射轉換函數，利用 2 x 3 的仿射(轉置)矩陣，可以達成圖片的放大、縮小、旋轉、左右反轉、扭曲。</li>
+<li>仿射(轉置)矩陣可以用 <code>cv2.getAffineTransform</code>、<code>cv2.getRotationMatrix2D</code>&hellip; 等函數取得。</li>
+<li><code>cv2.warpPerspective</code> 為透視轉換函數，與仿射轉換函數雷同，不過透視矩陣為 2 x 4 大小；此矩陣可用 <code>cv2.getPerspectiveTransform</code> 取得。</li>
+<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/geometric_transformations.html">geometric transformations</a></li>
+<li>結果: <img src="/images/2018-12-14-opencv-tutorial-3/geometric_transform.png" alt="geometric_transform" /></li>
+</ul>
+
+<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
+
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_table_of_contents_imgproc/py_table_of_contents_imgproc.html">官方教學文檔 - Image Processing in OpenCV</a></li>
+<li><a href="http://monkeycoding.com/?page_id=12">阿洲的程式教學 | OpenCV教學 - 幾何變換 &amp; 二值化</a></li>
+<li><a href="https://www.youtube.com/watch?v=Ofi1Fn18YLc&amp;list=PLrJ7yjuOYajzCKy4C1Enib-fW0y_sS2dq&amp;index=3">Otsu thresholding | Image Processing #12 | HBY coding academic</a></li>
+</ul>
+
+<blockquote>
+<p><em>系列文</em><br />
+待補</p>
+</blockquote>
+
+        
+                
+        
+              <hr>
+              <ul class="pager">
+                  
+                  <li class="previous">
+                      <a href="/post/2018-12-12-opencv-tutorial-2/" data-toggle="tooltip" data-placement="top" title="Opencv-Python 學習之旅 - 2">&larr; Previous Post</a>
+                  </li>
+                  
+                  
+              </ul>
+  
+              
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2018
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

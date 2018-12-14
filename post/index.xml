@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Dec 2018 16:39:26 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Dec 2018 10:37:18 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Opencv-Python 學習之旅 - 3</title>
+      <link>https://bbsonlin.github.io/post/2018-12-14-opencv-tutorial-3/</link>
+      <pubDate>Fri, 14 Dec 2018 10:37:18 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2018-12-14-opencv-tutorial-3/</guid>
+      <description>色彩空間轉換  在 Opencv-Python 學習之旅 - 1 起步 - 照片(影像) 中imread函數就有選擇讀取照片時你想要的色彩標誌參數 (BGR, HSV &amp;hellip; 等)。
+在 OpenCV 中還有其他的函數來作色彩空間轉換的處理。
+ import cv2 img = cv2.imread(&#39;data/starry_night.jpg&#39;) # Convert BGR to HSV hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) # (600, 752, 3) 1353600 &amp;lt;class &#39;numpy.ndarray&#39;&amp;gt; print(hsv.shape, hsv.size, type(hsv)) # define range of blue color in HSV lower_blue = np.array([110, 50, 50]) upper_blue = np.array([130, 255, 255]) # Threshold the HSV image to get only blue colors mask = cv2.</description>
+    </item>
     
     <item>
       <title>Opencv-Python 學習之旅 - 2</title>
