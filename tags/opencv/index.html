@@ -146,6 +146,34 @@
             
 
 <div class="post-preview">
+    <a href="https://bbsonlin.github.io/post/2018-12-16-opencv-tutorial-4/">
+        <h2 class="post-title">
+            Opencv-Python 學習之旅 - 4
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            影像平滑  從 阿洲的程式教學 | OpenCV教學 - 影像平滑 引述：
+有時我們收到的影像雜訊過多，這時需要進行平滑化去除雜訊，不過為了去除雜訊，可能造成影像對比度下降，好的品質可能需要大量的處理時間，所以通常根據實際需求，選擇一個適合的手法，常見的有四種平滑方式，分別是平均平滑、高斯平滑、中值濾波、雙邊濾波，OpenCV對於這四種平滑方式皆有支援，只要呼叫即可使用。
+  由濾波方式可分兩種，線性濾波和非線性濾波：
+* 線性濾波：有一個有固定參數的核心，常見的有平均平滑和高斯平滑。
+* 非線性濾波：沒有一個有固定參數的核心，常見的有中值濾波和雙邊濾波。
+  OpenCV functions:
+* 平均平滑: cv2.filter2D 與 cv2.blur
+* 高斯平滑: cv2.GaussianBlur
+* 中值濾波: cv2.medianBlur
+* 雙邊濾波: cv2.bilateralFilter
+ import cv2 import numpy as np from matplotlib import pyplot as plt def draw_on_plot(pos, src, title): plt.subplot(pos), plt.imshow(src), plt.title(title) plt.xticks([]), plt.yticks([]) img = cv2.imread('data/opencv-logo-white.png') draw_on_plot(241, img, 'Original') kernel = np.ones((3, 3), np.float32)/25 dst = cv2.
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    Posted by Bobson Lin Sunday, December 16, 2018
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="https://bbsonlin.github.io/post/2018-12-14-opencv-tutorial-3/">
         <h2 class="post-title">
             Opencv-Python 學習之旅 - 3
