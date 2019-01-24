@@ -6,10 +6,38 @@
     <description>Recent content on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Dec 2018 14:34:25 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 24 Jan 2019 21:40:45 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>開源就是免費!?</title>
+      <link>https://bbsonlin.github.io/post/2019-01-24-opensource-means-free/</link>
+      <pubDate>Thu, 24 Jan 2019 21:40:45 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-01-24-opensource-means-free/</guid>
+      <description>網路時代的來臨到普及，身為開發者觀察，開源的專案只會越來越多。
+很多軟體大公司近幾年的專案或工具，直接都是開源的了。
+ 為何大公司們會開源？ 依我的想法至少有三個好處:
+ 依靠社群的力量可以精進整體開源專案
+畢竟社群有很多大神都是獨立開發者，靠著社群更可以找到問題，亦或有人可以找到最佳化的方法。
+ 增進使用者(開發者)的使用效率
+放到開源區，免不了要有些附加的文檔，也會有熱心的人研讀程式碼並給出更完善的文檔，能增進後人的有效理解且避免採坑。 找到潛在能合作或能招攬的開發人員
+若有人能不斷貢獻專案，並且熱衷於開發，這些大廠能省去很多功夫找到適合的合作對象。  隨著資訊時代，很多資料變得唾手可得，很多時候也沒必要隱隱藏藏一直閉源所有的程式碼。
+ 但凡事有優點，必會帶來些缺點 &amp;hellip;
+ 開源等於免費? 開源雖然可以免費使用，但還是有些不一樣的地方，很火的開源專案必定都會跟隨著 License； MIT、BSD、GPL &amp;hellip; 族繁不及備載。
+意味著開源根本就不是免費。
+看過很多開源專案出現些爭議，如 AntD 聖誕結彩蛋事件。
+你可以友善的提醒及指出開源專案的問題，但很多人一個腦充就變成網路酸民。
+老實說，開源專案其實根本不需要負責使用者的個人開發問題 (若是有置入惡意程式碼的除外) ，但很多人把它視為理所當然開源者就該負責的。
+之前有看過 Vue.js 的專案，有人只發個 issue 說，x牌手機的自製瀏覽器有問題，其他啥資訊也不提供。
+Vue.js 尤大作者，很嚴肅的回應，莫非要我也跟著買一樣的手機來幫你 debug 嗎?
+所以，使用開源，請記得友善的替別人想一想。自己的問題就開自己想辦法，別人頂多只能幫你一把。 有能力也記得多多支持開源的獨立開發者們。
+ 尊重、包容、友善
+給這個開源的世界良好的環境吧！
+ 備註: 一切都為作者云云，別太認真了~</description>
+    </item>
     
     <item>
       <title>Opencv-Python 學習之旅 - 4</title>

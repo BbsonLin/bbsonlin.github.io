@@ -8,14 +8,14 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="OpenCV 中的影像處理, 影像平滑, 形態學">
+    <meta name="description" content="一切都為作者云云，別太認真了~">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>Opencv-Python 學習之旅 - 4-</title>
+    <title>開源就是免費!?-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2018-12-16-opencv-tutorial-4/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-01-24-opensource-means-free/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -128,18 +128,14 @@
                 <div class="post-heading">
                     <div class="tags">
                        
-                       <a class="tag" href="/tags/opencv" title="Opencv">
-                           Opencv
-                        </a>
-                        
-                       <a class="tag" href="/tags/python" title="Python">
-                           Python
+                       <a class="tag" href="/tags/gossip" title="Gossip">
+                           Gossip
                         </a>
                         
                     </div>
-                    <h1>Opencv-Python 學習之旅 - 4</h1>
-                    <h2 class="subheading">Image Processing in OpenCV</h2>
-                    <span  class="meta">Posted by Bobson Lin on Sunday, December 16, 2018
+                    <h1>開源就是免費!?</h1>
+                    <h2 class="subheading">Opensource equals Free!?</h2>
+                    <span  class="meta">Posted by Bobson Lin on Thursday, January 24, 2019
                         
                     </span>
                 </div>
@@ -167,156 +163,64 @@
                         </header>
                         <nav id="TableOfContents">
 <ul>
-<li><a href="#影像平滑">影像平滑</a></li>
-<li><a href="#形態學">形態學</a></li>
-<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
+<li><a href="#為何大公司們會開源">為何大公司們會開源？</a></li>
+<li><a href="#開源等於免費">開源等於免費?</a></li>
 </ul>
 </nav>
         		
         		
 
-<h1 id="影像平滑">影像平滑</h1>
+<blockquote>
+<p>網路時代的來臨到普及，身為開發者觀察，開源的專案只會越來越多。<br />
+很多軟體大公司近幾年的專案或工具，直接都是開源的了。</p>
+</blockquote>
+
+<h1 id="為何大公司們會開源">為何大公司們會開源？</h1>
+
+<p>依我的想法至少有三個好處:</p>
+
+<ol>
+<li><strong>依靠社群的力量可以精進整體開源專案</strong><br />
+畢竟社群有很多大神都是獨立開發者，靠著社群更可以找到問題，亦或有人可以找到最佳化的方法。<br /></li>
+<li><strong>增進使用者(開發者)的使用效率</strong><br />
+放到開源區，免不了要有些附加的文檔，也會有熱心的人研讀程式碼並給出更完善的文檔，能增進後人的有效理解且避免採坑。</li>
+<li><strong>找到潛在能合作或能招攬的開發人員</strong><br />
+若有人能不斷貢獻專案，並且熱衷於開發，這些大廠能省去很多功夫找到適合的合作對象。</li>
+</ol>
+
+<p><strong><em>隨著資訊時代，很多資料變得唾手可得，很多時候也沒必要隱隱藏藏一直閉源所有的程式碼。</em></strong></p>
 
 <hr />
 
 <blockquote>
-<p>從 <a href="http://monkeycoding.com/?p=570"><strong>阿洲的程式教學 | OpenCV教學 - 影像平滑</strong></a> 引述：<br />
-有時我們收到的影像雜訊過多，這時需要進行<strong>平滑化去除雜訊</strong>，不過為了去除雜訊，可能造成影像對比度下降，好的品質可能需要大量的處理時間，所以通常根據實際需求，選擇一個適合的手法，常見的有四種平滑方式，分別是<strong>平均平滑、高斯平滑、中值濾波、雙邊濾波</strong>，OpenCV對於這四種平滑方式皆有支援，只要呼叫即可使用。</p>
+<p>但凡事有優點，必會帶來些缺點 &hellip;</p>
+</blockquote>
+
+<h1 id="開源等於免費">開源等於免費?</h1>
+
+<p>開源雖然可以免費使用，但還是有些不一樣的地方，很火的開源專案必定都會跟隨著 <code>License</code>； <code>MIT</code>、<code>BSD</code>、<code>GPL</code> &hellip; 族繁不及備載。</p>
+
+<p><strong><em>意味著開源根本就不是免費。</em></strong></p>
+
+<p>看過很多開源專案出現些爭議，如 AntD 聖誕結彩蛋事件。</p>
+
+<p>你可以友善的提醒及指出開源專案的問題，但很多人一個腦充就變成網路酸民。<br />
+老實說，開源專案其實根本不需要負責使用者的個人開發問題 <strong>(若是有置入惡意程式碼的除外)</strong> ，但很多人把它視為理所當然開源者就該負責的。</p>
+
+<p>之前有看過 Vue.js 的專案，有人只發個 issue 說，x牌手機的自製瀏覽器有問題，其他啥資訊也不提供。<br />
+Vue.js 尤大作者，很嚴肅的回應，莫非要我也跟著買一樣的手機來幫你 debug 嗎?</p>
+
+<p>所以，使用開源，請記得友善的替別人想一想。自己的問題就開自己想辦法，別人頂多只能幫你一把。
+有能力也記得多多支持開源的獨立開發者們。</p>
+
+<blockquote>
+<p>尊重、包容、友善<br />
+給這個開源的世界良好的環境吧！</p>
 </blockquote>
 
 <hr />
 
-<blockquote>
-<p>由濾波方式可分兩種，線性濾波和非線性濾波：<br />
-* 線性濾波：有一個有固定參數的核心，常見的有平均平滑和高斯平滑。<br />
-* 非線性濾波：沒有一個有固定參數的核心，常見的有中值濾波和雙邊濾波。</p>
-</blockquote>
-
-<hr />
-
-<blockquote>
-<p>OpenCV functions:<br />
-* 平均平滑: <code>cv2.filter2D</code> 與 <code>cv2.blur</code><br />
-* 高斯平滑: <code>cv2.GaussianBlur</code><br />
-* 中值濾波: <code>cv2.medianBlur</code><br />
-* 雙邊濾波: <code>cv2.bilateralFilter</code></p>
-</blockquote>
-
-<pre><code>import cv2
-import numpy as np
-from matplotlib import pyplot as plt
-
-
-def draw_on_plot(pos, src, title):
-    plt.subplot(pos), plt.imshow(src), plt.title(title)
-    plt.xticks([]), plt.yticks([])
-
-
-img = cv2.imread('data/opencv-logo-white.png')
-
-draw_on_plot(241, img, 'Original')
-
-kernel = np.ones((3, 3), np.float32)/25
-dst = cv2.filter2D(img, -1, kernel)
-draw_on_plot(242, dst, 'Averaging 3x3')
-
-kernel = np.ones((5, 5), np.float32)/25
-dst = cv2.filter2D(img, -1, kernel)
-draw_on_plot(243, dst, 'Averaging 5x5')
-
-kernel = np.ones((7, 7), np.float32)/25
-dst = cv2.filter2D(img, -1, kernel)
-draw_on_plot(244, dst, 'Averaging 7x7')
-
-blur = cv2.blur(img, (5, 5))
-draw_on_plot(245, blur, 'Blurred')
-
-gaussian_blur = cv2.GaussianBlur(img, (5, 5), 0)
-draw_on_plot(246, gaussian_blur, 'Gaussian Blurred')
-
-median_blur = cv2.medianBlur(img, 5)
-draw_on_plot(247, gaussian_blur, 'Median Blurred')
-
-bilateral_filter = cv2.bilateralFilter(img, 9, 75, 75)
-draw_on_plot(248, bilateral_filter, 'Bilateral Filter')
-
-plt.show()
-</code></pre>
-
-<ul>
-<li>影像平滑又可以理解為消除雜訊，利用低通濾波器，維持圖片低頻部份，削減高頻部份。(高低頻是指影像鄰近區域內數值變化大或小)</li>
-<li>濾波器(或稱遮罩)通常是奇數的方形矩陣(3x3、5x5&hellip;)；遮罩尺寸越大，平滑(模糊)效果會越明顯。</li>
-<li>輸出的中央值由鄰近區域的數值配合濾波器計算後得出。</li>
-<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/filtering.html">Image Filtering</a></li>
-<li>結果: <img src="/images/2018-12-16-opencv-tutorial-4/smoothing_image.png" alt="smoothing_image" /></li>
-</ul>
-
-<h1 id="形態學">形態學</h1>
-
-<hr />
-
-<blockquote>
-<p>從 <a href="http://monkeycoding.com/?p=577"><strong>阿洲的程式教學 | OpenCV教學 - 侵蝕、膨脹</strong></a>引述：<br />
-形態學主要用於二值化後的影像，根據使用者的目的，用來凸顯影像的形狀特徵，像邊界和連通區域等&hellip;</p>
-</blockquote>
-
-<pre><code>import cv2
-import numpy as np
-
-from matplotlib import pyplot as plt
-
-
-def draw_on_plot(pos, src, title):
-    plt.subplot(pos), plt.imshow(src, cmap='gray'), plt.title(title)
-    plt.xticks([]), plt.yticks([])
-
-
-img = cv2.imread('data/j.png', 0)
-kernel = np.ones((5, 5), np.uint8)
-erosion = cv2.erode(img, kernel, iterations=1)
-dilation = cv2.dilate(img, kernel, iterations=1)
-opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
-closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
-gradient = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)
-tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
-blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)
-
-draw_on_plot(241, img, 'Original')
-draw_on_plot(242, erosion, 'Erosion')
-draw_on_plot(243, dilation, 'Dilation')
-draw_on_plot(244, opening, 'Opening')
-draw_on_plot(245, closing, 'Closing')
-draw_on_plot(246, gradient, 'Gradient')
-draw_on_plot(247, tophat, 'Top hat')
-draw_on_plot(248, blackhat, 'Black hat')
-
-plt.show()
-</code></pre>
-
-<ul>
-<li>侵蝕(erosion)為消融物體的邊界(消除圖像的一些雜訊)；膨脹(dilation)為增強(擴大)所偵測到的邊界。</li>
-<li>開運算是先侵蝕後膨脹(可用於指紋分析)，閉運算是先膨脹後侵蝕(可用於圖像修復)。</li>
-<li>侵蝕:鄰近區域內有黑色像素，則將中間值變為黑色。</li>
-<li>膨脹:鄰近區域內有白色像素，則將中間值變為白色。</li>
-<li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/filtering.html">Image Filtering</a></li>
-<li>結果: <img src="/images/2018-12-16-opencv-tutorial-4/morphological_transform.png" alt="morphological_transform" /></li>
-</ul>
-
-<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
-
-<p><em>參考</em></p>
-
-<ul>
-<li><a href="https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_table_of_contents_imgproc/py_table_of_contents_imgproc.html">官方教學文檔 - Image Processing in OpenCV</a></li>
-<li><a href="http://monkeycoding.com/?page_id=12">阿洲的程式教學 | OpenCV教學 - 影像平滑 &amp; 形態學</a></li>
-<li><a href="https://youtu.be/jtcdKQNwnU0">Smoothing techniques | Image Processing #4 | HBY academic</a></li>
-<li><a href="https://youtu.be/QbjfZVLDyuY">Morphological processing | Image Processing #11 | HBY coding academic</a></li>
-</ul>
-
-<blockquote>
-<p><em>系列文</em><br />
-待補</p>
-</blockquote>
+<p><em>備註: 一切都為作者云云，別太認真了~</em></p>
 
         
                 
@@ -325,13 +229,9 @@ plt.show()
               <ul class="pager">
                   
                   <li class="previous">
-                      <a href="/post/2018-12-14-opencv-tutorial-3/" data-toggle="tooltip" data-placement="top" title="Opencv-Python 學習之旅 - 3">&larr; Previous Post</a>
+                      <a href="/post/2018-12-16-opencv-tutorial-4/" data-toggle="tooltip" data-placement="top" title="Opencv-Python 學習之旅 - 4">&larr; Previous Post</a>
                   </li>
                   
-                  
-                  <li class="next">
-                      <a href="/post/2019-01-24-opensource-means-free/" data-toggle="tooltip" data-placement="top" title="開源就是免費!?">Next Post &rarr;</a>
-                  </li>
                   
               </ul>
   
@@ -415,7 +315,7 @@ plt.show()
                     
                 </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Bobson&#39;s Blog , 2018
+                    Copyright &copy; Bobson&#39;s Blog , 2019
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
