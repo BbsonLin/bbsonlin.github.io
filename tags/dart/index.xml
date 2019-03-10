@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dart on Bobson&#39;s Blog</title>
+    <link>https://bbsonlin.github.io/tags/dart/</link>
+    <description>Recent content in Dart on Bobson&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 08 Mar 2019 21:29:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://bbsonlin.github.io/tags/dart/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dart 基礎 - 1</title>
+      <link>https://bbsonlin.github.io/post/2019-03-08-dart-basic-part-1/</link>
+      <pubDate>Fri, 08 Mar 2019 21:29:43 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-03-08-dart-basic-part-1/</guid>
+      <description>內建型別 (Built-in types)  Dart 內建型別全都繼承於 Object，都視為是物件。
+ Dart 內建型別有下列幾種:
+ Number - (int, double) num Boolean - true 或 false List - Collections of items (aka arrays) Set - Collection of unique items (Dart 2.2 正式引入) Map - Collections with associated Key Value Pairs String - &amp;ldquo;Hello!&amp;rdquo; (single and double quotes) Rune - unicode character points Symbol - #symbol (simbolic metadata)  Number num 包含了兩種型別 int, double
+int x = 1; int hex = 0xFA; print(&amp;#34;int: $x, hex int: $hex&amp;#34;); double y = 1.</description>
+    </item>
+    
+  </channel>
+</rss>

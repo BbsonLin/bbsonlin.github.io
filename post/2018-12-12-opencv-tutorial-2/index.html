@@ -179,39 +179,36 @@
 <h1 id="影像基本運算">影像基本運算</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/messi5.jpg&#39;</span>)
+px <span style="color:#f92672">=</span> img[<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>]
+<span style="color:#66d9ef">print</span>(px, px<span style="color:#f92672">.</span>shape, px<span style="color:#f92672">.</span>size, px<span style="color:#f92672">.</span>dtype, type(px))
 
-img = cv2.imread('data/messi5.jpg')
-px = img[100, 100]
-print(px, px.shape, px.size, px.dtype, type(px))
+<span style="color:#75715e"># accessing only blue pixel</span>
+blue <span style="color:#f92672">=</span> img[<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">0</span>]
+<span style="color:#66d9ef">print</span>(blue, type(blue))
 
-# accessing only blue pixel
-blue = img[100, 100, 0]
-print(blue, type(blue))
+img[<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>]
+img[<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">101</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>]
+<span style="color:#66d9ef">print</span>(img[<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>])
 
-img[100, 100] = [255, 255, 255]
-img[100, 101] = [255, 255, 255]
-print(img[100, 100])
+<span style="color:#75715e"># accessing RED value</span>
+<span style="color:#66d9ef">print</span>(img<span style="color:#f92672">.</span>item(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>))
 
-# accessing RED value
-print(img.item(10, 10, 2))
+<span style="color:#75715e"># modifying RED value</span>
+img<span style="color:#f92672">.</span>itemset((<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>), <span style="color:#ae81ff">100</span>)
+<span style="color:#66d9ef">print</span>(img<span style="color:#f92672">.</span>item(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>))
 
-# modifying RED value
-img.itemset((10, 10, 2), 100)
-print(img.item(10, 10, 2))
+<span style="color:#66d9ef">print</span>(img<span style="color:#f92672">.</span>shape, img<span style="color:#f92672">.</span>size, img<span style="color:#f92672">.</span>dtype, type(img))
 
-print(img.shape, img.size, img.dtype, type(img))
+ball <span style="color:#f92672">=</span> img[<span style="color:#ae81ff">280</span>:<span style="color:#ae81ff">340</span>, <span style="color:#ae81ff">330</span>:<span style="color:#ae81ff">390</span>]
+img[<span style="color:#ae81ff">273</span>:<span style="color:#ae81ff">333</span>, <span style="color:#ae81ff">100</span>:<span style="color:#ae81ff">160</span>] <span style="color:#f92672">=</span> ball
 
-ball = img[280:340, 330:390]
-img[273:333, 100:160] = ball
-
-b, g, r = cv2.split(img)
-img_m = cv2.merge((b, g, r))
-img[:, :, 2] = 0
-print(id(img), id(img_m))
-</code></pre>
-
+b, g, r <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>split(img)
+img_m <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>merge((b, g, r))
+img[:, :, <span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">print</span>(id(img), id(img_m))</code></pre></div>
 <blockquote>
 <p>[157 166 200] | (3,) 3 uint8 <class 'numpy.ndarray'><br />
 157 | () 1 uint8 <class 'numpy.uint8'><br />
@@ -233,24 +230,21 @@ print(id(img), id(img_m))
 <h1 id="影像算術運算">影像算術運算</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+ml_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/ml.png&#39;</span>)
+logo_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/opencv-logo.png&#39;</span>)
+logo_imgROI <span style="color:#f92672">=</span> logo_img[<span style="color:#ae81ff">179</span>:<span style="color:#ae81ff">559</span>, <span style="color:#ae81ff">146</span>:<span style="color:#ae81ff">454</span>]
+<span style="color:#66d9ef">print</span>(ml_img<span style="color:#f92672">.</span>shape, logo_img<span style="color:#f92672">.</span>shape, logo_imgROI<span style="color:#f92672">.</span>shape)
 
-ml_img = cv2.imread('data/ml.png')
-logo_img = cv2.imread('data/opencv-logo.png')
-logo_imgROI = logo_img[179:559, 146:454]
-print(ml_img.shape, logo_img.shape, logo_imgROI.shape)
+<span style="color:#75715e"># dst = cv2.addWeighted(ml_img, 0.7, logo_img, 0.3, 0)</span>
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>addWeighted(ml_img, <span style="color:#ae81ff">0.7</span>, logo_imgROI, <span style="color:#ae81ff">0.3</span>, <span style="color:#ae81ff">0</span>)
 
-# dst = cv2.addWeighted(ml_img, 0.7, logo_img, 0.3, 0)
-dst = cv2.addWeighted(ml_img, 0.7, logo_imgROI, 0.3, 0)
-
-cv2.imshow('dst', dst)
-cv2.imshow('ml', ml_img)
-cv2.imshow('logo', logo_img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-</code></pre>
-
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;dst&#39;</span>, dst)
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;ml&#39;</span>, ml_img)
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;logo&#39;</span>, logo_img)
+cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>)
+cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <blockquote>
 <p>注意：<br />
 Opencv 的相加函數 和 Numpy Array 的相加 的結果會不一樣。<br />
@@ -266,38 +260,35 @@ Opencv 的相加函數 和 Numpy Array 的相加 的結果會不一樣。<br />
 <li>另外相加的影像大小不一樣時需要先定義 <code>感興趣區域(ROI)</code>，否則會出現 <code>error: (-209:Sizes of input arguments do not match)</code> 的錯誤訊息。</li>
 <li>合成結果: <img src="/images/2018-12-12-opencv-tutorial-2/addWeighted_dst.png" alt="addWeighted_dst" /></li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+<span style="color:#75715e"># Load two images</span>
+img1 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/messi5.jpg&#39;</span>)
+img2 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/opencv-logo-white.png&#39;</span>)
 
-# Load two images
-img1 = cv2.imread('data/messi5.jpg')
-img2 = cv2.imread('data/opencv-logo-white.png')
+<span style="color:#75715e"># I want to put logo on top-left corner, So I create a ROI</span>
+rows, cols, channels <span style="color:#f92672">=</span> img2<span style="color:#f92672">.</span>shape
+<span style="color:#66d9ef">print</span>(img1<span style="color:#f92672">.</span>shape, img2<span style="color:#f92672">.</span>shape)
+roi <span style="color:#f92672">=</span> img1[<span style="color:#ae81ff">0</span>:rows, <span style="color:#ae81ff">0</span>:cols]
 
-# I want to put logo on top-left corner, So I create a ROI
-rows, cols, channels = img2.shape
-print(img1.shape, img2.shape)
-roi = img1[0:rows, 0:cols]
+<span style="color:#75715e"># Now create a mask of logo and create its inverse mask also</span>
+img2gray <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(img2, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+ret, mask <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img2gray, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY)
+mask_inv <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>bitwise_not(mask)
 
-# Now create a mask of logo and create its inverse mask also
-img2gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
-mask_inv = cv2.bitwise_not(mask)
+<span style="color:#75715e"># Now black-out the area of logo in ROI</span>
+img1_bg <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>bitwise_and(roi, roi, mask<span style="color:#f92672">=</span>mask_inv)
 
-# Now black-out the area of logo in ROI
-img1_bg = cv2.bitwise_and(roi, roi, mask=mask_inv)
+<span style="color:#75715e"># Take only region of logo from logo image.</span>
+img2_fg <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>bitwise_and(img2, img2, mask<span style="color:#f92672">=</span>mask)
 
-# Take only region of logo from logo image.
-img2_fg = cv2.bitwise_and(img2, img2, mask=mask)
+<span style="color:#75715e"># Put logo in ROI and modify the main image</span>
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>add(img1_bg, img2_fg)
+img1[<span style="color:#ae81ff">0</span>:rows, <span style="color:#ae81ff">0</span>:cols] <span style="color:#f92672">=</span> dst
 
-# Put logo in ROI and modify the main image
-dst = cv2.add(img1_bg, img2_fg)
-img1[0:rows, 0:cols] = dst
-
-cv2.imshow('res', img1)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-</code></pre>
-
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;res&#39;</span>, img1)
+cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>)
+cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li>另外也可以用邏輯運算去作合成，如 <code>cv2.bitwise_and</code>、<code>cv2.bitwise_not</code></li>
 <li><code>cv2.threshold</code> 可以設置的門檻來過濾或處理圖片，後面章節會在提。</li>
@@ -361,6 +352,8 @@ cv2.destroyAllWindows()
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                      
+                    
+                        
                     
                         
                     

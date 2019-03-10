@@ -201,48 +201,45 @@
 * 中值濾波: <code>cv2.medianBlur</code><br />
 * 雙邊濾波: <code>cv2.bilateralFilter</code></p>
 </blockquote>
-
-<pre><code>import cv2
-import numpy as np
-from matplotlib import pyplot as plt
-
-
-def draw_on_plot(pos, src, title):
-    plt.subplot(pos), plt.imshow(src), plt.title(title)
-    plt.xticks([]), plt.yticks([])
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
 
 
-img = cv2.imread('data/opencv-logo-white.png')
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw_on_plot</span>(pos, src, title):
+    plt<span style="color:#f92672">.</span>subplot(pos), plt<span style="color:#f92672">.</span>imshow(src), plt<span style="color:#f92672">.</span>title(title)
+    plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
 
-draw_on_plot(241, img, 'Original')
 
-kernel = np.ones((3, 3), np.float32)/25
-dst = cv2.filter2D(img, -1, kernel)
-draw_on_plot(242, dst, 'Averaging 3x3')
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/opencv-logo-white.png&#39;</span>)
 
-kernel = np.ones((5, 5), np.float32)/25
-dst = cv2.filter2D(img, -1, kernel)
-draw_on_plot(243, dst, 'Averaging 5x5')
+draw_on_plot(<span style="color:#ae81ff">241</span>, img, <span style="color:#e6db74">&#39;Original&#39;</span>)
 
-kernel = np.ones((7, 7), np.float32)/25
-dst = cv2.filter2D(img, -1, kernel)
-draw_on_plot(244, dst, 'Averaging 7x7')
+kernel <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>), np<span style="color:#f92672">.</span>float32)<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>filter2D(img, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, kernel)
+draw_on_plot(<span style="color:#ae81ff">242</span>, dst, <span style="color:#e6db74">&#39;Averaging 3x3&#39;</span>)
 
-blur = cv2.blur(img, (5, 5))
-draw_on_plot(245, blur, 'Blurred')
+kernel <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), np<span style="color:#f92672">.</span>float32)<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>filter2D(img, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, kernel)
+draw_on_plot(<span style="color:#ae81ff">243</span>, dst, <span style="color:#e6db74">&#39;Averaging 5x5&#39;</span>)
 
-gaussian_blur = cv2.GaussianBlur(img, (5, 5), 0)
-draw_on_plot(246, gaussian_blur, 'Gaussian Blurred')
+kernel <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">7</span>), np<span style="color:#f92672">.</span>float32)<span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>filter2D(img, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, kernel)
+draw_on_plot(<span style="color:#ae81ff">244</span>, dst, <span style="color:#e6db74">&#39;Averaging 7x7&#39;</span>)
 
-median_blur = cv2.medianBlur(img, 5)
-draw_on_plot(247, gaussian_blur, 'Median Blurred')
+blur <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>blur(img, (<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>))
+draw_on_plot(<span style="color:#ae81ff">245</span>, blur, <span style="color:#e6db74">&#39;Blurred&#39;</span>)
 
-bilateral_filter = cv2.bilateralFilter(img, 9, 75, 75)
-draw_on_plot(248, bilateral_filter, 'Bilateral Filter')
+gaussian_blur <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>GaussianBlur(img, (<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), <span style="color:#ae81ff">0</span>)
+draw_on_plot(<span style="color:#ae81ff">246</span>, gaussian_blur, <span style="color:#e6db74">&#39;Gaussian Blurred&#39;</span>)
 
-plt.show()
-</code></pre>
+median_blur <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>medianBlur(img, <span style="color:#ae81ff">5</span>)
+draw_on_plot(<span style="color:#ae81ff">247</span>, gaussian_blur, <span style="color:#e6db74">&#39;Median Blurred&#39;</span>)
 
+bilateral_filter <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>bilateralFilter(img, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">75</span>)
+draw_on_plot(<span style="color:#ae81ff">248</span>, bilateral_filter, <span style="color:#e6db74">&#39;Bilateral Filter&#39;</span>)
+
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>影像平滑又可以理解為消除雜訊，利用低通濾波器，維持圖片低頻部份，削減高頻部份。(高低頻是指影像鄰近區域內數值變化大或小)</li>
 <li>濾波器(或稱遮罩)通常是奇數的方形矩陣(3x3、5x5&hellip;)；遮罩尺寸越大，平滑(模糊)效果會越明顯。</li>
@@ -259,40 +256,37 @@ plt.show()
 <p>從 <a href="http://monkeycoding.com/?p=577"><strong>阿洲的程式教學 | OpenCV教學 - 侵蝕、膨脹</strong></a>引述：<br />
 形態學主要用於二值化後的影像，根據使用者的目的，用來凸顯影像的形狀特徵，像邊界和連通區域等&hellip;</p>
 </blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
-<pre><code>import cv2
-import numpy as np
-
-from matplotlib import pyplot as plt
-
-
-def draw_on_plot(pos, src, title):
-    plt.subplot(pos), plt.imshow(src, cmap='gray'), plt.title(title)
-    plt.xticks([]), plt.yticks([])
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
 
 
-img = cv2.imread('data/j.png', 0)
-kernel = np.ones((5, 5), np.uint8)
-erosion = cv2.erode(img, kernel, iterations=1)
-dilation = cv2.dilate(img, kernel, iterations=1)
-opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
-closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
-gradient = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)
-tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
-blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw_on_plot</span>(pos, src, title):
+    plt<span style="color:#f92672">.</span>subplot(pos), plt<span style="color:#f92672">.</span>imshow(src, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gray&#39;</span>), plt<span style="color:#f92672">.</span>title(title)
+    plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
 
-draw_on_plot(241, img, 'Original')
-draw_on_plot(242, erosion, 'Erosion')
-draw_on_plot(243, dilation, 'Dilation')
-draw_on_plot(244, opening, 'Opening')
-draw_on_plot(245, closing, 'Closing')
-draw_on_plot(246, gradient, 'Gradient')
-draw_on_plot(247, tophat, 'Top hat')
-draw_on_plot(248, blackhat, 'Black hat')
 
-plt.show()
-</code></pre>
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/j.png&#39;</span>, <span style="color:#ae81ff">0</span>)
+kernel <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), np<span style="color:#f92672">.</span>uint8)
+erosion <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>erode(img, kernel, iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+dilation <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>dilate(img, kernel, iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+opening <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>morphologyEx(img, cv2<span style="color:#f92672">.</span>MORPH_OPEN, kernel)
+closing <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>morphologyEx(img, cv2<span style="color:#f92672">.</span>MORPH_CLOSE, kernel)
+gradient <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>morphologyEx(img, cv2<span style="color:#f92672">.</span>MORPH_GRADIENT, kernel)
+tophat <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>morphologyEx(img, cv2<span style="color:#f92672">.</span>MORPH_TOPHAT, kernel)
+blackhat <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>morphologyEx(img, cv2<span style="color:#f92672">.</span>MORPH_BLACKHAT, kernel)
 
+draw_on_plot(<span style="color:#ae81ff">241</span>, img, <span style="color:#e6db74">&#39;Original&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">242</span>, erosion, <span style="color:#e6db74">&#39;Erosion&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">243</span>, dilation, <span style="color:#e6db74">&#39;Dilation&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">244</span>, opening, <span style="color:#e6db74">&#39;Opening&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">245</span>, closing, <span style="color:#e6db74">&#39;Closing&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">246</span>, gradient, <span style="color:#e6db74">&#39;Gradient&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">247</span>, tophat, <span style="color:#e6db74">&#39;Top hat&#39;</span>)
+draw_on_plot(<span style="color:#ae81ff">248</span>, blackhat, <span style="color:#e6db74">&#39;Black hat&#39;</span>)
+
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>侵蝕(erosion)為消融物體的邊界(消除圖像的一些雜訊)；膨脹(dilation)為增強(擴大)所偵測到的邊界。</li>
 <li>開運算是先侵蝕後膨脹(可用於指紋分析)，閉運算是先膨脹後侵蝕(可用於圖像修復)。</li>
@@ -353,6 +347,8 @@ plt.show()
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                      
+                    
+                        
                     
                         
                     

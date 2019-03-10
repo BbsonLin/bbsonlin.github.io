@@ -6,10 +6,22 @@
     <description>Recent content in Tech on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Dec 2018 14:34:25 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Mar 2019 21:29:43 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dart 基礎 - 1</title>
+      <link>https://bbsonlin.github.io/post/2019-03-08-dart-basic-part-1/</link>
+      <pubDate>Fri, 08 Mar 2019 21:29:43 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-03-08-dart-basic-part-1/</guid>
+      <description>內建型別 (Built-in types)  Dart 內建型別全都繼承於 Object，都視為是物件。
+ Dart 內建型別有下列幾種:
+ Number - (int, double) num Boolean - true 或 false List - Collections of items (aka arrays) Set - Collection of unique items (Dart 2.2 正式引入) Map - Collections with associated Key Value Pairs String - &amp;ldquo;Hello!&amp;rdquo; (single and double quotes) Rune - unicode character points Symbol - #symbol (simbolic metadata)  Number num 包含了兩種型別 int, double
+int x = 1; int hex = 0xFA; print(&amp;#34;int: $x, hex int: $hex&amp;#34;); double y = 1.</description>
+    </item>
     
     <item>
       <title>Opencv-Python 學習之旅 - 4</title>
@@ -27,7 +39,7 @@
 * 高斯平滑: cv2.GaussianBlur
 * 中值濾波: cv2.medianBlur
 * 雙邊濾波: cv2.bilateralFilter
- import cv2 import numpy as np from matplotlib import pyplot as plt def draw_on_plot(pos, src, title): plt.subplot(pos), plt.imshow(src), plt.title(title) plt.xticks([]), plt.yticks([]) img = cv2.imread(&#39;data/opencv-logo-white.png&#39;) draw_on_plot(241, img, &#39;Original&#39;) kernel = np.ones((3, 3), np.float32)/25 dst = cv2.</description>
+ import cv2 import numpy as np from matplotlib import pyplot as plt def draw_on_plot(pos, src, title): plt.subplot(pos), plt.imshow(src), plt.title(title) plt.xticks([]), plt.yticks([]) img = cv2.imread(&amp;#39;data/opencv-logo-white.png&amp;#39;) draw_on_plot(241, img, &amp;#39;Original&amp;#39;) kernel = np.ones((3, 3), np.float32)/25 dst = cv2.</description>
     </item>
     
     <item>
@@ -38,7 +50,7 @@
       <guid>https://bbsonlin.github.io/post/2018-12-14-opencv-tutorial-3/</guid>
       <description>色彩空間轉換  在 Opencv-Python 學習之旅 - 1 起步 - 照片(影像) 中imread函數就有選擇讀取照片時你想要的色彩標誌參數 (BGR, HSV &amp;hellip; 等)。
 在 OpenCV 中還有其他的函數來作色彩空間轉換的處理。
- import cv2 img = cv2.imread(&#39;data/starry_night.jpg&#39;) # Convert BGR to HSV hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) # (600, 752, 3) 1353600 &amp;lt;class &#39;numpy.ndarray&#39;&amp;gt; print(hsv.shape, hsv.size, type(hsv)) # define range of blue color in HSV lower_blue = np.array([110, 50, 50]) upper_blue = np.array([130, 255, 255]) # Threshold the HSV image to get only blue colors mask = cv2.</description>
+ import cv2 img = cv2.imread(&amp;#39;data/starry_night.jpg&amp;#39;) # Convert BGR to HSV hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) # (600, 752, 3) 1353600 &amp;lt;class &amp;#39;numpy.ndarray&amp;#39;&amp;gt; print(hsv.shape, hsv.size, type(hsv)) # define range of blue color in HSV lower_blue = np.array([110, 50, 50]) upper_blue = np.array([130, 255, 255]) # Threshold the HSV image to get only blue colors mask = cv2.</description>
     </item>
     
     <item>
@@ -47,7 +59,7 @@
       <pubDate>Wed, 12 Dec 2018 16:39:26 +0800</pubDate>
       
       <guid>https://bbsonlin.github.io/post/2018-12-12-opencv-tutorial-2/</guid>
-      <description>影像基本運算 import cv2 img = cv2.imread(&#39;data/messi5.jpg&#39;) px = img[100, 100] print(px, px.shape, px.size, px.dtype, type(px)) # accessing only blue pixel blue = img[100, 100, 0] print(blue, type(blue)) img[100, 100] = [255, 255, 255] img[100, 101] = [255, 255, 255] print(img[100, 100]) # accessing RED value print(img.item(10, 10, 2)) # modifying RED value img.itemset((10, 10, 2), 100) print(img.item(10, 10, 2)) print(img.shape, img.size, img.dtype, type(img)) ball = img[280:340, 330:390] img[273:333, 100:160] = ball b, g, r = cv2.</description>
+      <description>影像基本運算 import cv2 img = cv2.imread(&amp;#39;data/messi5.jpg&amp;#39;) px = img[100, 100] print(px, px.shape, px.size, px.dtype, type(px)) # accessing only blue pixel blue = img[100, 100, 0] print(blue, type(blue)) img[100, 100] = [255, 255, 255] img[100, 101] = [255, 255, 255] print(img[100, 100]) # accessing RED value print(img.item(10, 10, 2)) # modifying RED value img.itemset((10, 10, 2), 100) print(img.item(10, 10, 2)) print(img.shape, img.size, img.dtype, type(img)) ball = img[280:340, 330:390] img[273:333, 100:160] = ball b, g, r = cv2.</description>
     </item>
     
     <item>
@@ -57,7 +69,7 @@
       
       <guid>https://bbsonlin.github.io/post/2018-12-11-opencv-tutorial-1/</guid>
       <description>安裝 筆者的環境使用 Ubuntu 18.04，利用 pipenv 安裝 opencv-python 套件
-起步 - 照片(影像) import cv2 img = cv2.imread(&#39;data/messi5.jpg&#39;, 0) cv2.imshow(&#39;image&#39;, img) k = cv2.waitKey(0) if k == 27: # wait for ESC key to exit cv2.destroyAllWindows() elif k == ord(&#39;s&#39;): # wait for &#39;s&#39; key to save and exit cv2.imwrite(&#39;out/messigray.png&#39;, img) cv2.destroyAllWindows()   用 cv2.imread 讀取影像檔案，第一個參數為檔案位置(String);第二個參數為讀取影像檔的顏色參數。 第二個參數有很多選項，如 cv2.IMREAD_COLOR、cv2.IMREAD_GREYSCALE、cv2.IMREAD_UNCHANGED &amp;hellip; 更多 用 cv2.imshow 可顯示用 cv2.imread 讀取進來的影像資訊 cv2.waitKey 會等待任何鍵盤事件；cv2.destroyAllWindows 會關閉所有視窗。 按下鍵盤 s，會調用 cv2.</description>
+起步 - 照片(影像) import cv2 img = cv2.imread(&amp;#39;data/messi5.jpg&amp;#39;, 0) cv2.imshow(&amp;#39;image&amp;#39;, img) k = cv2.waitKey(0) if k == 27: # wait for ESC key to exit cv2.destroyAllWindows() elif k == ord(&amp;#39;s&amp;#39;): # wait for &amp;#39;s&amp;#39; key to save and exit cv2.imwrite(&amp;#39;out/messigray.png&amp;#39;, img) cv2.destroyAllWindows()  用 cv2.imread 讀取影像檔案，第一個參數為檔案位置(String);第二個參數為讀取影像檔的顏色參數。 第二個參數有很多選項，如 cv2.IMREAD_COLOR、cv2.IMREAD_GREYSCALE、cv2.IMREAD_UNCHANGED &amp;hellip; 更多 用 cv2.imshow 可顯示用 cv2.imread 讀取進來的影像資訊 cv2.waitKey 會等待任何鍵盤事件；cv2.destroyAllWindows 會關閉所有視窗。 按下鍵盤 s，會調用 cv2.imwrite 存處理後的 img 圖檔 相關 API 文檔 reading and writing images、user interface  # Use matplotlib from matplotlib import pyplot as plt plt.</description>
     </item>
     
     <item>
@@ -81,7 +93,7 @@
 初出江湖 - 佈署到 Github Page 官方文件一開始看有點雜亂，後來是找到這位大老的教學影片才順利佈署完成
 建立 Repository
  主要是建立兩個程式碼倉庫 blog 和 &amp;lt;USERNAME&amp;gt;.github.io，前者是主要編輯文章內容；後者是放置靜態網頁的部份。 啟用 &amp;lt;USERNAME&amp;gt;.github.io Github Pages 服務。(在 Repo 的 Settings -&amp;gt; Github Pages) Github Pages 的形式有兩種：  https://&amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io/ - 這種是給帳戶放置首頁的，必須要對應到 &amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io 的 Repo https://&amp;lt;USERNAME|ORGANIZATION&amp;gt;.github.io/&amp;lt;PROJECT&amp;gt;/ - 其餘你創建的 Poject Repo 的靜態網頁都可以佈署到相對應的 URL。   輸出靜態網頁
-$ hugo -d ../&amp;lt;USERNAME&amp;gt;.github.io   在編輯文章內容的 Repo 下，輸出靜態網頁到放置靜態網頁 Repo 接著在將你輸出的內容 push 到 github 上就行囉~ 😃  備註:</description>
+$ hugo -d ../&amp;lt;USERNAME&amp;gt;.github.io  在編輯文章內容的 Repo 下，輸出靜態網頁到放置靜態網頁 Repo 接著在將你輸出的內容 push 到 github 上就行囉~ 😃  備註:</description>
     </item>
     
     <item>

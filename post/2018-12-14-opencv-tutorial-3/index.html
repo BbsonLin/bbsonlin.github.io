@@ -184,34 +184,31 @@
 <p>在 <a href="/post/2018-12-11-opencv-tutorial-1/#起步-照片-影像">Opencv-Python 學習之旅 - 1 起步 - 照片(影像)</a> 中<code>imread</code>函數就有選擇讀取照片時你想要的<code>色彩標誌</code>參數 (BGR, HSV &hellip; 等)。<br />
 在 OpenCV 中還有其他的函數來作色彩空間轉換的處理。</p>
 </blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/starry_night.jpg&#39;</span>)
 
-img = cv2.imread('data/starry_night.jpg')
+<span style="color:#75715e"># Convert BGR to HSV</span>
+hsv <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(img, cv2<span style="color:#f92672">.</span>COLOR_BGR2HSV)
+<span style="color:#75715e"># (600, 752, 3) 1353600 &lt;class &#39;numpy.ndarray&#39;&gt;</span>
+<span style="color:#66d9ef">print</span>(hsv<span style="color:#f92672">.</span>shape, hsv<span style="color:#f92672">.</span>size, type(hsv))
 
-# Convert BGR to HSV
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-# (600, 752, 3) 1353600 &lt;class 'numpy.ndarray'&gt;
-print(hsv.shape, hsv.size, type(hsv))
+<span style="color:#75715e"># define range of blue color in HSV</span>
+lower_blue <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">110</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">50</span>])
+upper_blue <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">130</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>])
 
-# define range of blue color in HSV
-lower_blue = np.array([110, 50, 50])
-upper_blue = np.array([130, 255, 255])
+<span style="color:#75715e"># Threshold the HSV image to get only blue colors</span>
+mask <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>inRange(hsv, lower_blue, upper_blue)
 
-# Threshold the HSV image to get only blue colors
-mask = cv2.inRange(hsv, lower_blue, upper_blue)
+<span style="color:#75715e"># Bitwise-AND mask and original image</span>
+res <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>bitwise_and(img, img, mask<span style="color:#f92672">=</span>mask)
 
-# Bitwise-AND mask and original image
-res = cv2.bitwise_and(img, img, mask=mask)
-
-cv2.imshow('frame', img)
-cv2.imshow('mask', mask)
-cv2.imshow('res', res)
-k = cv2.waitKey(0)
-if k == 27:         # wait for ESC key to exit
-    cv2.destroyAllWindows()
-</code></pre>
-
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;frame&#39;</span>, img)
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;mask&#39;</span>, mask)
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;res&#39;</span>, res)
+k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>)
+<span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:         <span style="color:#75715e"># wait for ESC key to exit</span>
+    cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li><code>cv2.cvtColor</code> 可以轉換色彩空間，用 <code>cv2.inRange</code> 來定義藍色上下限值製作遮罩圖。</li>
 <li>遮罩圖中白色為1；黑色為0，最後再例用 <code>cv2.bitwise_and</code> 將圖片中藍色值過濾出來。</li>
@@ -232,30 +229,27 @@ if k == 27:         # wait for ESC key to exit
 <li>cv2.THRESH_TOZERO</li>
 <li>cv2.THRESH_TOZERO_INV</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
 
-from matplotlib import pyplot as plt
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/gradient.png&#39;</span>, <span style="color:#ae81ff">0</span>)
+ret, thresh1 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY)
+ret, thresh2 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY_INV)
+ret, thresh3 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_TRUNC)
+ret, thresh4 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_TOZERO)
+ret, thresh5 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_TOZERO_INV)
 
-img = cv2.imread('data/gradient.png', 0)
-ret, thresh1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-ret, thresh2 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
-ret, thresh3 = cv2.threshold(img, 127, 255, cv2.THRESH_TRUNC)
-ret, thresh4 = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO)
-ret, thresh5 = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO_INV)
+titles <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Original Image&#39;</span>, <span style="color:#e6db74">&#39;BINARY&#39;</span>,
+          <span style="color:#e6db74">&#39;BINARY_INV&#39;</span>, <span style="color:#e6db74">&#39;TRUNC&#39;</span>, <span style="color:#e6db74">&#39;TOZERO&#39;</span>, <span style="color:#e6db74">&#39;TOZERO_INV&#39;</span>]
+images <span style="color:#f92672">=</span> [img, thresh1, thresh2, thresh3, thresh4, thresh5]
 
-titles = ['Original Image', 'BINARY',
-          'BINARY_INV', 'TRUNC', 'TOZERO', 'TOZERO_INV']
-images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">6</span>):
+    plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>), plt<span style="color:#f92672">.</span>imshow(images[i], <span style="color:#e6db74">&#39;gray&#39;</span>)
+    plt<span style="color:#f92672">.</span>title(titles[i])
+    plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
 
-for i in range(6):
-    plt.subplot(2, 3, i+1), plt.imshow(images[i], 'gray')
-    plt.title(titles[i])
-    plt.xticks([]), plt.yticks([])
-
-plt.show()
-</code></pre>
-
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>以固定值去作二值化，藉以過濾影像。</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/miscellaneous_transformations.html#threshold">miscellaneous transformations - threshold</a></li>
@@ -272,31 +266,28 @@ plt.show()
 <li>cv2.ADAPTIVE_THRESH_MEAN_C : 以鄰近格的平均值減去 C 當作閾值。</li>
 <li>cv2.ADAPTIVE_THRESH_GAUSSIAN_C : 以鄰近格的高斯加權平均值減去 C 當作閾值。</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
 
-from matplotlib import pyplot as plt
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/sudoku.png&#39;</span>, <span style="color:#ae81ff">0</span>)
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>medianBlur(img, <span style="color:#ae81ff">5</span>)
 
-img = cv2.imread('data/sudoku.png', 0)
-img = cv2.medianBlur(img, 5)
+ret, th1 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY)
+th2 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>adaptiveThreshold(img, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>ADAPTIVE_THRESH_MEAN_C,
+                            cv2<span style="color:#f92672">.</span>THRESH_BINARY, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">2</span>)
+th3 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>adaptiveThreshold(img, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>ADAPTIVE_THRESH_GAUSSIAN_C,
+                            cv2<span style="color:#f92672">.</span>THRESH_BINARY, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">2</span>)
 
-ret, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-th2 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
-                            cv2.THRESH_BINARY, 11, 2)
-th3 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                            cv2.THRESH_BINARY, 11, 2)
+titles <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Original Image&#39;</span>, <span style="color:#e6db74">&#39;Global Thresholding (v = 127)&#39;</span>,
+          <span style="color:#e6db74">&#39;Adaptive Mean Thresholding&#39;</span>, <span style="color:#e6db74">&#39;Adaptive Gaussian Thresholding&#39;</span>]
+images <span style="color:#f92672">=</span> [img, th1, th2, th3]
 
-titles = ['Original Image', 'Global Thresholding (v = 127)',
-          'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
-images = [img, th1, th2, th3]
-
-for i in range(4):
-    plt.subplot(2, 2, i+1), plt.imshow(images[i], 'gray')
-    plt.title(titles[i])
-    plt.xticks([]), plt.yticks([])
-plt.show()
-</code></pre>
-
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
+    plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>), plt<span style="color:#f92672">.</span>imshow(images[i], <span style="color:#e6db74">&#39;gray&#39;</span>)
+    plt<span style="color:#f92672">.</span>title(titles[i])
+    plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>以 <code>adaptiveMethod</code> 調整性函數去作二值化，藉以過濾影像。</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/miscellaneous_transformations.html#adaptivethreshold">miscellaneous transformations - adaptiveThreshold</a></li>
@@ -312,42 +303,39 @@ plt.show()
 * 分別計算這兩組的組內變異數，並把兩個組內變異數相加。<br />
 * 將0~255依序當作閾值來計算組內變異數和，總和值最小的就是結果閾值。</p>
 </blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
 
-from matplotlib import pyplot as plt
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/sudoku.png&#39;</span>, <span style="color:#ae81ff">0</span>)
 
-img = cv2.imread('data/sudoku.png', 0)
+<span style="color:#75715e"># global thresholding</span>
+ret1, th1 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">127</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY)
 
-# global thresholding
-ret1, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+<span style="color:#75715e"># Otsu&#39;s thresholding</span>
+ret2, th2 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(img, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY<span style="color:#f92672">+</span>cv2<span style="color:#f92672">.</span>THRESH_OTSU)
 
-# Otsu's thresholding
-ret2, th2 = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+<span style="color:#75715e"># Otsu&#39;s thresholding after Gaussian filtering</span>
+blur <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>GaussianBlur(img, (<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), <span style="color:#ae81ff">0</span>)
+ret3, th3 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>threshold(blur, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, cv2<span style="color:#f92672">.</span>THRESH_BINARY<span style="color:#f92672">+</span>cv2<span style="color:#f92672">.</span>THRESH_OTSU)
 
-# Otsu's thresholding after Gaussian filtering
-blur = cv2.GaussianBlur(img, (5, 5), 0)
-ret3, th3 = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+<span style="color:#75715e"># plot all the images and their histograms</span>
+images <span style="color:#f92672">=</span> [img, <span style="color:#ae81ff">0</span>, th1,
+          img, <span style="color:#ae81ff">0</span>, th2,
+          blur, <span style="color:#ae81ff">0</span>, th3]
+titles <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Original Noisy Image&#39;</span>, <span style="color:#e6db74">&#39;Histogram&#39;</span>, <span style="color:#e6db74">&#39;Global Thresholding (v=127)&#39;</span>,
+          <span style="color:#e6db74">&#39;Original Noisy Image&#39;</span>, <span style="color:#e6db74">&#39;Histogram&#39;</span>, <span style="color:#e6db74">&#34;Otsu&#39;s Thresholding&#34;</span>,
+          <span style="color:#e6db74">&#39;Gaussian filtered Image&#39;</span>, <span style="color:#e6db74">&#39;Histogram&#39;</span>, <span style="color:#e6db74">&#34;Otsu&#39;s Thresholding&#34;</span>]
 
-# plot all the images and their histograms
-images = [img, 0, th1,
-          img, 0, th2,
-          blur, 0, th3]
-titles = ['Original Noisy Image', 'Histogram', 'Global Thresholding (v=127)',
-          'Original Noisy Image', 'Histogram', &quot;Otsu's Thresholding&quot;,
-          'Gaussian filtered Image', 'Histogram', &quot;Otsu's Thresholding&quot;]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+    plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>), plt<span style="color:#f92672">.</span>imshow(images[i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>], <span style="color:#e6db74">&#39;gray&#39;</span>)
+    plt<span style="color:#f92672">.</span>title(titles[i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>]), plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
+    plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>), plt<span style="color:#f92672">.</span>hist(images[i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>]<span style="color:#f92672">.</span>ravel(), <span style="color:#ae81ff">256</span>)
+    plt<span style="color:#f92672">.</span>title(titles[i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]), plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
+    plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>), plt<span style="color:#f92672">.</span>imshow(images[i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>], <span style="color:#e6db74">&#39;gray&#39;</span>)
+    plt<span style="color:#f92672">.</span>title(titles[i<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>]), plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])
 
-for i in range(3):
-    plt.subplot(3, 3, i*3+1), plt.imshow(images[i*3], 'gray')
-    plt.title(titles[i*3]), plt.xticks([]), plt.yticks([])
-    plt.subplot(3, 3, i*3+2), plt.hist(images[i*3].ravel(), 256)
-    plt.title(titles[i*3+1]), plt.xticks([]), plt.yticks([])
-    plt.subplot(3, 3, i*3+3), plt.imshow(images[i*3+2], 'gray')
-    plt.title(titles[i*3+2]), plt.xticks([]), plt.yticks([])
-
-plt.show()
-</code></pre>
-
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>此方式較複雜，利用大津演算法算出閾值</li>
 <li>結果: <img src="/images/2018-12-14-opencv-tutorial-3/image_threshold_otsu_binarization.png" alt="image_threshold_otsu_binarization" /></li>
@@ -356,66 +344,63 @@ plt.show()
 <h1 id="影像的幾何轉換">影像的幾何轉換</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
-<pre><code>import cv2
-import numpy as np
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
 
-from matplotlib import pyplot as plt
+ori_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/messi5.jpg&#39;</span>)
 
-ori_img = cv2.imread('data/messi5.jpg')
+<span style="color:#75715e"># Resize</span>
+resize <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>resize(ori_img, None, fx<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, fy<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, interpolation<span style="color:#f92672">=</span>cv2<span style="color:#f92672">.</span>INTER_CUBIC)
+<span style="color:#75715e"># OR</span>
+<span style="color:#75715e"># height, width = img.shape[:2]</span>
+<span style="color:#75715e"># res = cv2.resize(img, (2*width, 2*height), interpolation=cv2.INTER_CUBIC)</span>
 
-# Resize
-resize = cv2.resize(ori_img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
-# OR
-# height, width = img.shape[:2]
-# res = cv2.resize(img, (2*width, 2*height), interpolation=cv2.INTER_CUBIC)
+grey_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/messi5.jpg&#39;</span>, <span style="color:#ae81ff">0</span>)
+rows, cols <span style="color:#f92672">=</span> grey_img<span style="color:#f92672">.</span>shape
 
-grey_img = cv2.imread('data/messi5.jpg', 0)
-rows, cols = grey_img.shape
+<span style="color:#75715e"># Translation</span>
+M <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">100</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">50</span>]])
+translation <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>warpAffine(grey_img, M, (cols, rows))
 
-# Translation
-M = np.float32([[1, 0, 100], [0, 1, 50]])
-translation = cv2.warpAffine(grey_img, M, (cols, rows))
+<span style="color:#75715e"># Rotate</span>
+M <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getRotationMatrix2D((cols<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, rows<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>), <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">1</span>)
+rotate <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>warpAffine(grey_img, M, (cols, rows))
 
-# Rotate
-M = cv2.getRotationMatrix2D((cols/2, rows/2), 90, 1)
-rotate = cv2.warpAffine(grey_img, M, (cols, rows))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">331</span>), plt<span style="color:#f92672">.</span>imshow(ori_img), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Origin&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">332</span>), plt<span style="color:#f92672">.</span>imshow(resize), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Resize&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">333</span>), plt<span style="color:#f92672">.</span>imshow(grey_img), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Grey&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">334</span>), plt<span style="color:#f92672">.</span>imshow(translation), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Translation&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">335</span>), plt<span style="color:#f92672">.</span>imshow(rotate), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Rotate&#39;</span>)
 
-plt.subplot(331), plt.imshow(ori_img), plt.title('Origin')
-plt.subplot(332), plt.imshow(resize), plt.title('Resize')
-plt.subplot(333), plt.imshow(grey_img), plt.title('Grey')
-plt.subplot(334), plt.imshow(translation), plt.title('Translation')
-plt.subplot(335), plt.imshow(rotate), plt.title('Rotate')
+<span style="color:#75715e"># Affine Transformation</span>
+rows, cols, ch <span style="color:#f92672">=</span> ori_img<span style="color:#f92672">.</span>shape
 
-# Affine Transformation
-rows, cols, ch = ori_img.shape
+pts1 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32([[<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">50</span>], [<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">50</span>], [<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">200</span>]])
+pts2 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32([[<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">100</span>], [<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">50</span>], [<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">250</span>]])
 
-pts1 = np.float32([[50, 50], [200, 50], [50, 200]])
-pts2 = np.float32([[10, 100], [200, 50], [100, 250]])
+M <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getAffineTransform(pts1, pts2)
 
-M = cv2.getAffineTransform(pts1, pts2)
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>warpAffine(ori_img, M, (cols, rows))
 
-dst = cv2.warpAffine(ori_img, M, (cols, rows))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">336</span>), plt<span style="color:#f92672">.</span>imshow(dst), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Affine Transform&#39;</span>)
 
-plt.subplot(336), plt.imshow(dst), plt.title('Affine Transform')
+<span style="color:#75715e"># Perspective Transformation</span>
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/sudoku.png&#39;</span>)
+rows, cols, ch <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>shape
 
-# Perspective Transformation
-img = cv2.imread('data/sudoku.png')
-rows, cols, ch = img.shape
+pts1 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32([[<span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">65</span>], [<span style="color:#ae81ff">368</span>, <span style="color:#ae81ff">52</span>], [<span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">387</span>], [<span style="color:#ae81ff">389</span>, <span style="color:#ae81ff">390</span>]])
+pts2 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32([[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">300</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">300</span>], [<span style="color:#ae81ff">300</span>, <span style="color:#ae81ff">300</span>]])
 
-pts1 = np.float32([[56, 65], [368, 52], [28, 387], [389, 390]])
-pts2 = np.float32([[0, 0], [300, 0], [0, 300], [300, 300]])
+M <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getPerspectiveTransform(pts1, pts2)
 
-M = cv2.getPerspectiveTransform(pts1, pts2)
+dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>warpPerspective(img, M, (<span style="color:#ae81ff">300</span>, <span style="color:#ae81ff">300</span>))
 
-dst = cv2.warpPerspective(img, M, (300, 300))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">337</span>), plt<span style="color:#f92672">.</span>imshow(img), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Origin&#39;</span>)
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">338</span>), plt<span style="color:#f92672">.</span>imshow(dst), plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Perspective Transform&#39;</span>)
 
-plt.subplot(337), plt.imshow(img), plt.title('Origin')
-plt.subplot(338), plt.imshow(dst), plt.title('Perspective Transform')
-
-plt.show()
-</code></pre>
-
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>將一幅影像的座標位置，映射到新座標，但不改變像素值。簡單說就是矩陣的幾何運算。</li>
 <li><code>cv2.warpAffine</code> 為仿射轉換函數，利用 2 x 3 的仿射(轉置)矩陣，可以達成圖片的放大、縮小、旋轉、左右反轉、扭曲。</li>
@@ -476,6 +461,8 @@ plt.show()
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                      
+                    
+                        
                     
                         
                     

@@ -233,41 +233,29 @@
 <p><em>筆主使用的環境是 Ubuntu 18.04LTS</em></p>
 
 <p><strong>安裝 Hugo 指令</strong></p>
-
-<pre><code>$ snap install hugo --devmode
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ snap install hugo --devmode</pre></div>
 <ul>
 <li>使用 <code>--devmode</code> 是因為碰上後面用 hugo 指令初始化資料夾結構時出現了 pemission denied；後來是加上此參數才解決</li>
 </ul>
 
 <p><strong>初始化資料夾</strong></p>
-
-<pre><code>$ hugo new site myblog
-$ cd myblog
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ hugo new site myblog
+$ cd myblog</pre></div>
 <ul>
 <li>hugo 會幫我們建立一大堆預設的資料夾(大部份是空的)，初使用的話比較需要注意的是 <code>content</code>、<code>themes</code>、<code>config.toml</code>。</li>
 </ul>
 
 <p><strong>安裝主題</strong></p>
-
-<pre><code>$ git init
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ git init
 $ git submodule add https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite
-$ echo 'theme = &quot;hugo-theme-cleanwhite&quot;' &gt;&gt; config.toml
-</code></pre>
-
+$ echo &#39;theme = &#34;hugo-theme-cleanwhite&#34;&#39; &gt;&gt; config.toml</pre></div>
 <ul>
 <li>滿建議用 git submodule，可以版控又方便更新。</li>
 </ul>
 
 <p><strong>第一個博文</strong></p>
-
-<pre><code>$ hugo new post/first-post.md
-$ hugo server -D
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ hugo new post/first-post.md
+$ hugo server -D</pre></div>
 <ul>
 <li>在 <code>http://localhost:1313/</code> 上有顯示第一則博文，就大功告成拉~ 😃</li>
 </ul>
@@ -313,6 +301,8 @@ $ hugo server -D
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                      
+                    
+                        
                     
                         
                     

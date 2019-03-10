@@ -186,19 +186,16 @@
 <h1 id="起步-照片-影像">起步 - 照片(影像)</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
-
-img = cv2.imread('data/messi5.jpg', 0)
-cv2.imshow('image', img)
-k = cv2.waitKey(0)
-if k == 27:         # wait for ESC key to exit
-    cv2.destroyAllWindows()
-elif k == ord('s'):  # wait for 's' key to save and exit
-    cv2.imwrite('out/messigray.png', img)
-    cv2.destroyAllWindows()
-</code></pre>
-
+img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;data/messi5.jpg&#39;</span>, <span style="color:#ae81ff">0</span>)
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;image&#39;</span>, img)
+k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>)
+<span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:         <span style="color:#75715e"># wait for ESC key to exit</span>
+    cv2<span style="color:#f92672">.</span>destroyAllWindows()
+<span style="color:#66d9ef">elif</span> k <span style="color:#f92672">==</span> ord(<span style="color:#e6db74">&#39;s&#39;</span>):  <span style="color:#75715e"># wait for &#39;s&#39; key to save and exit</span>
+    cv2<span style="color:#f92672">.</span>imwrite(<span style="color:#e6db74">&#39;out/messigray.png&#39;</span>, img)
+    cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li>用 <code>cv2.imread</code> 讀取影像檔案，第一個參數為檔案位置(String);第二個參數為讀取影像檔的顏色參數。</li>
 <li>第二個參數有很多選項，如 <code>cv2.IMREAD_COLOR</code>、<code>cv2.IMREAD_GREYSCALE</code>、<code>cv2.IMREAD_UNCHANGED</code> &hellip; <a href="https://docs.opencv.org/3.4.4/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80">更多</a></li>
@@ -207,14 +204,11 @@ elif k == ord('s'):  # wait for 's' key to save and exit
 <li>按下鍵盤 <code>s</code>，會調用 cv2.imwrite 存處理後的 img 圖檔</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgcodecs/doc/reading_and_writing_images.html">reading and writing images</a>、<a href="https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html">user interface</a></li>
 </ul>
-
-<pre><code># Use matplotlib
-from matplotlib import pyplot as plt
-plt.imshow(img, cmap='gray', interpolation='bicubic')
-plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-plt.show()
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Use matplotlib</span>
+<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> plt
+plt<span style="color:#f92672">.</span>imshow(img, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gray&#39;</span>, interpolation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bicubic&#39;</span>)
+plt<span style="color:#f92672">.</span>xticks([]), plt<span style="color:#f92672">.</span>yticks([])  <span style="color:#75715e"># to hide tick values on X and Y axis</span>
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
 <ul>
 <li>也可以使用 <code>matplotlib</code> 做顯示，預設會有放大縮小、存檔功能。</li>
 </ul>
@@ -222,28 +216,25 @@ plt.show()
 <h1 id="起步-影片">起步 - 影片</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
 
-<pre><code>import cv2
+cap <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoCapture(<span style="color:#e6db74">&#39;data/vtest.avi&#39;</span>)
 
-cap = cv2.VideoCapture('data/vtest.avi')
+<span style="color:#66d9ef">while</span>(cap<span style="color:#f92672">.</span>isOpened()):
+    <span style="color:#75715e"># Capture frame-by-frame</span>
+    ret, frame <span style="color:#f92672">=</span> cap<span style="color:#f92672">.</span>read()
 
-while(cap.isOpened()):
-    # Capture frame-by-frame
-    ret, frame = cap.read()
+    <span style="color:#75715e"># Our operations on the frame come here</span>
+    gray <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(frame, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
 
-    # Our operations on the frame come here
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    <span style="color:#75715e"># Display the resulting frame</span>
+    cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;frame&#39;</span>, gray)
+    <span style="color:#66d9ef">if</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span> <span style="color:#f92672">==</span> ord(<span style="color:#e6db74">&#39;q&#39;</span>):
+        <span style="color:#66d9ef">break</span>
 
-    # Display the resulting frame
-    cv2.imshow('frame', gray)
-    if cv2.waitKey(1) &amp; 0xFF == ord('q'):
-        break
-
-# When everything done, release the capture
-cap.release()
-cv2.destroyAllWindows()
-</code></pre>
-
+<span style="color:#75715e"># When everything done, release the capture</span>
+cap<span style="color:#f92672">.</span>release()
+cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li>利用 <code>cv2.VideoCapture</code> 建立影片擷取物件，利用 <code>cap.read()</code> 可以將影片一幀一幀讀取進來作顯示。</li>
 <li><code>cv2.VideoCapture</code> 可接受影片檔或者影像裝置的輸入。</li>
@@ -255,38 +246,35 @@ cv2.destroyAllWindows()
 <h1 id="畫畫函數">畫畫函數</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
-<pre><code>import cv2
-import numpy as np
+<span style="color:#75715e"># Create a black image</span>
+img <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">3</span>), np<span style="color:#f92672">.</span>uint8)
 
-# Create a black image
-img = np.zeros((512, 512, 3), np.uint8)
+<span style="color:#75715e"># Draw a diagonal blue line with thickness of 5 px</span>
+cv2<span style="color:#f92672">.</span>line(img, (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">511</span>, <span style="color:#ae81ff">511</span>), (<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">5</span>)
 
-# Draw a diagonal blue line with thickness of 5 px
-cv2.line(img, (0, 0), (511, 511), (255, 0, 0), 5)
+cv2<span style="color:#f92672">.</span>rectangle(img, (<span style="color:#ae81ff">384</span>, <span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">510</span>, <span style="color:#ae81ff">128</span>), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">3</span>)
 
-cv2.rectangle(img, (384, 0), (510, 128), (0, 255, 0), 3)
+cv2<span style="color:#f92672">.</span>circle(img, (<span style="color:#ae81ff">447</span>, <span style="color:#ae81ff">63</span>), <span style="color:#ae81ff">63</span>, (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 
-cv2.circle(img, (447, 63), 63, (0, 0, 255), -1)
+cv2<span style="color:#f92672">.</span>ellipse(img, (<span style="color:#ae81ff">256</span>, <span style="color:#ae81ff">256</span>), (<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">50</span>), <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">255</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 
-cv2.ellipse(img, (256, 256), (100, 50), 0, 0, 180, 255, -1)
+pts <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>], [<span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">20</span>], [<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">10</span>]], np<span style="color:#f92672">.</span>int32)
+pts <span style="color:#f92672">=</span> pts<span style="color:#f92672">.</span>reshape((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>))
+cv2<span style="color:#f92672">.</span>polylines(img, [pts], True, (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>))
 
-pts = np.array([[10, 5], [20, 30], [70, 20], [50, 10]], np.int32)
-pts = pts.reshape((-1, 1, 2))
-cv2.polylines(img, [pts], True, (0, 255, 255))
+font <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>FONT_HERSHEY_SIMPLEX
+cv2<span style="color:#f92672">.</span>putText(img, <span style="color:#e6db74">&#39;OpenCV&#39;</span>, (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">500</span>), font, <span style="color:#ae81ff">4</span>, (<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>), <span style="color:#ae81ff">2</span>, cv2<span style="color:#f92672">.</span>LINE_AA)
 
-font = cv2.FONT_HERSHEY_SIMPLEX
-cv2.putText(img, 'OpenCV', (10, 500), font, 4, (255, 255, 255), 2, cv2.LINE_AA)
-
-cv2.imshow('image', img)
-k = cv2.waitKey(0)
-if k == 27:         # wait for ESC key to exit
-    cv2.destroyAllWindows()
-elif k == ord('s'):  # wait for 's' key to save and exit
-    cv2.imwrite('out/draws.png', img)
-    cv2.destroyAllWindows()
-</code></pre>
-
+cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;image&#39;</span>, img)
+k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>)
+<span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:         <span style="color:#75715e"># wait for ESC key to exit</span>
+    cv2<span style="color:#f92672">.</span>destroyAllWindows()
+<span style="color:#66d9ef">elif</span> k <span style="color:#f92672">==</span> ord(<span style="color:#e6db74">&#39;s&#39;</span>):  <span style="color:#75715e"># wait for &#39;s&#39; key to save and exit</span>
+    cv2<span style="color:#f92672">.</span>imwrite(<span style="color:#e6db74">&#39;out/draws.png&#39;</span>, img)
+    cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li>Opencv 畫圖形的函數內建的函數滿充分的，跟很多繪圖的程式庫都滿像的，若要用的話可詳讀文檔。</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html">drawing functions</a></li>
@@ -295,57 +283,54 @@ elif k == ord('s'):  # wait for 's' key to save and exit
 <h1 id="用滑鼠當筆刷">用滑鼠當筆刷</h1>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
-<pre><code>import cv2
-import numpy as np
-
-drawing = False  # true if mouse is pressed
-mode = True  # if True, draw rectangle. Press 'm' to toggle to curve
-ix, iy = -1, -1
-ox, oy = -1, -1
-
-
-def draw_circle(event, x, y, flags, param):  # mouse callback function
-    global ix, iy, ox, oy, drawing, mode
-
-    if event == cv2.EVENT_LBUTTONDBLCLK:
-        cv2.circle(img, (x, y), 100, (255, 0, 0), -1)
-
-    if event == cv2.EVENT_LBUTTONDOWN:
-        drawing = True
-        ix, iy = x, y
-
-    elif event == cv2.EVENT_MOUSEMOVE:
-        if drawing:
-            if mode:
-                cv2.rectangle(img, (ix, iy), (x, y), (0, 255, 0), 3)
-            else:
-                cv2.circle(img, (x, y), 5, (0, 0, 255), -1)
-
-    elif event == cv2.EVENT_LBUTTONUP:
-        drawing = False
-        if mode:
-            cv2.rectangle(img, (ix, iy), (x, y), (0, 255, 0), 3)
-        else:
-            cv2.circle(img, (x, y), 5, (0, 0, 255), -1)
+drawing <span style="color:#f92672">=</span> False  <span style="color:#75715e"># true if mouse is pressed</span>
+mode <span style="color:#f92672">=</span> True  <span style="color:#75715e"># if True, draw rectangle. Press &#39;m&#39; to toggle to curve</span>
+ix, iy <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+ox, oy <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
 
 
-# Create a black image, a window and bind the function to window
-img = np.zeros((512, 512, 3), np.uint8)
-cv2.namedWindow('image')
-cv2.setMouseCallback('image', draw_circle)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw_circle</span>(event, x, y, flags, param):  <span style="color:#75715e"># mouse callback function</span>
+    <span style="color:#66d9ef">global</span> ix, iy, ox, oy, drawing, mode
 
-while(1):
-    cv2.imshow('image', img)
-    k = cv2.waitKey(1) &amp; 0xFF
-    if k == ord('m'):
-        mode = not mode
-    elif k == 27:
-        break
+    <span style="color:#66d9ef">if</span> event <span style="color:#f92672">==</span> cv2<span style="color:#f92672">.</span>EVENT_LBUTTONDBLCLK:
+        cv2<span style="color:#f92672">.</span>circle(img, (x, y), <span style="color:#ae81ff">100</span>, (<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 
-cv2.destroyAllWindows()
-</code></pre>
+    <span style="color:#66d9ef">if</span> event <span style="color:#f92672">==</span> cv2<span style="color:#f92672">.</span>EVENT_LBUTTONDOWN:
+        drawing <span style="color:#f92672">=</span> True
+        ix, iy <span style="color:#f92672">=</span> x, y
 
+    <span style="color:#66d9ef">elif</span> event <span style="color:#f92672">==</span> cv2<span style="color:#f92672">.</span>EVENT_MOUSEMOVE:
+        <span style="color:#66d9ef">if</span> drawing:
+            <span style="color:#66d9ef">if</span> mode:
+                cv2<span style="color:#f92672">.</span>rectangle(img, (ix, iy), (x, y), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">3</span>)
+            <span style="color:#66d9ef">else</span>:
+                cv2<span style="color:#f92672">.</span>circle(img, (x, y), <span style="color:#ae81ff">5</span>, (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+
+    <span style="color:#66d9ef">elif</span> event <span style="color:#f92672">==</span> cv2<span style="color:#f92672">.</span>EVENT_LBUTTONUP:
+        drawing <span style="color:#f92672">=</span> False
+        <span style="color:#66d9ef">if</span> mode:
+            cv2<span style="color:#f92672">.</span>rectangle(img, (ix, iy), (x, y), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">3</span>)
+        <span style="color:#66d9ef">else</span>:
+            cv2<span style="color:#f92672">.</span>circle(img, (x, y), <span style="color:#ae81ff">5</span>, (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+
+
+<span style="color:#75715e"># Create a black image, a window and bind the function to window</span>
+img <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">3</span>), np<span style="color:#f92672">.</span>uint8)
+cv2<span style="color:#f92672">.</span>namedWindow(<span style="color:#e6db74">&#39;image&#39;</span>)
+cv2<span style="color:#f92672">.</span>setMouseCallback(<span style="color:#e6db74">&#39;image&#39;</span>, draw_circle)
+
+<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>):
+    cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;image&#39;</span>, img)
+    k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>
+    <span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> ord(<span style="color:#e6db74">&#39;m&#39;</span>):
+        mode <span style="color:#f92672">=</span> <span style="color:#f92672">not</span> mode
+    <span style="color:#66d9ef">elif</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:
+        <span style="color:#66d9ef">break</span>
+
+cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li>用 <code>numpy</code> 套件，<code>np.zeros</code> 來定義畫布視窗的矩陣。</li>
 <li><code>cv2.setMouseCallback</code> 中第二個參數 <code>onMouse</code> 可以監聽視窗的滑鼠事件並調用回調函數。</li>
@@ -357,48 +342,45 @@ cv2.destroyAllWindows()
 <h1 id="滑動軸來控制調色盤">滑動軸來控制調色盤</h1>
 
 <hr />
-
-<pre><code>import cv2
-import numpy as np
-
-
-def nothing(x):
-    pass
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
 
-# Create a black image, a window
-img = np.zeros((300, 512, 3), np.uint8)
-cv2.namedWindow('image')
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">nothing</span>(x):
+    <span style="color:#66d9ef">pass</span>
 
-# create trackbars for color change
-cv2.createTrackbar('R', 'image', 0, 255, nothing)
-cv2.createTrackbar('G', 'image', 0, 255, nothing)
-cv2.createTrackbar('B', 'image', 0, 255, nothing)
 
-# create switch for ON/OFF functionality
-switch = '0 : OFF \n1 : ON'
-cv2.createTrackbar(switch, 'image', 0, 1, nothing)
+<span style="color:#75715e"># Create a black image, a window</span>
+img <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">300</span>, <span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">3</span>), np<span style="color:#f92672">.</span>uint8)
+cv2<span style="color:#f92672">.</span>namedWindow(<span style="color:#e6db74">&#39;image&#39;</span>)
 
-while(1):
-    cv2.imshow('image', img)
-    k = cv2.waitKey(1) &amp; 0xFF
-    if k == 27:
-        break
+<span style="color:#75715e"># create trackbars for color change</span>
+cv2<span style="color:#f92672">.</span>createTrackbar(<span style="color:#e6db74">&#39;R&#39;</span>, <span style="color:#e6db74">&#39;image&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, nothing)
+cv2<span style="color:#f92672">.</span>createTrackbar(<span style="color:#e6db74">&#39;G&#39;</span>, <span style="color:#e6db74">&#39;image&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, nothing)
+cv2<span style="color:#f92672">.</span>createTrackbar(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;image&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, nothing)
 
-    # get current positions of four trackbars
-    r = cv2.getTrackbarPos('R', 'image')
-    g = cv2.getTrackbarPos('G', 'image')
-    b = cv2.getTrackbarPos('B', 'image')
-    s = cv2.getTrackbarPos(switch, 'image')
+<span style="color:#75715e"># create switch for ON/OFF functionality</span>
+switch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0 : OFF </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">1 : ON&#39;</span>
+cv2<span style="color:#f92672">.</span>createTrackbar(switch, <span style="color:#e6db74">&#39;image&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, nothing)
 
-    if s == 0:
-        img[:] = 0
-    else:
-        img[:] = [b, g, r]
+<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>):
+    cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;image&#39;</span>, img)
+    k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>
+    <span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:
+        <span style="color:#66d9ef">break</span>
 
-cv2.destroyAllWindows()
-</code></pre>
+    <span style="color:#75715e"># get current positions of four trackbars</span>
+    r <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getTrackbarPos(<span style="color:#e6db74">&#39;R&#39;</span>, <span style="color:#e6db74">&#39;image&#39;</span>)
+    g <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getTrackbarPos(<span style="color:#e6db74">&#39;G&#39;</span>, <span style="color:#e6db74">&#39;image&#39;</span>)
+    b <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getTrackbarPos(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;image&#39;</span>)
+    s <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>getTrackbarPos(switch, <span style="color:#e6db74">&#39;image&#39;</span>)
 
+    <span style="color:#66d9ef">if</span> s <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        img[:] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">else</span>:
+        img[:] <span style="color:#f92672">=</span> [b, g, r]
+
+cv2<span style="color:#f92672">.</span>destroyAllWindows()</code></pre></div>
 <ul>
 <li><code>cv2.createTrackbar</code> 創建滑動軸，<code>cv2.getTrackbarPos</code> 獲取滑動軸的數值；用來更新視窗的點陣矩陣 <code>img[:] = [b, g, r]</code>。</li>
 <li>相關 API 文檔 <a href="https://docs.opencv.org/3.0-beta/modules/highgui/doc/user_interface.html">user interface</a></li>
@@ -454,6 +436,8 @@ cv2.destroyAllWindows()
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                      
+                    
+                        
                     
                         
                     
