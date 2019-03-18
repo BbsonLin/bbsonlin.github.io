@@ -309,7 +309,36 @@ gifts.length: 3
 gifts[&#39;first&#39;]: partridge
 true</pre></div>
 <h2 id="string">String</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">String</span> str1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;It&#39;s a string with double quotes&#34;</span>;
+<span style="color:#66d9ef">String</span> str2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;It</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">s a string with single quote&#39;</span>;
+<span style="color:#66d9ef">String</span> str3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;  
+</span><span style="color:#e6db74">It&#39;s a long string with triple double quotes  
+</span><span style="color:#e6db74">這是一個很長的字串
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>;
+print(str1);
+print(str2);
+print(str3);
 
+<span style="color:#66d9ef">const</span> aConstNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">const</span> aConstBool <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#66d9ef">const</span> aConstString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a constant string&#39;</span>;
+
+<span style="color:#66d9ef">var</span> aNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">var</span> aBool <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#66d9ef">var</span> aString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a string&#39;</span>;
+<span style="color:#66d9ef">const</span> aConstList <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+
+<span style="color:#66d9ef">const</span> validConstString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">$</span>aConstNum<span style="color:#e6db74"> </span><span style="color:#e6db74">$</span>aConstBool<span style="color:#e6db74"> </span><span style="color:#e6db74">$</span>aConstString<span style="color:#e6db74">&#39;</span>;
+<span style="color:#75715e">// const invalidConstString = &#39;$aNum $aBool $aString $aConstList&#39;;
+</span><span style="color:#75715e"></span>
+print(<span style="color:#e6db74">&#34;validConstString: </span><span style="color:#e6db74">$</span>validConstString<span style="color:#e6db74">&#34;</span>);
+print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>aNum<span style="color:#e6db74"> </span><span style="color:#e6db74">$</span>aBool<span style="color:#e6db74"> </span><span style="color:#e6db74">$</span>aString<span style="color:#e6db74"> </span><span style="color:#e6db74">$</span>aConstList<span style="color:#e6db74">, </span><span style="color:#e6db74">${</span>aConstList[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">It&#39;s a string with double quotes
+It&#39;s a string with single quote
+  It&#39;s a long string with triple double quotes
+  這是一個很長的字串
+  
+validConstString: 0 true a constant string
+0 true a string [1, 2, 3], 1</pre></div>
 <h1 id="函數-function">函數(Function)</h1>
 
 <blockquote>
@@ -355,10 +384,11 @@ ops sub result: -4</pre></div>
 <li><a href="https://youtu.be/8F2uemqLwvE">Introduction to Dart for Beginners - Types, Variables, Functions and Objects - Part One</a></li>
 </ul>
 
-<blockquote>
-<p><em>系列文</em><br />
-待補</p>
-</blockquote>
+<p><em>系列文</em></p>
+
+<ul>
+<li><a href="/post/2019-03-15-dart-basic-part-2/">Dart 基礎 - 2</a></li>
+</ul>
 
         
                 
@@ -370,6 +400,10 @@ ops sub result: -4</pre></div>
                       <a href="/post/2019-01-24-opensource-means-free/" data-toggle="tooltip" data-placement="top" title="開源就是免費!?">&larr; Previous Post</a>
                   </li>
                   
+                  
+                  <li class="next">
+                      <a href="/post/2019-03-15-dart-basic-part-2/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 2">Next Post &rarr;</a>
+                  </li>
                   
               </ul>
   

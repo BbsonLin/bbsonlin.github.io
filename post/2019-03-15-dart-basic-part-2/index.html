@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>Dart 基礎 - 2-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-03-15-dart-basic-part-2/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/dart" title="Dart">
+                           Dart
+                        </a>
+                        
+                    </div>
+                    <h1>Dart 基礎 - 2</h1>
+                    <h2 class="subheading">Dart Basic - 2</h2>
+                    <span  class="meta">Posted by Bobson Lin on Friday, March 15, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+        		
+                        <header>
+                        <h2>TOC</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li><a href="#變數-variable">變數(Variable)</a></li>
+<li><a href="#流程控制-control-flow">流程控制(Control Flow)</a>
+<ul>
+<li><a href="#if-else">If Else</a></li>
+<li><a href="#switch-case">Switch Case</a></li>
+<li><a href="#for-loop">For loop</a></li>
+<li><a href="#while-loop">While loop</a></li>
+<li><a href="#break-continue">Break Continue</a></li>
+</ul></li>
+<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
+</ul>
+</nav>
+        		
+        		
+
+<h1 id="變數-variable">變數(Variable)</h1>
+
+<p>Dart 2 可以不宣告變數型別方式有兩種 <code>var</code> 和 <code>dynamic</code>。</p>
+
+<p>這兩個看似用法相同但不一樣，其中 <code>var</code> 會在 Compile-time 的時候就會自行判斷你賦予此變數值的型別；
+所以再次賦予不同型別的值給此變數，會出現錯誤 <code>Error: A value of type 'int' can't be assigned to a variable of type 'String'.</code>。</p>
+
+<p>而 <code>dynamic</code> 則是能在 Run-time 時放進任何型別的變數。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Bobson&#34;</span>;
+<span style="color:#75715e">// name = 123;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Error: A value of type &#39;int&#39; can&#39;t be assigned to a variable of type &#39;String&#39;.
+</span><span style="color:#75715e"></span>
+print(name);
+
+<span style="color:#66d9ef">dynamic</span> myName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Bobson&#34;</span>;
+print(myName);
+myName <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>;
+print(myName);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Bobson
+Bobson
+123</pre></div>
+<blockquote>
+<p>任何變數宣告出來沒賦予值的話，預設會給 <code>null</code></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">int</span> lineCount;
+<span style="color:#75715e">// default value is null
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">assert</span>(lineCount <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>);</code></pre></div>
+<h1 id="流程控制-control-flow">流程控制(Control Flow)</h1>
+
+<blockquote>
+<p>在程式執行時，個別的指令（或是陳述、子程式）執行或求值的順序。</p>
+</blockquote>
+
+<p>Dart 中主要，控制程式執行有以下幾種:</p>
+
+<ul>
+<li>if and else</li>
+<li>for loops</li>
+<li>while and do-while loops</li>
+<li>break and continue</li>
+<li>switch and case</li>
+<li>assert</li>
+<li>try-catch and throw(Exception)</li>
+</ul>
+
+<h2 id="if-else">If Else</h2>
+
+<p>在 Dart 中，If Else 的條件是必須為 <code>true</code> 或 <code>false</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">int</span> number <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>;
+
+<span style="color:#66d9ef">if</span> (number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+  print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>number<span style="color:#e6db74"> 大於 0&#34;</span>);
+} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (number <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+  print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>number<span style="color:#e6db74"> 小於 0&#34;</span>);
+} <span style="color:#66d9ef">else</span> {
+  print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>number<span style="color:#e6db74"> 等於 0&#34;</span>);
+}</code></pre></div>
+<h2 id="switch-case">Switch Case</h2>
+
+<p>Switch Case 可以與 If Else 作轉換</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">switch</span> (number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+  <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">:</span>
+    print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>number<span style="color:#e6db74"> 大於 0&#34;</span>);
+    <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+    print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>number<span style="color:#e6db74"> 小於等於 0&#34;</span>);
+}</code></pre></div>
+<p>Switch Case 比較常用的方式在於，判斷多種狀態時程式碼需執行哪種對應的模式(case)。
+以下載狀態舉例:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// 下載狀態的 enum
+</span><span style="color:#75715e"></span>
+enum DownloadState {
+  none,
+  downloading,
+  done,
+  error
+}
+
+DownloadState downloadState <span style="color:#f92672">=</span> DownloadState.done;
+
+<span style="color:#66d9ef">switch</span> (downloadState) {
+  <span style="color:#66d9ef">case</span> DownloadState.none:
+    print(<span style="color:#e6db74">&#34;尚未下載&#34;</span>);
+    <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">case</span> DownloadState.downloading:
+    print(<span style="color:#e6db74">&#34;下載中&#34;</span>);
+    <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">case</span> DownloadState.done:
+    print(<span style="color:#e6db74">&#34;下載完成&#34;</span>);
+    <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">case</span> DownloadState.error:
+    print(<span style="color:#e6db74">&#34;下載失敗&#34;</span>);
+    <span style="color:#66d9ef">break</span>;
+  <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">throw</span> Exception(<span style="color:#e6db74">&#34;異常狀態&#34;</span>);
+}</code></pre></div>
+<h2 id="for-loop">For loop</h2>
+
+<p>傳統的 for loop 的形式是 <code>for(初始; 條件; 遞迴)</code></p>
+
+<p>變形的 for loop 在 Dart 中像是 <code>forEach</code>， <code>map</code> 和 <code>for(子集 in 集合)</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> collection <span style="color:#f92672">=</span> [];
+
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; i<span style="color:#f92672">++</span>) {
+  collection.add(i);
+}
+print(collection);
+
+collection.forEach((i) <span style="color:#f92672">=&gt;</span> print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>));
+
+print(collection.map((i) <span style="color:#f92672">=&gt;</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>));
+
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> c <span style="color:#66d9ef">in</span> collection) {
+  print(c);
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[0, 1, 2]
+
+1
+2
+3
+
+(1, 2, 3)
+
+0
+1
+2</pre></div>
+<h2 id="while-loop">While loop</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> (count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) {
+  count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+}
+print(count);
+
+<span style="color:#66d9ef">do</span> {
+  count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">5</span>;
+  print(<span style="color:#e6db74">&#34;count 加一次 5&#34;</span>);
+} <span style="color:#66d9ef">while</span> (count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">14</span>);
+print(count);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">5
+count 加一次 5
+count 加一次 5
+15</pre></div>
+<h2 id="break-continue">Break Continue</h2>
+
+<p>在 While loop 範例中加入 <code>break</code> 或 <code>continue</code>，可改變程式走向。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> (count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) {
+  count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">if</span> (count <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) <span style="color:#66d9ef">continue</span>;
+}
+print(count);
+
+<span style="color:#66d9ef">do</span> {
+  count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">5</span>;
+  print(<span style="color:#e6db74">&#34;count 加一次 5&#34;</span>);
+  <span style="color:#66d9ef">if</span> (count <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">break</span>;
+} <span style="color:#66d9ef">while</span> (count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">14</span>);
+print(count);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">5
+count 加一次 5
+10</pre></div>
+<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
+
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#variables">Dart 官方文檔 - Variables</a></li>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#control-flow-statements">Dart 官方文檔 - Control flow statements</a></li>
+<li><a href="https://youtu.be/vM1gHeQRqjI">Introduction to Dart for Beginners - Control Flow and Low Level Compilation - Part Two</a></li>
+</ul>
+
+<blockquote>
+<p><em>系列文</em><br />
+待補</p>
+</blockquote>
+
+        
+                
+        
+              <hr>
+              <ul class="pager">
+                  
+                  <li class="previous">
+                      <a href="/post/2019-03-08-dart-basic-part-1/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 1">&larr; Previous Post</a>
+                  </li>
+                  
+                  
+              </ul>
+  
+              
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
