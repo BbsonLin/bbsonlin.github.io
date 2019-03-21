@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="內建型別、函數">
+    <meta name="description" content="Dart 基礎 - 內建型別、函數">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
@@ -342,9 +342,15 @@ validConstString: 0 true a constant string
 <h1 id="函數-function">函數(Function)</h1>
 
 <blockquote>
-<p>Dart 的 <code>Function</code> 也是物件。<br />
+<p>Dart 的 <code>Function</code> 也繼承於 <code>Object</code>，是可以實例化的物件。<br />
 所以可以作任何跟內建型別一樣的操作，例如指定變數為 Function 或 屬於其他物件的一部分</p>
 </blockquote>
+
+<p>程式語言中的函數與數學中的函數概念類似，透過帶入參數進行一連串的任務(運算)後得到回傳值。
+標準形式 <code>funcName(param1, param2) { return retValue; }</code>。</p>
+
+<p>函數大都會有個 <code>函數名稱</code> (funcName)，小括號內則是放帶入此函數的 <code>參數</code> (param)，<br />
+函數執行的任務會放在大括號內部，最後會有個 <code>回傳值</code> (retValue)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Dart Function:&#34;</span>);
 <span style="color:#75715e">// Function
 </span><span style="color:#75715e"></span>
@@ -374,6 +380,14 @@ print(<span style="color:#e6db74">&#34;ops sub result: </span><span style="color
 ab
 func result is 50
 ops sub result: -4</pre></div>
+<p><em>當然凡是都有些例外或是撇步(方便寫少一點 或 增加易讀性)</em></p>
+
+<ol>
+<li>回傳空值或不回傳東西的函數 (void function)</li>
+<li>匿名函數 (anonymous function)</li>
+<li>用 <code>=&gt; expr</code> 取代 <code>{ retrun expr; }</code> (express function)</li>
+</ol>
+
 <h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
 
 <p><em>參考</em></p>
