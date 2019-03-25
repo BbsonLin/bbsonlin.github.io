@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Dart 基礎 - 運算符、類別">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>Dart 基礎 - 3-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-03-21-dart-basic-part-3/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/dart" title="Dart">
+                           Dart
+                        </a>
+                        
+                    </div>
+                    <h1>Dart 基礎 - 3</h1>
+                    <h2 class="subheading">Dart Basic - 3</h2>
+                    <span  class="meta">Posted by Bobson Lin on Thursday, March 21, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+        		
+                        <header>
+                        <h2>TOC</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li><a href="#運算子-operators">運算子(Operators)</a>
+<ul>
+<li><a href="#as-is-is">as, is, is!</a></li>
+<li><a href="#條件算符-conditional-expressions">條件算符(Conditional expressions)</a></li>
+<li><a href="#級聯符號-cascade-notation">級聯符號(Cascade notation)</a></li>
+</ul></li>
+<li><a href="#類別-class-上篇">類別(Class) - 上篇</a></li>
+</ul>
+</nav>
+        		
+        		
+
+<h1 id="運算子-operators">運算子(Operators)</h1>
+
+<blockquote>
+<p>四則運算、邏輯運算、程式運算等比較基礎的運算部份請參看官方文檔。<br />
+在此講一些比較特別的運算子</p>
+</blockquote>
+
+<h2 id="as-is-is">as, is, is!</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// Type test operators
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">num</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.1</span>;
+print(n <span style="color:#66d9ef">is</span><span style="color:#f92672">!</span> <span style="color:#66d9ef">int</span>);
+print(n <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">double</span>);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">true
+true</pre></div>
+<h2 id="條件算符-conditional-expressions">條件算符(Conditional expressions)</h2>
+
+<p>大部分程式語言都會有三元運算子 <code>?:</code>，它可以很簡短的代替 <code>if-else</code> 語法。
+Dart 中有幾個比較有趣的寫法 <code>??</code>、<code>?.</code> 等。</p>
+
+<p><code>??</code> 與 <code>?.</code> 都會判斷左方的運算元是否為 <code>null</code>，再進行動作。</p>
+
+<blockquote>
+<p>此範例若有些看不懂，可以看完下面一節 類別(上) 後再回頭看一次這裡。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Account</span> {
+  <span style="color:#66d9ef">String</span> username;
+  <span style="color:#66d9ef">String</span> password;
+
+  Account({username, password})
+    <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.username <span style="color:#f92672">=</span> username,
+      <span style="color:#75715e">// 下面兩種寫法是等價的
+</span><span style="color:#75715e"></span>
+      <span style="color:#75715e">// this.password = (password != null) ? password : &#39;AutomaticallyGenerateSecretPassword&#39;;
+</span><span style="color:#75715e"></span>
+      <span style="color:#66d9ef">this</span>.password <span style="color:#f92672">=</span> password <span style="color:#f92672">??</span> <span style="color:#e6db74">&#39;AutomaticallyGenerateSecretPassword&#39;</span>;
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">String</span> toString() {
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Account(</span><span style="color:#e6db74">$</span>username<span style="color:#e6db74">, </span><span style="color:#e6db74">$</span>password<span style="color:#e6db74">)&#34;</span>;
+  }
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> a <span style="color:#f92672">=</span> Account(username: <span style="color:#e6db74">&#39;Bobson&#39;</span>);
+print(a);
+
+<span style="color:#66d9ef">var</span> b <span style="color:#f92672">=</span> Account();
+b<span style="color:#f92672">?</span>.username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I&#39;m Groot&#34;</span>;
+print(b);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Account(Bobson, AutomaticallyGenerateSecretPassword)
+Account(I&#39;m Groot, AutomaticallyGenerateSecretPassword)</pre></div>
+<h2 id="級聯符號-cascade-notation">級聯符號(Cascade notation)</h2>
+
+<p>級聯符號可讓你針對一個物件進行一連串的函數操作，可省下寫重複變數的動作。</p>
+
+<p><strong>不用級聯符號的寫法:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> list <span style="color:#f92672">=</span> List()
+list.insert(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">123</span>)
+list.add(<span style="color:#ae81ff">456</span>)
+list.addAll([<span style="color:#ae81ff">789</span>, <span style="color:#ae81ff">111</span>]);</code></pre></div>
+<p><strong>用級聯符號的寫法:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> list <span style="color:#f92672">=</span> List()
+  ..insert(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">123</span>)
+  ..add(<span style="color:#ae81ff">456</span>)
+  ..addAll([<span style="color:#ae81ff">789</span>, <span style="color:#ae81ff">111</span>]);
+print(list);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[123, 456, 789, 111]</pre></div>
+<hr />
+
+<h1 id="類別-class-上篇">類別(Class) - 上篇</h1>
+
+<blockquote>
+<p>物件導向程式(OOP)，是軟體程式設計中很重要的一環，打算用較長篇幅講解。</p>
+</blockquote>
+
+<p>物件導向簡單說，從大到小；從整體應用(業務)邏輯到程式組件，都為他們繪製藍圖(也就是<code>類別</code>)，<br />
+而電腦在執行程式時，會依照藍圖製造出成品(也就是<code>物件</code>或<code>實例</code>)，中間的製造過程統稱<code>實例化</code>。</p>
+
+<p><strong>直接來看些 Dart 中 OOP 的應用吧。</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// Point Class from dart:math
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> p1 <span style="color:#f92672">=</span> Point(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+<span style="color:#66d9ef">var</span> p2 <span style="color:#f92672">=</span> Point(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>);
+print(<span style="color:#e6db74">&#34;p1: </span><span style="color:#e6db74">$</span>p1<span style="color:#e6db74">, p2: </span><span style="color:#e6db74">$</span>p2<span style="color:#e6db74">&#34;</span>);
+print(p1.distanceTo(p2));
+print(p2.magnitude);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">p1: Point(1, 2), p2: Point(3, 4)
+2.8284271247461903
+5.0</pre></div>
+<p>Dart 中的 OOP 與其他 OOP 語言特性並無太多不同，<br />
+我找了 Dart 的數學函式庫 <code>dart:math</code> 中的 <code>Point</code> (二維平面上的點) 作為開篇。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> <span style="color:#66d9ef">num</span><span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">final</span> T x;
+  <span style="color:#66d9ef">final</span> T y;
+
+  <span style="color:#66d9ef">const</span> Point(T x, T y)
+      <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.x <span style="color:#f92672">=</span> x,
+        <span style="color:#66d9ef">this</span>.y <span style="color:#f92672">=</span> y;
+
+  <span style="color:#66d9ef">String</span> toString() <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Point(</span><span style="color:#e6db74">$</span>x<span style="color:#e6db74">, </span><span style="color:#e6db74">$</span>y<span style="color:#e6db74">)&#39;</span>;
+
+  ...
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Get the straight line (Euclidean) distance between the origin (0, 0) and
+</span><span style="color:#75715e">   * this point.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">get</span> magnitude <span style="color:#f92672">=&gt;</span> sqrt(x <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> y <span style="color:#f92672">*</span> y);
+
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Returns the distance between `this` and [other].
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">double</span> distanceTo(Point<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> other) {
+    <span style="color:#66d9ef">var</span> dx <span style="color:#f92672">=</span> x <span style="color:#f92672">-</span> other.x;
+    <span style="color:#66d9ef">var</span> dy <span style="color:#f92672">=</span> y <span style="color:#f92672">-</span> other.y;
+    <span style="color:#66d9ef">return</span> sqrt(dx <span style="color:#f92672">*</span> dx <span style="color:#f92672">+</span> dy <span style="color:#f92672">*</span> dy);
+  }
+
+  ...
+}</code></pre></div>
+<p>類別通常都會包含幾個東西:</p>
+
+<ul>
+<li>屬性(property) 或 成員(member) - 物件會用到的變數</li>
+<li>建構子(constructor) - 可理解成創建(初始化)物件時會調用的函數</li>
+<li>方法(methods) - 物件會用到的函數</li>
+</ul>
+
+<p>以 <code>Point</code> 對應來說:</p>
+
+<ul>
+<li>屬性或成員 -
+
+<ul>
+<li><code>final T x</code> (此點的 x 座標)</li>
+<li><code>final T y</code> (此點的 y 座標)</li>
+</ul></li>
+<li>建構子 - <code>const Point(T x, T y)...</code></li>
+<li>方法 -
+
+<ul>
+<li><code>String toString()...</code> (print 時所顯示的字串),</li>
+<li><code>double get magnitude...</code> (此點與原點的距離),</li>
+<li><code>double distanceTo(Point&lt;T&gt; other)...</code> (此點與另一點的距離)</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>對應完之後是不是覺得很好理解了呢，這也是 OOP 的迷人之處。</p>
+</blockquote>
+
+<p><strong>接下來，我們試看看用 Dart 實現數學中複數(complex)的類別吧。</strong></p>
+
+<blockquote>
+<p>Complex Number (複數) - x + yi (i = √-1)
+其中 x 及 y 皆為實數，分別稱為複數之「實部」和「虛部」。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BaseComplex</span> {
+  <span style="color:#66d9ef">num</span> real;
+  <span style="color:#66d9ef">num</span> imaginary;
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">==</span>(<span style="color:#66d9ef">dynamic</span> other) {
+    <span style="color:#66d9ef">if</span> (other <span style="color:#66d9ef">is</span><span style="color:#f92672">!</span> BaseComplex) {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span> real <span style="color:#f92672">==</span> other.real <span style="color:#f92672">&amp;&amp;</span> imaginary <span style="color:#f92672">==</span> other.imaginary;
+    }
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">String</span> toString() <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;BaseComplex(</span><span style="color:#e6db74">$</span>real<span style="color:#e6db74">, </span><span style="color:#e6db74">$</span>imaginary<span style="color:#e6db74">)&#34;</span>;
+}</code></pre></div>
+<ul>
+<li>屬性或成員 -
+
+<ul>
+<li><code>num real</code> (實部)</li>
+<li><code>num imaginary</code> (虛部)</li>
+</ul></li>
+<li>建構子 - 無</li>
+<li>方法 -
+
+<ul>
+<li><code>bool operator ==(dynamic other)...</code> (複數物件相等函數)</li>
+<li><code>String toString()...</code> (print 時所顯示的字串),</li>
+</ul></li>
+</ul>
+
+<p>稍稍分解一下，有兩項額外重點:</p>
+
+<ul>
+<li>建構子不寫的話會有一個預設的建構子可以調用，別忘了 Dart 中一次都繼承於 <code>Object</code>，所以實際上預設是調用了 <code>Object</code> 的建構子。</li>
+<li><code>@override</code> 這裝飾子是用來覆寫父類別的方法，<code>Object</code> 中包含了 <code>==()</code> 和 <code>toString()</code>。</li>
+</ul>
+
+<p><strong>接著實際建造 <code>BaseComplex</code> 看看吧~</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> c1 <span style="color:#f92672">=</span> BaseComplex();
+c1.real <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+c1.imaginary <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+print(c1.runtimeType);
+
+<span style="color:#66d9ef">var</span> c2 <span style="color:#f92672">=</span> BaseComplex()
+  ..real <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+  ..imaginary <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+print(<span style="color:#e6db74">&#34;c1: </span><span style="color:#e6db74">$</span>c1<span style="color:#e6db74">, c2: </span><span style="color:#e6db74">$</span>c2<span style="color:#e6db74">&#34;</span>);
+
+print(c1 <span style="color:#f92672">==</span> c2);</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">BaseComplex
+c1: BaseComplex(5, 2), c2: BaseComplex(5, 2)
+true</pre></div>
+<ul>
+<li><code>runtimeType</code> 可顯示程式執行時，此變數的型別是什麼</li>
+<li><code>print(&quot;c1: $c1, c2: $c2&quot;);</code> print 時會調用到物件的 <code>toString</code> 函數，若無覆寫 <code>toString</code>會顯示 <code>Instance of 'BaseComplex'</code>。</li>
+<li><code>c1 == c2</code> 中實際上會調用我們覆寫的 <code>==</code> 函數。</li>
+</ul>
+
+<p><strong>稍微有些基礎建立類別方法了吧~</strong><br />
+<strong>要多加一些特性在實際 <code>Complex</code> 物件囉。</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Complex</span> {
+  <span style="color:#75715e">// Private property(member)
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">num</span> _real;
+  <span style="color:#66d9ef">num</span> _imaginary;
+
+  <span style="color:#75715e">// Getters &amp; Setters
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">get</span> real <span style="color:#f92672">=&gt;</span> _real;
+  <span style="color:#66d9ef">set</span> real(<span style="color:#66d9ef">num</span> newReal) <span style="color:#f92672">=&gt;</span> _real <span style="color:#f92672">=</span> newReal;
+
+  <span style="color:#66d9ef">get</span> imaginary <span style="color:#f92672">=&gt;</span> _imaginary;
+  <span style="color:#66d9ef">set</span> imaginary(<span style="color:#66d9ef">num</span> newImaginary) <span style="color:#f92672">=&gt;</span> _imaginary <span style="color:#f92672">=</span> newImaginary;
+
+  <span style="color:#75715e">// Syntactic sugar
+</span><span style="color:#75715e"></span>
+  Complex(<span style="color:#66d9ef">this</span>._real, <span style="color:#66d9ef">this</span>._imaginary);
+
+  <span style="color:#75715e">// Named Constructor
+</span><span style="color:#75715e"></span>
+  Complex.real(<span style="color:#66d9ef">num</span> real) <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>(real, <span style="color:#ae81ff">0</span>);
+  Complex.imaginary(<span style="color:#66d9ef">num</span> imaginary) <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>(<span style="color:#ae81ff">0</span>, imaginary);
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">==</span>(<span style="color:#66d9ef">dynamic</span> other) {
+    <span style="color:#66d9ef">if</span> (other <span style="color:#66d9ef">is</span><span style="color:#f92672">!</span> Complex) {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span> real <span style="color:#f92672">==</span> other.real <span style="color:#f92672">&amp;&amp;</span> imaginary <span style="color:#f92672">==</span> other.imaginary;
+    }
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">String</span> toString() {
+    <span style="color:#66d9ef">if</span> (imaginary <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>real<span style="color:#e6db74"> + </span><span style="color:#e6db74">${</span>imaginary<span style="color:#e6db74">}</span><span style="color:#e6db74">i&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>real<span style="color:#e6db74"> - </span><span style="color:#e6db74">${</span>imaginary.abs()<span style="color:#e6db74">}</span><span style="color:#e6db74">i&#34;</span>;
+    }
+  }
+}</code></pre></div>
+        
+                
+        
+              <hr>
+              <ul class="pager">
+                  
+                  <li class="previous">
+                      <a href="/post/2019-03-15-dart-basic-part-2/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 2">&larr; Previous Post</a>
+                  </li>
+                  
+                  
+              </ul>
+  
+              
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
