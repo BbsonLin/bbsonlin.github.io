@@ -170,6 +170,7 @@
 <li><a href="#級聯符號-cascade-notation">級聯符號(Cascade notation)</a></li>
 </ul></li>
 <li><a href="#類別-class-上篇">類別(Class) - 上篇</a></li>
+<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
 </ul>
 </nav>
         		
@@ -401,6 +402,17 @@ true</pre></div>
   <span style="color:#66d9ef">get</span> imaginary <span style="color:#f92672">=&gt;</span> _imaginary;
   <span style="color:#66d9ef">set</span> imaginary(<span style="color:#66d9ef">num</span> newImaginary) <span style="color:#f92672">=&gt;</span> _imaginary <span style="color:#f92672">=</span> newImaginary;
 
+  <span style="color:#75715e">// Traditional way
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// Complex(num real, num imaginary) { 
+</span><span style="color:#75715e"></span> 
+  <span style="color:#75715e">//   this.real = real;  
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">//   this.imaginary = imaginary;  
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">// }
+</span><span style="color:#75715e"></span>
+
   <span style="color:#75715e">// Syntactic sugar
 </span><span style="color:#75715e"></span>
   Complex(<span style="color:#66d9ef">this</span>._real, <span style="color:#66d9ef">this</span>._imaginary);
@@ -428,6 +440,57 @@ true</pre></div>
     }
   }
 }</code></pre></div>
+<p>這裡整理一下，加了哪些東西？</p>
+
+<ul>
+<li>Private property(member) - (相當於 Java 裡的 <code>private</code>)
+
+<ul>
+<li>Dart 中的類別屬性(成員)前面加 <code>_</code>，可達到屬性被保護的作用。</li>
+<li>建造出來的物件 private 屬性無法直接透過 <code>.</code> 獲取。</li>
+</ul></li>
+<li>Getters &amp; Setters - (相當於 <code>JavaBeans</code>)
+
+<ul>
+<li>屬於類別中的方法(methods)，想要類別中的屬性有讀與寫的權限，可以讓屬性變 private，並寫個自定義的 Get 函數(讀)、Set 函數(寫)。</li>
+<li>但在物件操作上如此(都用自定義Get 函數和 Set 函數)會變得不方便，所以可直接使用 <code>get</code> 和 <code>set</code>，在 Dart 中針對他們有對應的 keyword 可用。</li>
+</ul></li>
+<li>建構子
+
+<ul>
+<li>傳統一般的建構子會用大括號來定義其初始的內容。</li>
+<li>在 Dart 中有更精簡的寫法(Syntactic sugar 語法糖)。</li>
+</ul></li>
+<li>命名建構子(Named Constructor)
+
+<ul>
+<li>有時類別內會有特別常用的特定型態，可以額外寫成命名建構子。</li>
+<li>在 Flutter 中可以常常看到這種應用，如 <code>ListView</code> 中就有好幾個命名建構子 <code>ListView.builder</code>、<code>ListView.seperated</code>、<code>ListView.custom</code>。</li>
+</ul></li>
+<li>初始化列表(Initializer list)
+
+<ul>
+<li>在建構子建構物件之前，可以用 <code>:</code> 來設定一些初始值。</li>
+<li>在 Flutter 源碼中可以常常看到這種應用。</li>
+</ul></li>
+</ul>
+
+<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
+
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#operators">Dart 官方文檔 - Operators</a></li>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#classes">Dart 官方文檔 - Classes</a></li>
+<li><a href="https://youtu.be/qROCdGYRjZg">Introduction to Dart for Beginners - Intro to Classes and Objects - Part Three</a></li>
+</ul>
+
+<p><em>系列文</em></p>
+
+<ul>
+<li><a href="/post/2019-03-26-dart-basic-part-4/">Dart 基礎 - 4</a></li>
+</ul>
+
         
                 
         
@@ -438,6 +501,10 @@ true</pre></div>
                       <a href="/post/2019-03-15-dart-basic-part-2/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 2">&larr; Previous Post</a>
                   </li>
                   
+                  
+                  <li class="next">
+                      <a href="/post/2019-03-26-dart-basic-part-4/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 4">Next Post &rarr;</a>
+                  </li>
                   
               </ul>
   

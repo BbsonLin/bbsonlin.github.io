@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://bbsonlin.github.io/post/2019-03-26-dart-basic-part-4/</loc>
+    <lastmod>2019-03-26T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/post/2019-03-21-dart-basic-part-3/</loc>
     <lastmod>2019-03-21T09:57:07+08:00</lastmod>
   </url>
@@ -75,7 +80,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/</loc>
-    <lastmod>2019-03-21T09:57:07+08:00</lastmod>
+    <lastmod>2019-03-26T14:45:27+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -86,7 +91,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/dart/</loc>
-    <lastmod>2019-03-21T09:57:07+08:00</lastmod>
+    <lastmod>2019-03-26T14:45:27+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -134,7 +139,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/post/</loc>
-    <lastmod>2019-03-21T09:57:07+08:00</lastmod>
+    <lastmod>2019-03-26T14:45:27+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -152,7 +157,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/categories/tech/</loc>
-    <lastmod>2019-03-21T09:57:07+08:00</lastmod>
+    <lastmod>2019-03-26T14:45:27+08:00</lastmod>
     <priority>0</priority>
   </url>
   

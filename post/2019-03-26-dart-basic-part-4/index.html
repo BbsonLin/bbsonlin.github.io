@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Dart 基礎 - 方法、繼承">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>Dart 基礎 - 4-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-03-26-dart-basic-part-4/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/dart" title="Dart">
+                           Dart
+                        </a>
+                        
+                    </div>
+                    <h1>Dart 基礎 - 4</h1>
+                    <h2 class="subheading">Dart Basic - 4</h2>
+                    <span  class="meta">Posted by Bobson Lin on Tuesday, March 26, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+        		
+                        <header>
+                        <h2>TOC</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li><a href="#類別-class-中篇">類別(Class) - 中篇</a>
+<ul>
+<li><a href="#方法-methods">方法(Methods)</a></li>
+<li><a href="#final-const">final &amp; const</a></li>
+<li><a href="#繼承-inheritance-擴展-extends">繼承(Inheritance) - 擴展(extends)</a></li>
+</ul></li>
+<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
+</ul>
+</nav>
+        		
+        		
+
+<h1 id="類別-class-中篇">類別(Class) - 中篇</h1>
+
+<h2 id="方法-methods">方法(Methods)</h2>
+
+<p>Dart 中有幾種類別中的方法:</p>
+
+<ul>
+<li>實例方法(Instance methods) - 就是一般類別中標準的函數，使用的時候要先以類別實例化出物件，該物件才能使用此方法。</li>
+<li>靜態方法(Static methods) - 跟一般類別中的函數很像，不過它不用實例化便可使用該方法，通常是與該類別相關所以會定義在類別裡。</li>
+<li>抽象方法(Abstract methods) - 抽象類別中的函數，用來定義樣板，繼承該抽象類別後所需實現(implement)的函數。</li>
+<li>Getters &amp; Setters - 範例中 <code>Complex</code> 的 <code>real</code> 和 <code>imaginary</code></li>
+<li>運算子方法(Operator methods) - Dart 中可以 Override 幾個常用的運算子的方法，如 <code>+ - * /</code> <code>&gt; &lt; ==</code>&hellip; 等等。</li>
+</ul>
+
+<blockquote>
+<p><code>!=</code> 是不可複寫的，因為它相當於 <code>!(a == b)</code></p>
+</blockquote>
+
+<p><strong>我們在 <code>Complex</code> 中再加入些方法吧</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Complex</span> {
+  <span style="color:#75715e">// Private property(member)
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">num</span> _real;
+  <span style="color:#66d9ef">num</span> _imaginary;
+
+  <span style="color:#75715e">// Getters &amp; Setters
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">get</span> real <span style="color:#f92672">=&gt;</span> _real;
+  <span style="color:#66d9ef">set</span> real(<span style="color:#66d9ef">num</span> newReal) <span style="color:#f92672">=&gt;</span> _real <span style="color:#f92672">=</span> newReal;
+
+  <span style="color:#66d9ef">get</span> imaginary <span style="color:#f92672">=&gt;</span> _imaginary;
+  <span style="color:#66d9ef">set</span> imaginary(<span style="color:#66d9ef">num</span> newImaginary) <span style="color:#f92672">=&gt;</span> _imaginary <span style="color:#f92672">=</span> newImaginary;
+
+  <span style="color:#75715e">// Constructors
+</span><span style="color:#75715e"></span>
+  Complex(<span style="color:#66d9ef">this</span>._real, <span style="color:#66d9ef">this</span>._imaginary);
+  Complex.real(<span style="color:#66d9ef">num</span> real) <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>(real, <span style="color:#ae81ff">0</span>);
+  Complex.imaginary(<span style="color:#66d9ef">num</span> imaginary) <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>(<span style="color:#ae81ff">0</span>, imaginary);
+
+  Complex multiply(Complex c) {
+    <span style="color:#66d9ef">return</span> Complex(
+      (<span style="color:#66d9ef">this</span>.real <span style="color:#f92672">*</span> c.real) <span style="color:#f92672">-</span> (<span style="color:#66d9ef">this</span>.imaginary <span style="color:#f92672">*</span> c.imaginary),
+      (<span style="color:#66d9ef">this</span>.real <span style="color:#f92672">*</span> c.imaginary) <span style="color:#f92672">+</span> (<span style="color:#66d9ef">this</span>.imaginary <span style="color:#f92672">*</span> c.real),
+    );
+  }
+
+  <span style="color:#66d9ef">static</span> Complex substract(Complex c1, Complex c2) {
+    <span style="color:#66d9ef">return</span> Complex(
+      c1.real <span style="color:#f92672">-</span> c2.real,
+      c1.imaginary <span style="color:#f92672">-</span> c2.imaginary,
+    );
+  }
+
+  Complex <span style="color:#66d9ef">operator</span> <span style="color:#f92672">+</span>(Complex c) {
+    <span style="color:#66d9ef">return</span> Complex(<span style="color:#66d9ef">this</span>.real <span style="color:#f92672">+</span> c.real, <span style="color:#66d9ef">this</span>.imaginary <span style="color:#f92672">+</span> c.imaginary);
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">==</span>(<span style="color:#66d9ef">dynamic</span> other) {
+    <span style="color:#66d9ef">if</span> (other <span style="color:#66d9ef">is</span><span style="color:#f92672">!</span> Complex) {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span> real <span style="color:#f92672">==</span> other.real <span style="color:#f92672">&amp;&amp;</span> imaginary <span style="color:#f92672">==</span> other.imaginary;
+    }
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">String</span> toString() {
+    <span style="color:#66d9ef">if</span> (imaginary <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>real<span style="color:#e6db74"> + </span><span style="color:#e6db74">${</span>imaginary<span style="color:#e6db74">}</span><span style="color:#e6db74">i&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">$</span>real<span style="color:#e6db74"> - </span><span style="color:#e6db74">${</span>imaginary.abs()<span style="color:#e6db74">}</span><span style="color:#e6db74">i&#34;</span>;
+    }
+  }
+}</code></pre></div>
+<ul>
+<li>實例方法(Instance methods) - <code>Complex.multiply</code></li>
+<li>靜態方法(Static methods) - <code>Complex.substract</code></li>
+<li>運算子方法(Operator methods) - <code>Complex.+</code></li>
+</ul>
+
+<blockquote>
+<p>按照邏輯，數學上的運算覆寫 <code>運算子方法(Operator methods)</code> 會比較合理。<br />
+這邊展示用所以才拆開；而 <code>抽象方法(Abstract methods)</code> 使用情況較特別，後面會在講述。</p>
+</blockquote>
+
+<p><strong>使用看看這些方法吧</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">var</span> n1 <span style="color:#f92672">=</span> Complex(<span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>);
+<span style="color:#66d9ef">var</span> n2 <span style="color:#f92672">=</span> Complex(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>);
+
+print(n1 <span style="color:#f92672">+</span> n2);
+print(n1.multiply(n2));
+print(Complex.substract(n1, n2));</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">8 - 2i
+23 - 14i
+-2 - 6i</pre></div>
+<h2 id="final-const">final &amp; const</h2>
+
+<p><code>final</code> 與 <code>const</code> 變數在 Dart 中是常見的，在大部份的情況下他們的結果是相同的，就是不能任意更改賦予此變數的值。</p>
+
+<p>但實際意義上是有些不同的，<code>final</code> 是指第一次賦予此變數值之後就不能作改變了，也是就 <code>final</code> 的作用是發生於 Run-time 的，也就是程式執行當下決定；
+而 <code>const</code> 是在 Compile-time 就決定的，所以在程式編譯後就已經決定好了，程式執行當下也不能作改變。</p>
+
+<p>在物件導向(OO)的類別中，常用 <code>final</code> 在類別的屬性，目的在於創建物件(實例)後希望該屬性不再改變，比如在 <code>Complex</code> 得屬性中加上 <code>final</code>，</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Complex</span> {
+  <span style="color:#75715e">// Private property(member)
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">num</span> _real;
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">num</span> _imaginary;
+
+  ...
+}</code></pre></div>
+<p>後續 <code>real</code> 和 <code>imaginary</code> Setter 方法就都不能使用，會出現 <code>'_real' can't be used as a setter because it is final.</code> 的錯誤。</p>
+
+<p>而 <code>const</code> 在物件中，需寫成 <code>static const</code> 通常都是常用且不變的類別屬性，比如 <code>dart:math</code> 中的數學常數、<code>package:http/http.dart</code> 中的 <code>HttpHeaders</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// dart:math
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Base of the natural logarithms.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * Typically written as &#34;e&#34;.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> e <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.718281828459045</span>;
+
+...
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * The PI constant.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> pi <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.1415926535897932</span>;
+
+...</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// package:http/http.dart
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HttpHeaders</span> {
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> acceptHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accept&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> acceptCharsetHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accept-charset&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> acceptEncodingHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accept-encoding&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> acceptLanguageHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accept-language&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> acceptRangesHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accept-ranges&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> ageHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;age&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> allowHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;allow&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> authorizationHeader <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;authorization&#34;</span>;
+  
+  ...
+}</code></pre></div>
+<h2 id="繼承-inheritance-擴展-extends">繼承(Inheritance) - 擴展(extends)</h2>
+
+<p>物件導向(Object-Oriented)中的繼承，是一個非常核心的概念，可細分非常多種。<br />
+要理解很多種概念(或是設計模式)，才有辦法做出更好程式設計。</p>
+
+<p>這邊主要講的是 <code>extends</code> (擴展、延伸)。</p>
+
+<p>標準的寫法 <code>class 子類 extends 父類(基類)</code>。<br />
+這樣的用法主要是子類必須包含父類的所有特性，並且有自己的額外特性。此用法可以達成程式碼重用(reuse)效果。</p>
+
+<p>Dart 簡單一點的繼承應用，可以看到 <code>num</code>、<code>int</code> 和 <code>double</code> 的繼承關係。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">double</span> <span style="color:#66d9ef">extends</span> <span style="color:#66d9ef">num</span> {
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> nan <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.0</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> infinity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.0</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> negativeInfinity <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>infinity;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> minPositive <span style="color:#f92672">=</span> <span style="color:#ae81ff">5e-324</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> maxFinite <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.7976931348623157e+308</span>;   
+
+  <span style="color:#66d9ef">double</span> remainder(<span style="color:#66d9ef">num</span> other);
+
+  ...
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">int</span> <span style="color:#66d9ef">extends</span> <span style="color:#66d9ef">num</span> {  
+
+  ...
+
+  <span style="color:#66d9ef">int</span> gcd(<span style="color:#66d9ef">int</span> other);
+
+  <span style="color:#75715e">/** Returns true if and only if this integer is even. */</span>
+  <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">get</span> isEven;
+
+  <span style="color:#75715e">/** Returns true if and only if this integer is odd. */</span>
+  <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">get</span> isOdd;
+
+  ...
+}</code></pre></div>
+<ul>
+<li>除了 <code>num</code> 的基本特性，<code>int</code> 和 <code>double</code> 多了自己的特性。</li>
+</ul>
+
+<p>複雜一點，可以看 Flutter 中的 <code>ListView</code> 和 <code>BoxScrollView</code> 的繼承關係。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ListView</span> <span style="color:#66d9ef">extends</span> BoxScrollView {
+  ListView({
+    Key key,
+    Axis scrollDirection <span style="color:#f92672">=</span> Axis.vertical,
+    <span style="color:#66d9ef">bool</span> reverse <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+    ScrollController controller,
+    <span style="color:#66d9ef">bool</span> primary,
+    ScrollPhysics physics,
+    <span style="color:#66d9ef">bool</span> shrinkWrap <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>,
+    EdgeInsetsGeometry padding,
+    <span style="color:#66d9ef">this</span>.itemExtent,
+    <span style="color:#66d9ef">bool</span> addAutomaticKeepAlives <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+    <span style="color:#66d9ef">bool</span> addRepaintBoundaries <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+    <span style="color:#66d9ef">bool</span> addSemanticIndexes <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+    <span style="color:#66d9ef">double</span> cacheExtent,
+    List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> children <span style="color:#f92672">=</span> <span style="color:#66d9ef">const</span> <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[],
+    <span style="color:#66d9ef">int</span> semanticChildCount,
+  }) <span style="color:#f92672">:</span> childrenDelegate <span style="color:#f92672">=</span> SliverChildListDelegate(
+         children,
+         addAutomaticKeepAlives: addAutomaticKeepAlives,
+         addRepaintBoundaries: addRepaintBoundaries,
+         addSemanticIndexes: addSemanticIndexes,
+       ), <span style="color:#66d9ef">super</span>(
+    key: key,
+    scrollDirection: scrollDirection,
+    reverse: reverse,
+    controller: controller,
+    primary: primary,
+    physics: physics,
+    shrinkWrap: shrinkWrap,
+    padding: padding,
+    cacheExtent: cacheExtent,
+    semanticChildCount: semanticChildCount <span style="color:#f92672">??</span> children.length,
+  );
+
+  ...
+
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> itemExtent;
+
+  <span style="color:#66d9ef">final</span> SliverChildDelegate childrenDelegate;
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget buildChildLayout(BuildContext context) {
+    <span style="color:#66d9ef">if</span> (itemExtent <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+      <span style="color:#66d9ef">return</span> SliverFixedExtentList(
+        delegate: childrenDelegate,
+        itemExtent: itemExtent,
+      );
+    }
+    <span style="color:#66d9ef">return</span> SliverList(delegate: childrenDelegate);
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  <span style="color:#66d9ef">void</span> debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    <span style="color:#66d9ef">super</span>.debugFillProperties(properties);
+    properties.add(DoubleProperty(<span style="color:#e6db74">&#39;itemExtent&#39;</span>, itemExtent, defaultValue: <span style="color:#66d9ef">null</span>));
+  }
+
+  <span style="color:#75715e">// Helper method to compute the semantic child count for the separated constructor.
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> _computeSemanticChildCount(<span style="color:#66d9ef">int</span> itemCount) {
+    <span style="color:#66d9ef">return</span> math.max(<span style="color:#ae81ff">0</span>, itemCount <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+  }
+}</code></pre></div>
+<ul>
+<li><code>ListView</code> 的建構子中的初始列表，把相當多的特性都用 <code>super</code> 傳給了父類 <code>BoxScrollView</code>。</li>
+<li><code>ListView</code> 擁有自己的特性，如屬性 <code>itemExtent</code> 、 <code>childrenDelegate</code>；方法 <code>_computeSemanticChildCount</code>。</li>
+<li><code>ListView</code> 也覆寫了父類的特性，如 <code>buildChildLayout</code> 和 <code>debugFillProperties</code>。</li>
+</ul>
+
+<blockquote>
+<p>物件導向中的繼承是個概念簡單，但實際上使用有時會相當複雜。<br />
+需要多看多寫程式碼才能更加深入了解這概念的博大精深。<br />
+<code>重構</code>也是程序員常做事情，畢竟人也是會慢慢進步，會發現以前寫的程式碼的一些缺陷，進而改進。</p>
+</blockquote>
+
+<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
+
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#final-and-const">Dart 官方文檔 - Final and const</a></li>
+<li><a href="https://www.dartlang.org/guides/language/language-tour#classes">Dart 官方文檔 - Classes</a></li>
+<li><a href="https://youtu.be/3w_44E9MiRE">Introduction to Dart for Beginners - Methods, Final, Static and Basic Class Inheritance - Part Four</a></li>
+</ul>
+
+<blockquote>
+<p><em>系列文</em><br />
+待補</p>
+</blockquote>
+
+        
+                
+        
+              <hr>
+              <ul class="pager">
+                  
+                  <li class="previous">
+                      <a href="/post/2019-03-21-dart-basic-part-3/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 3">&larr; Previous Post</a>
+                  </li>
+                  
+                  
+              </ul>
+  
+              
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
