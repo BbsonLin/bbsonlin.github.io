@@ -6,10 +6,26 @@
     <description>Recent content in Posts on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Mar 2019 14:45:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 09:30:23 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dart 基礎 - 5</title>
+      <link>https://bbsonlin.github.io/post/2019-04-08-dart-basic-part-5/</link>
+      <pubDate>Mon, 08 Apr 2019 09:30:23 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-04-08-dart-basic-part-5/</guid>
+      <description>類別(Class) - 下篇  延續上一節的 類別(Class) - 中篇
+ 抽象類別(Abstract class)  在 類別(Class) - 中篇 我們有提到 抽象方法(Abstract methods)，抽象類別裡的函數稱作此。
+這次要來深入點講解 抽象類別。
+ 簡單來說，抽象類別是定義其他類別的 界面 (interface) (可以想像成樣板)，所有 繼承 (extends) 或 實現 (implements) 於此 抽象類別 的類別必須要實作此 抽象類別 裡定義的所有方法。
+這樣講完其實還真的是滿 &amp;ldquo;抽象&amp;rdquo; 的，所以就看看例子吧~
+abstract class Shape { double get perimeter; double get area; String get name; } 以上我們自行定義個抽象類別 Shape，裡頭有三個 Getter 函數，perimeter(周長)、area(面積)、name(描述此形狀)。
+接下來我們基於 Shape 來 &amp;ldquo;實現&amp;rdquo; Circle 圓形類別。
+class Circle extends Shape { double radius; Circle(this.</description>
+    </item>
     
     <item>
       <title>Dart 基礎 - 4</title>
@@ -17,8 +33,9 @@
       <pubDate>Tue, 26 Mar 2019 14:45:27 +0800</pubDate>
       
       <guid>https://bbsonlin.github.io/post/2019-03-26-dart-basic-part-4/</guid>
-      <description>類別(Class) - 中篇 方法(Methods) Dart 中有幾種類別中的方法:
- 實例方法(Instance methods) - 就是一般類別中標準的函數，使用的時候要先以類別實例化出物件，該物件才能使用此方法。 靜態方法(Static methods) - 跟一般類別中的函數很像，不過它不用實例化便可使用該方法，通常是與該類別相關所以會定義在類別裡。 抽象方法(Abstract methods) - 抽象類別中的函數，用來定義樣板，繼承該抽象類別後所需實現(implement)的函數。 Getters &amp;amp; Setters - 範例中 Complex 的 real 和 imaginary 運算子方法(Operator methods) - Dart 中可以 Override 幾個常用的運算子的方法，如 + - * / &amp;gt; &amp;lt; ==&amp;hellip; 等等。   != 是不可複寫的，因為它相當於 !(a == b)
+      <description>類別(Class) - 中篇  延續上一節的 類別(Class) - 上篇
+ 方法(Methods) Dart 中有幾種類別中的方法:
+ 實例方法(Instance methods) - 就是一般類別中標準的函數，使用的時候要先以類別實例化出物件，該物件才能使用此方法。 靜態方法(Static methods) - 跟一般類別中的函數很像，不過它不用實例化便可使用該方法，通常是與該類別相關所以會定義在類別裡。 抽象方法(Abstract methods) - 抽象類別中的函數，用來定義樣板(或稱界面[interface])，繼承該抽象類別後所需實現(implement)的函數。 Getters &amp;amp; Setters - 範例中 Complex 的 real 和 imaginary 運算子方法(Operator methods) - Dart 中可以 Override 幾個常用的運算子的方法，如 + - * / &amp;gt; &amp;lt; ==&amp;hellip; 等等。   != 是不可複寫的，因為它相當於 !(a == b)
  我們在 Complex 中再加入些方法吧
 class Complex { // Private property(member)  num _real; num _imaginary; // Getters &amp;amp; Setters  get real =&amp;gt; _real; set real(num newReal) =&amp;gt; _real = newReal; get imaginary =&amp;gt; _imaginary; set imaginary(num newImaginary) =&amp;gt; _imaginary = newImaginary; // Constructors  Complex(this.</description>
     </item>

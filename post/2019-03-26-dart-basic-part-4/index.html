@@ -177,6 +177,10 @@
 
 <h1 id="類別-class-中篇">類別(Class) - 中篇</h1>
 
+<blockquote>
+<p>延續上一節的 <a href="/post/2019-03-21-dart-basic-part-3/#類別-class-上篇">類別(Class) - 上篇</a></p>
+</blockquote>
+
 <h2 id="方法-methods">方法(Methods)</h2>
 
 <p>Dart 中有幾種類別中的方法:</p>
@@ -184,7 +188,7 @@
 <ul>
 <li>實例方法(Instance methods) - 就是一般類別中標準的函數，使用的時候要先以類別實例化出物件，該物件才能使用此方法。</li>
 <li>靜態方法(Static methods) - 跟一般類別中的函數很像，不過它不用實例化便可使用該方法，通常是與該類別相關所以會定義在類別裡。</li>
-<li>抽象方法(Abstract methods) - 抽象類別中的函數，用來定義樣板，繼承該抽象類別後所需實現(implement)的函數。</li>
+<li>抽象方法(Abstract methods) - 抽象類別中的函數，用來定義樣板(或稱界面[interface])，繼承該抽象類別後所需實現(implement)的函數。</li>
 <li>Getters &amp; Setters - 範例中 <code>Complex</code> 的 <code>real</code> 和 <code>imaginary</code></li>
 <li>運算子方法(Operator methods) - Dart 中可以 Override 幾個常用的運算子的方法，如 <code>+ - * /</code> <code>&gt; &lt; ==</code>&hellip; 等等。</li>
 </ul>
@@ -277,17 +281,23 @@ print(Complex.substract(n1, n2));</code></pre></div><div class="highlight"><pre 
 <p>但實際意義上是有些不同的，<code>final</code> 是指第一次賦予此變數值之後就不能作改變了，也是就 <code>final</code> 的作用是發生於 Run-time 的，也就是程式執行當下決定；
 而 <code>const</code> 是在 Compile-time 就決定的，所以在程式編譯後就已經決定好了，程式執行當下也不能作改變。</p>
 
-<p>在物件導向(OO)的類別中，常用 <code>final</code> 在類別的屬性，目的在於創建物件(實例)後希望該屬性不再改變，比如在 <code>Complex</code> 得屬性中加上 <code>final</code>，</p>
+<p>在物件導向(OO)的類別中，常用 <code>final</code> 在類別的屬性，目的在於創建物件(實例)後希望該屬性不再改變，比如在 <code>Complex</code> 得屬性中加上 <code>final</code>。</p>
+
+<p>但後續 <code>real</code> 和 <code>imaginary</code> Setter 方法就都不能使用，會出現 <code>'_real' can't be used as a setter because it is final.</code> 的錯誤。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Complex</span> {
   <span style="color:#75715e">// Private property(member)
-</span><span style="color:#75715e"></span>
-  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">num</span> _real;
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">num</span> _real;
   <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">num</span> _imaginary;
 
+  <span style="color:#66d9ef">get</span> real <span style="color:#f92672">=&gt;</span> _real;
+  <span style="color:#66d9ef">set</span> real(<span style="color:#66d9ef">num</span> newReal) <span style="color:#f92672">=&gt;</span> _real <span style="color:#f92672">=</span> newReal; <span style="color:#75715e">// 會出現 Error.
+</span><span style="color:#75715e"></span>
+
+  <span style="color:#66d9ef">get</span> imaginary <span style="color:#f92672">=&gt;</span> _imaginary;
+  <span style="color:#66d9ef">set</span> imaginary(<span style="color:#66d9ef">num</span> newImaginary) <span style="color:#f92672">=&gt;</span> _imaginary <span style="color:#f92672">=</span> newImaginary; <span style="color:#75715e">// 會出現 Error.
+</span><span style="color:#75715e"></span>
   ...
 }</code></pre></div>
-<p>後續 <code>real</code> 和 <code>imaginary</code> Setter 方法就都不能使用，會出現 <code>'_real' can't be used as a setter because it is final.</code> 的錯誤。</p>
-
 <p>而 <code>const</code> 在物件中，需寫成 <code>static const</code> 通常都是常用且不變的類別屬性，比如 <code>dart:math</code> 中的數學常數、<code>package:http/http.dart</code> 中的 <code>HttpHeaders</code>。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// dart:math
 </span><span style="color:#75715e"></span>
@@ -328,6 +338,10 @@ print(Complex.substract(n1, n2));</code></pre></div><div class="highlight"><pre 
 
 <p>標準的寫法 <code>class 子類 extends 父類(基類)</code>。<br />
 這樣的用法主要是子類必須包含父類的所有特性，並且有自己的額外特性。此用法可以達成程式碼重用(reuse)效果。</p>
+
+<blockquote>
+<p>注意: Dart 中的 <code>extends</code> 只支援單一繼承。</p>
+</blockquote>
 
 <p>Dart 簡單一點的繼承應用，可以看到 <code>num</code>、<code>int</code> 和 <code>double</code> 的繼承關係。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">double</span> <span style="color:#66d9ef">extends</span> <span style="color:#66d9ef">num</span> {
@@ -429,9 +443,14 @@ print(Complex.substract(n1, n2));</code></pre></div><div class="highlight"><pre 
 </ul>
 
 <blockquote>
-<p>物件導向中的繼承是個概念簡單，但實際上使用有時會相當複雜。<br />
-需要多看多寫程式碼才能更加深入了解這概念的博大精深。<br />
-<code>重構</code>也是程序員常做事情，畢竟人也是會慢慢進步，會發現以前寫的程式碼的一些缺陷，進而改進。</p>
+<p>物件導向中的繼承是個概念簡單，但實際上使用可以相當複雜。<br />
+需要多看多寫程式碼才能更加深入了解這概念的博大精深。</p>
+</blockquote>
+
+<hr />
+
+<blockquote>
+<p><code>重構</code>也是程序員常做事情，畢竟人也是會慢慢進步，會發現以前寫的程式碼的一些缺陷，進而改進。</p>
 </blockquote>
 
 <h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
@@ -444,10 +463,11 @@ print(Complex.substract(n1, n2));</code></pre></div><div class="highlight"><pre 
 <li><a href="https://youtu.be/3w_44E9MiRE">Introduction to Dart for Beginners - Methods, Final, Static and Basic Class Inheritance - Part Four</a></li>
 </ul>
 
-<blockquote>
-<p><em>系列文</em><br />
-待補</p>
-</blockquote>
+<p><em>系列文</em></p>
+
+<ul>
+<li><a href="/post/2019-04-08-dart-basic-part-5/">Dart 基礎 - 5</a></li>
+</ul>
 
         
                 
@@ -459,6 +479,10 @@ print(Complex.substract(n1, n2));</code></pre></div><div class="highlight"><pre 
                       <a href="/post/2019-03-21-dart-basic-part-3/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 3">&larr; Previous Post</a>
                   </li>
                   
+                  
+                  <li class="next">
+                      <a href="/post/2019-04-08-dart-basic-part-5/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 5">Next Post &rarr;</a>
+                  </li>
                   
               </ul>
   
