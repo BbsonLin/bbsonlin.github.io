@@ -6,10 +6,24 @@
     <description>Recent content in Flutter on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Nov 2018 12:23:48 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Mar 2019 22:08:51 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flutter MaterialApp 裡到底藏了什麼?</title>
+      <link>https://bbsonlin.github.io/post/2019-03-04-flutter-whats-in-materialapp/</link>
+      <pubDate>Mon, 04 Mar 2019 22:08:51 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-03-04-flutter-whats-in-materialapp/</guid>
+      <description>前言 一開始創建 Flutter App 它會自己有個 Counter 的範例，到後續自己寫了很多範例跟專案正在開發； 才發現光是一個 MaterialApp 水就很深了，決定努力來看一下文檔以及源碼整理並理解。
+MaterialApp  An application that uses material design.
+A convenience widget that wraps a number of widgets that are commonly required for material design applications. It builds upon a WidgetsApp by adding material-design specific functionality, such as AnimatedTheme and GridPaper.
+ 以上是官方文檔中前兩段敘述，概略的說 MaterialApp 是根據 Material Design 風格包裝了 WidgetsApp，例如 AnimatedTheme and GridPaper。
+MaterialApp 和 WidgetsApp 都屬於 StatefulWidget。
+接下來看看 MaterialApp 所使用到的變數：</description>
+    </item>
     
     <item>
       <title>Flutter 開始探索</title>

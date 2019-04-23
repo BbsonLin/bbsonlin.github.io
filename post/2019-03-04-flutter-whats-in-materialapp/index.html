@@ -8,14 +8,14 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="一切都為作者云云，別太認真了~">
+    <meta name="description" content="深入探索 Flutter 源碼之 MaterialApp 上篇">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>開源就是免費!?-</title>
+    <title>Flutter MaterialApp 裡到底藏了什麼?-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-01-24-opensource-means-free/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-03-04-flutter-whats-in-materialapp/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -128,14 +128,22 @@
                 <div class="post-heading">
                     <div class="tags">
                        
-                       <a class="tag" href="/tags/gossip" title="Gossip">
-                           Gossip
+                       <a class="tag" href="/tags/mobile" title="Mobile">
+                           Mobile
+                        </a>
+                        
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
+                        </a>
+                        
+                       <a class="tag" href="/tags/dart" title="Dart">
+                           Dart
                         </a>
                         
                     </div>
-                    <h1>開源就是免費!?</h1>
-                    <h2 class="subheading">Opensource equals Free!?</h2>
-                    <span  class="meta">Posted by Bobson Lin on Thursday, January 24, 2019
+                    <h1>Flutter MaterialApp 裡到底藏了什麼?</h1>
+                    <h2 class="subheading">What&#39;s in Flutter MaterialApp?</h2>
+                    <span  class="meta">Posted by Bobson Lin on Monday, March 4, 2019
                         
                     </span>
                 </div>
@@ -163,64 +171,88 @@
                         </header>
                         <nav id="TableOfContents">
 <ul>
-<li><a href="#為何大公司們會開源">為何大公司們會開源？</a></li>
-<li><a href="#開源等於免費">開源等於免費?</a></li>
+<li><a href="#前言">前言</a></li>
+<li><a href="#materialapp">MaterialApp</a>
+<ul>
+<li><a href="#animatedtheme">AnimatedTheme</a></li>
+<li><a href="#gridpaper">GridPaper</a></li>
+</ul></li>
+<li><a href="#widgetsapp">WidgetsApp</a>
+<ul>
+<li><a href="#navigator-route">Navigator &amp; Route</a></li>
+</ul></li>
 </ul>
 </nav>
         		
         		
 
-<blockquote>
-<p>網路時代的來臨到普及，身為開發者觀察，開源的專案只會越來越多。<br />
-很多軟體大公司近幾年的專案或工具，直接都是開源的了。</p>
-</blockquote>
+<h1 id="前言">前言</h1>
 
-<h1 id="為何大公司們會開源">為何大公司們會開源？</h1>
+<p>一開始創建 Flutter App 它會自己有個 Counter 的範例，到後續自己寫了很多範例跟專案正在開發；
+才發現光是一個 MaterialApp 水就很深了，決定努力來看一下文檔以及源碼整理並理解。</p>
 
-<p>依我的想法至少有三個好處:</p>
-
-<ol>
-<li><strong>依靠社群的力量可以精進整體開源專案</strong><br />
-畢竟社群有很多大神都是獨立開發者，靠著社群更可以找到問題，亦或有人可以找到最佳化的方法。<br /></li>
-<li><strong>增進使用者(開發者)的使用效率</strong><br />
-放到開源區，免不了要有些附加的文檔，也會有熱心的人研讀程式碼並給出更完善的文檔，能增進後人的有效理解且避免採坑。</li>
-<li><strong>找到潛在能合作或能招攬的開發人員</strong><br />
-若有人能不斷貢獻專案，並且熱衷於開發，這些大廠能省去很多功夫找到適合的合作對象。</li>
-</ol>
-
-<p><strong><em>隨著資訊時代，很多資料變得唾手可得，很多時候也沒必要隱隱藏藏一直閉源所有的程式碼。</em></strong></p>
-
-<hr />
+<h1 id="materialapp">MaterialApp</h1>
 
 <blockquote>
-<p>但凡事有優點，必會帶來些缺點 &hellip;</p>
+<p>An application that uses material design.</p>
+
+<p>A convenience widget that wraps a number of widgets that are commonly required for material design applications. It builds upon a <code>WidgetsApp</code> by adding material-design specific functionality, such as <code>AnimatedTheme</code> and <code>GridPaper</code>.</p>
 </blockquote>
 
-<h1 id="開源等於免費">開源等於免費?</h1>
+<p>以上是官方文檔中前兩段敘述，概略的說 <code>MaterialApp</code> 是根據 Material Design 風格包裝了 <code>WidgetsApp</code>，例如 <code>AnimatedTheme</code> and <code>GridPaper</code>。</p>
 
-<p>開源雖然可以免費使用，但還是有些不一樣的地方，很火的開源專案必定都會跟隨著 <code>License</code>； <code>MIT</code>、<code>BSD</code>、<code>GPL</code> &hellip; 族繁不及備載。</p>
+<p><code>MaterialApp</code> 和 <code>WidgetsApp</code> 都屬於 <code>StatefulWidget</code>。</p>
 
-<p><strong><em>意味著開源根本就不是免費。</em></strong></p>
+<p>接下來看看 <code>MaterialApp</code> 所使用到的變數：</p>
 
-<p>看過很多開源專案出現些爭議，如 AntD 聖誕結彩蛋事件。</p>
+<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/materialapp_variables.png" alt="materialapp_variables" /></p>
 
-<p>你可以友善的提醒及指出開源專案的問題，但很多人一個腦充就變成網路酸民。<br />
-老實說，開源專案其實根本不需要負責使用者的個人開發問題 <strong>(若是有置入惡意程式碼的除外)</strong> ，但很多人把它視為理所當然開源者就該負責的。</p>
+<p><strong>我把它分作四類:</strong></p>
 
-<p>之前有看過 Vue.js 的專案，有人只發個 issue 說，x牌手機的自製瀏覽器有問題，其他啥資訊也不提供。<br />
-Vue.js 尤大作者，很嚴肅的回應，莫非要我也跟著買一樣的手機來幫你 debug 嗎?</p>
-
-<p>所以，使用開源，請記得友善的替別人想一想。自己的問題就開自己想辦法，別人頂多只能幫你一把。
-有能力也記得多多支持開源的獨立開發者們。</p>
+<ul>
+<li>[紅色] 跟頁面轉換有關 (Navigator, Route&hellip;)<br /></li>
+<li>[橘色] 跟多語言有關 (l10n, i18n)<br /></li>
+<li>[藍色] 與開發相關 (Debug, PerformanceOvelay&hellip;)<br /></li>
+<li>[其他] 與App本身相關 (設計主題, App名稱&hellip;)</li>
+</ul>
 
 <blockquote>
-<p>尊重、包容、友善<br />
-給這個開源的世界良好的環境吧！</p>
+<p>文檔中花比較多篇文在 [紅色] 部份，所以這篇文章主要是深入研究 [紅色] 和 [其他]。<br />
+[橘色] 及 [藍色] 之後有研究再補充。</p>
 </blockquote>
 
-<hr />
+<h2 id="animatedtheme">AnimatedTheme</h2>
 
-<p><em>備註: 一切都為作者云云，別太認真了~</em></p>
+<blockquote>
+<p>Animated version of <code>Theme</code> which automatically transitions the colors, etc, over a given duration whenever the given theme changes.</p>
+</blockquote>
+
+<p><code>AnimatedTheme</code> 封裝了 <code>Theme</code> 增加了動畫的性質，可以從 DevTools 中看出它給了 <code>ThemeDataTween</code> 這個動畫期間，主要能體現於更換主題時之間的動畫效果。</p>
+
+<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/animated_theme_in_devtools.png" alt="animated_theme_in_devtools" /></p>
+
+<p>最簡單的實驗，就是開發變換主題變數之後 Hot Restart，會產生短暫的動畫效果，這就是 <code>AnimatedTheme</code> 所影響的。</p>
+
+<p>以下是在 <code>MaterialAppState.build</code> 中更改了 <code>AnimatedTheme.duration</code>:</p>
+
+<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/animated_theme.gif" alt="animated_theme" /></p>
+
+<h2 id="gridpaper">GridPaper</h2>
+
+<p><code>GridPaper</code> 主要用於 Material Design，可設定 <code>MaterialAppState.debugShowMaterialGrid</code> 為 true，開啟網格模式。</p>
+
+<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/grid_paper.png" alt="grid_paper" /></p>
+
+<h1 id="widgetsapp">WidgetsApp</h1>
+
+<p>其實大部分 <code>MaterialApp</code> 的功能都在 <code>WidgetsApp</code> 裡就實現了，仔細看看 <code>WidgetsApp</code> 的文檔和源碼會發現，其實 <code>MaterialApp</code> 所使用到的變數，大部分都傳給 <code>WidgetsApp</code> 了。</p>
+
+<h2 id="navigator-route">Navigator &amp; Route</h2>
+
+<p><code>MaterialApp</code> 花了滿多篇幅在講這部份的，搭配源碼看可以知道他們做了很多事情。</p>
+
+<p>首先，<code>WidgetsApp.build</code> 裡會自動創建一個 <code>Navigator</code> Widget 給當前的 App。<br />
+而 <code>Navigator</code> 所創建出來的 <code>NavigatorState</code> 中其中有一部份會管理 <code>Route</code> 物件堆疊(stack)。</p>
 
         
                 
@@ -229,12 +261,12 @@ Vue.js 尤大作者，很嚴肅的回應，莫非要我也跟著買一樣的手�
               <ul class="pager">
                   
                   <li class="previous">
-                      <a href="/post/2018-12-16-opencv-tutorial-4/" data-toggle="tooltip" data-placement="top" title="Opencv-Python 學習之旅 - 4">&larr; Previous Post</a>
+                      <a href="/post/2019-01-24-opensource-means-free/" data-toggle="tooltip" data-placement="top" title="開源就是免費!?">&larr; Previous Post</a>
                   </li>
                   
                   
                   <li class="next">
-                      <a href="/post/2019-03-04-flutter-whats-in-materialapp/" data-toggle="tooltip" data-placement="top" title="Flutter MaterialApp 裡到底藏了什麼?">Next Post &rarr;</a>
+                      <a href="/post/2019-03-08-dart-basic-part-1/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 1">Next Post &rarr;</a>
                   </li>
                   
               </ul>
