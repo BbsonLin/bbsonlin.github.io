@@ -6,10 +6,20 @@
     <description>Recent content on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Apr 2019 09:30:23 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Jun 2019 09:30:23 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>前端之路 - 0 - 歷史課</title>
+      <link>https://bbsonlin.github.io/post/2019-06-18-road-to-frontend-0/</link>
+      <pubDate>Tue, 18 Jun 2019 09:30:23 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-06-18-road-to-frontend-0/</guid>
+      <description>早期  1992 - NCSA(國家超級電腦應用中心) Mosaic 最早流行的圖形介面網頁瀏覽器 1994 - Netscape(網景) 雇用了許多原來的 NCSA Mosaic 開發者用來開發 Mosaic Netscape(後改名為 Netscape Navigator) 1995 - Microsoft 取得Mosaic的授權後，推出了 Internet Explorer 1 (IE 1)  第一次瀏覽器大戰 (1995 - 2001) Netscape(Netscape Navigator) vs Microsoft(Internet Explorer)
+Netscape 方  1995 - Marc Lowell Andreessen 認為 HTML 需要一種膠水語言，後 Brendan Eich 花十天開發出 JavaScript 原型(起初稱 Mocha 和 LiveScript) 1996 - Netscape 提交 ECMA(歐洲電腦製造商協會) 提交語言標準，此標準後稱 ECMAScript (ES) 1997 - ECMA 以 JavaScript 語言為基礎制定了 ECMAScript 標準規範 ECMA-262 1998 - Netscape Navigator 開放原始碼，後由 Mozilla 組織維護  Microsoft 方  1996 - 微软模仿 JavaScript 开发了一种相近的语言，取名为 JScript，並用於 IE 3.</description>
+    </item>
     
     <item>
       <title>Dart 基礎 - 5</title>

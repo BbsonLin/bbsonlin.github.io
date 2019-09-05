@@ -8,14 +8,14 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="深入探索 Flutter 源碼之 MaterialApp 上篇">
+    <meta name="description" content="前端之路 - 0">
     
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>Flutter MaterialApp 裡到底藏了什麼?-</title>
+    <title>前端之路 - 0 - 歷史課-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-03-04-flutter-whats-in-materialapp/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-06-18-road-to-frontend-0/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -128,14 +128,14 @@
                 <div class="post-heading">
                     <div class="tags">
                        
-                       <a class="tag" href="/tags/flutter" title="Flutter">
-                           Flutter
+                       <a class="tag" href="/tags/frontend" title="Frontend">
+                           Frontend
                         </a>
                         
                     </div>
-                    <h1>Flutter MaterialApp 裡到底藏了什麼?</h1>
-                    <h2 class="subheading">What&#39;s in Flutter MaterialApp?</h2>
-                    <span  class="meta">Posted by Bobson Lin on Monday, March 4, 2019
+                    <h1>前端之路 - 0 - 歷史課</h1>
+                    <h2 class="subheading">Road to frontend - 0</h2>
+                    <span  class="meta">Posted by Bobson Lin on Tuesday, June 18, 2019
                         
                     </span>
                 </div>
@@ -163,88 +163,69 @@
                         </header>
                         <nav id="TableOfContents">
 <ul>
-<li><a href="#前言">前言</a></li>
-<li><a href="#materialapp">MaterialApp</a>
+<li><a href="#早期">早期</a></li>
+<li><a href="#第一次瀏覽器大戰-1995-2001">第一次瀏覽器大戰 (1995 - 2001)</a>
 <ul>
-<li><a href="#animatedtheme">AnimatedTheme</a></li>
-<li><a href="#gridpaper">GridPaper</a></li>
+<li><a href="#netscape-方">Netscape 方</a></li>
+<li><a href="#microsoft-方">Microsoft 方</a></li>
 </ul></li>
-<li><a href="#widgetsapp">WidgetsApp</a>
-<ul>
-<li><a href="#navigator-route">Navigator &amp; Route</a></li>
-</ul></li>
+<li><a href="#第二次瀏覽器大戰-2004-2017">第二次瀏覽器大戰 (2004 - 2017)</a></li>
+<li><a href="#你也可以瞧瞧">你也可以瞧瞧&hellip;</a></li>
 </ul>
 </nav>
         		
         		
 
-<h1 id="前言">前言</h1>
+<h1 id="早期">早期</h1>
 
-<p>一開始創建 Flutter App 它會自己有個 Counter 的範例，到後續自己寫了很多範例跟專案正在開發；
-才發現光是一個 MaterialApp 水就很深了，決定努力來看一下文檔以及源碼整理並理解。</p>
+<ol>
+<li>1992 - NCSA(國家超級電腦應用中心) Mosaic 最早流行的圖形介面網頁瀏覽器</li>
+<li>1994 - Netscape(網景) 雇用了許多原來的 NCSA Mosaic 開發者用來開發 Mosaic Netscape(後改名為 Netscape Navigator)</li>
+<li>1995 - Microsoft 取得Mosaic的授權後，推出了 Internet Explorer 1 (IE 1)</li>
+</ol>
 
-<h1 id="materialapp">MaterialApp</h1>
+<h1 id="第一次瀏覽器大戰-1995-2001">第一次瀏覽器大戰 (1995 - 2001)</h1>
 
-<blockquote>
-<p>An application that uses material design.</p>
+<p><strong>Netscape</strong>(Netscape Navigator) vs <strong>Microsoft</strong>(Internet Explorer)</p>
 
-<p>A convenience widget that wraps a number of widgets that are commonly required for material design applications. It builds upon a <code>WidgetsApp</code> by adding material-design specific functionality, such as <code>AnimatedTheme</code> and <code>GridPaper</code>.</p>
-</blockquote>
+<h2 id="netscape-方">Netscape 方</h2>
 
-<p>以上是官方文檔中前兩段敘述，概略的說 <code>MaterialApp</code> 是根據 Material Design 風格包裝了 <code>WidgetsApp</code>，例如 <code>AnimatedTheme</code> and <code>GridPaper</code>。</p>
+<ol>
+<li>1995 - Marc Lowell Andreessen 認為 HTML 需要一種膠水語言，後 Brendan Eich 花十天開發出 JavaScript 原型(起初稱 Mocha 和 LiveScript)</li>
+<li>1996 - Netscape 提交 ECMA(歐洲電腦製造商協會) 提交語言標準，此標準後稱 ECMAScript (ES)</li>
+<li>1997 - ECMA 以 JavaScript 語言為基礎制定了 ECMAScript 標準規範 ECMA-262</li>
+<li>1998 - Netscape Navigator 開放原始碼，後由 Mozilla 組織維護</li>
+</ol>
 
-<p><code>MaterialApp</code> 和 <code>WidgetsApp</code> 都屬於 <code>StatefulWidget</code>。</p>
+<h2 id="microsoft-方">Microsoft 方</h2>
 
-<p>接下來看看 <code>MaterialApp</code> 所使用到的變數：</p>
+<ol>
+<li>1996 - 微软模仿 JavaScript 开发了一种相近的语言，取名为 JScript，並用於 IE 3.0，成為第一款支援程式語言及CSS的商用瀏覽器</li>
+<li>1997 - IE4.0 更符合 W3C 製定的網頁標準方面</li>
+<li>1998 - Microsoft Windows 壟斷了作業系統市場，而 IE 與 Windows 的捆綁，讓使用者不再下載 Netscape，而改用 IE</li>
+</ol>
 
-<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/materialapp_variables.png" alt="materialapp_variables" /></p>
+<h1 id="第二次瀏覽器大戰-2004-2017">第二次瀏覽器大戰 (2004 - 2017)</h1>
 
-<p><strong>我把它分作四類:</strong></p>
+<ol>
+<li>2003 年後 IE 市佔率逐漸受到其他瀏覽器蠶食。</li>
+<li>Opera(1996)、Safari(2003)、Firefox(2004)、Chrome(2008) 相繼出現。</li>
+<li>2010 年後 HTML5、CSS3 等新標準的制定和智慧型手機、平板電腦的普及，網路瀏覽器的競爭也在新的領域展開。</li>
+</ol>
+
+<h1 id="你也可以瞧瞧">你也可以瞧瞧&hellip;</h1>
+
+<p><em>參考</em></p>
 
 <ul>
-<li>[紅色] 跟頁面轉換有關 (Navigator, Route&hellip;)<br /></li>
-<li>[橘色] 跟多語言有關 (l10n, i18n)<br /></li>
-<li>[藍色] 與開發相關 (Debug, PerformanceOvelay&hellip;)<br /></li>
-<li>[其他] 與App本身相關 (設計主題, App名稱&hellip;)</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%A7%E6%88%98">Wiki - 瀏覽器大戰</a></li>
+<li><a href="https://javascript.ruanyifeng.com/introduction/history.html">JavaScript语言的历史</a></li>
 </ul>
 
 <blockquote>
-<p>文檔中花比較多篇文在 [紅色] 部份，所以這篇文章主要是深入研究 [紅色] 和 [其他]。<br />
-[橘色] 及 [藍色] 之後有研究再補充。</p>
+<p><em>系列文</em><br />
+待補</p>
 </blockquote>
-
-<h2 id="animatedtheme">AnimatedTheme</h2>
-
-<blockquote>
-<p>Animated version of <code>Theme</code> which automatically transitions the colors, etc, over a given duration whenever the given theme changes.</p>
-</blockquote>
-
-<p><code>AnimatedTheme</code> 封裝了 <code>Theme</code> 增加了動畫的性質，可以從 DevTools 中看出它給了 <code>ThemeDataTween</code> 這個動畫期間，主要能體現於更換主題時之間的動畫效果。</p>
-
-<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/animated_theme_in_devtools.png" alt="animated_theme_in_devtools" /></p>
-
-<p>最簡單的實驗，就是開發變換主題變數之後 Hot Restart，會產生短暫的動畫效果，這就是 <code>AnimatedTheme</code> 所影響的。</p>
-
-<p>以下是在 <code>MaterialAppState.build</code> 中更改了 <code>AnimatedTheme.duration</code>:</p>
-
-<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/animated_theme.gif" alt="animated_theme" /></p>
-
-<h2 id="gridpaper">GridPaper</h2>
-
-<p><code>GridPaper</code> 主要用於 Material Design，可設定 <code>MaterialAppState.debugShowMaterialGrid</code> 為 true，開啟網格模式。</p>
-
-<p><img src="/images/2019-03-04-flutter-whats-in-materialapp/grid_paper.png" alt="grid_paper" /></p>
-
-<h1 id="widgetsapp">WidgetsApp</h1>
-
-<p>其實大部分 <code>MaterialApp</code> 的功能都在 <code>WidgetsApp</code> 裡就實現了，仔細看看 <code>WidgetsApp</code> 的文檔和源碼會發現，其實 <code>MaterialApp</code> 所使用到的變數，大部分都傳給 <code>WidgetsApp</code> 了。</p>
-
-<h2 id="navigator-route">Navigator &amp; Route</h2>
-
-<p><code>MaterialApp</code> 花了滿多篇幅在講這部份的，搭配源碼看可以知道他們做了很多事情。</p>
-
-<p>首先，<code>WidgetsApp.build</code> 裡會自動創建一個 <code>Navigator</code> Widget 給當前的 App。<br />
-而 <code>Navigator</code> 所創建出來的 <code>NavigatorState</code> 中其中有一部份會管理 <code>Route</code> 物件堆疊(stack)。</p>
 
         
                 
@@ -253,13 +234,9 @@
               <ul class="pager">
                   
                   <li class="previous">
-                      <a href="/post/2019-01-24-opensource-means-free/" data-toggle="tooltip" data-placement="top" title="開源就是免費!?">&larr; Previous Post</a>
+                      <a href="/post/2019-04-08-dart-basic-part-5/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 5">&larr; Previous Post</a>
                   </li>
                   
-                  
-                  <li class="next">
-                      <a href="/post/2019-03-08-dart-basic-part-1/" data-toggle="tooltip" data-placement="top" title="Dart 基礎 - 1">Next Post &rarr;</a>
-                  </li>
                   
               </ul>
   
