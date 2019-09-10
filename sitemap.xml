@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-09-build-android-app-with-flutter-1/</loc>
+    <lastmod>2019-09-10T08:20:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/post/2019-06-18-road-to-frontend-0/</loc>
     <lastmod>2019-06-18T09:30:23+08:00</lastmod>
   </url>
@@ -95,7 +100,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/</loc>
-    <lastmod>2019-06-18T09:30:23+08:00</lastmod>
+    <lastmod>2019-09-10T08:20:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -112,7 +117,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/flutter/</loc>
-    <lastmod>2019-03-04T22:08:51+08:00</lastmod>
+    <lastmod>2019-09-10T08:20:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -147,6 +152,12 @@
   </url>
   
   <url>
+    <loc>https://bbsonlin.github.io/tags/ironman2020/</loc>
+    <lastmod>2019-09-10T08:20:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/tags/opencv/</loc>
     <lastmod>2018-12-16T14:34:25+08:00</lastmod>
     <priority>0</priority>
@@ -154,7 +165,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/post/</loc>
-    <lastmod>2019-06-18T09:30:23+08:00</lastmod>
+    <lastmod>2019-09-10T08:20:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -172,7 +183,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/categories/tech/</loc>
-    <lastmod>2019-06-18T09:30:23+08:00</lastmod>
+    <lastmod>2019-09-10T08:20:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   

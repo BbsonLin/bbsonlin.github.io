@@ -6,10 +6,23 @@
     <description>Recent content in Flutter on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Mar 2019 22:08:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Sep 2019 08:20:00 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day1</title>
+      <link>https://bbsonlin.github.io/post/2019-09-09-build-android-app-with-flutter-1/</link>
+      <pubDate>Tue, 10 Sep 2019 08:20:00 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-09-build-android-app-with-flutter-1/</guid>
+      <description>Day 1. 前言、系列規劃  本系列同步發表在 第11屆鐵人賽
+ 緣起 老實說在學習 Flutter 並用在幾個專案後，一直想花時間整理成文章在自己的部落格。
+但是寫成筆記形式，怕過於潦草之後會看不懂；寫成教學文，要讓別人看得懂勢必要花很多的時間去撰寫，這計畫就一直擱置到現，。
+不過最近正好有一小段空檔期，又剛好看到鐵人賽要開始了，想藉此機來整理吧~
+移動端的開發  Android/iOS - Java &amp;amp; Kotlin/Objective-C &amp;amp; Swift  優勢:  用原生的語言開發，效能很好 由於推出時間很久了，非常穩定以及能搜尋到的資源也很多  劣勢:  兩種平台須寫兩份不同語言的程式碼，開發及維護上需要較多人力資源   React Native(RN) - Javascript  優勢:  只須一種語言能編成兩種平台的 App 用前端語言開發，對於前端開發者較好上手 推出時間有五年了，整體框架算穩定以及社群也較多  劣勢:  需要先學習過 React 會比較好   Flutter - Dartlang  優勢:  只須一種語言能編成兩種平台的 App Dartlang 為 Java-Like 的語言，學習過 Java 會滿好上手的 Dartlang 是需要編譯的，效能上比較好  劣勢:  推出時間短(到現在兩年半)，目前版本迭代速度滿快的   NativeScript - Javascript  優勢:  只須一種語言能編成兩種平台的 App 用前端語言開發，與幾個現在主流的前端框架(Angular、Vue.</description>
+    </item>
     
     <item>
       <title>Flutter MaterialApp 裡到底藏了什麼?</title>

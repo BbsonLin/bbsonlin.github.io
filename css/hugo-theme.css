@@ -1,0 +1,14 @@
+#TableOfContents {
+  float: right;
+  position: fixed;
+  width: 300px;
+  right: 0.5rem;
+  bottom: 10rem;
+  background: rgba(229, 232, 232, 0.5);
+  border: 1px solid rgb(229, 232, 232);
+  padding: 0.25rem;
+}
+
+#TableOfContents > ul {
+  list-style-type: none;
+}
