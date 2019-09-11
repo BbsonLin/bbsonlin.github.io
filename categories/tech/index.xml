@@ -6,10 +6,31 @@
     <description>Recent content in Tech on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Sep 2019 08:20:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 17:53:58 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day2</title>
+      <link>https://bbsonlin.github.io/post/2019-09-11-build-android-app-with-flutter-2/</link>
+      <pubDate>Wed, 11 Sep 2019 17:53:58 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-11-build-android-app-with-flutter-2/</guid>
+      <description>Day 2. 環境設定、流程規劃  本系列同步發表在 第11屆鐵人賽
+ 開發環境  作業系統(OS): Ubuntu Desktop 18.04.2 LTS
+編輯器(Editor): VS Code
+Flutter 版本: stable (1.7.8+hotfix.4) Dart 版本: 2.4.0
+Android SDK: 28
+Android 版本: 7.1.1
+手機裝置: HTC U11
+手機投影工具: scrcpy
+ Flutter 開發環境安裝 - https://flutter.dev/docs/get-started/install
+ 小提醒:
+本系列只會在 Linux 或 Windows 環境上開發 Android 要開發 iOS 基本上有 Apple 的開發環境 (我很窮沒錢買 Macbook QQ
+ 開新專案 直接使用 flutter create 指令來開始新的專案。
+$ flutter create . Creating project .... android/app/src/debug/AndroidManifest.</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day1</title>
