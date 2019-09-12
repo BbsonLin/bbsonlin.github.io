@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Sep 2019 17:53:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Sep 2019 09:28:44 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day3</title>
+      <link>https://bbsonlin.github.io/post/2019-09-12-build-android-app-with-flutter-3/</link>
+      <pubDate>Thu, 12 Sep 2019 09:28:44 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-12-build-android-app-with-flutter-3/</guid>
+      <description>Day 3. 進入點、登入頁面  本系列同步發表在 第11屆鐵人賽
+ 今天開始進入本系列的主線 - 第一階段 UI 部份
+進入點 lib/main.dart
+import &amp;#34;package:flutter/material.dart&amp;#34;; import &amp;#34;package:gitme_reborn/pages/login.dart&amp;#34;; void main() =&amp;gt; runApp(GitmeRebornApp()); class GitmeRebornApp extends StatelessWidget { @override Widget build(BuildContext context) { return MaterialApp( title: &amp;#34;Gitme Reborn&amp;#34;, theme: ThemeData( primarySwatch: Colors.blueGrey, ), home: LoginPage(), ); } } 基本上跟一般程式語言一樣進入點在 void main 這個函數，這裡頭直接調用 Flutter SDK 所提供的 runApp 函數，去啟動整個 Flutter App。
+我直接將 Flutter 預設創建出來的 MyApp 稍微作些改寫，並刪除些不要的部份，剩下 20 行不到。
+而這裡 runApp 函數我們帶入 GitmeRebornApp 這個 Widget 給它(StatelessWidget 表示他是沒有附加狀態的 Widget)，後續 Flutter 都會幫你處理好。</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day2</title>

@@ -13,9 +13,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Flutter 開發一個 Android App 吧 - Day1-</title>
+    <title>用 Flutter 開發一個 Android App 吧 - Day3-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-09-build-android-app-with-flutter-1/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-12-build-android-app-with-flutter-3/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -140,9 +140,9 @@
                         </a>
                         
                     </div>
-                    <h1>用 Flutter 開發一個 Android App 吧 - Day1</h1>
-                    <h2 class="subheading">Build Android app with Flutter - Day1</h2>
-                    <span  class="meta">Posted by Bobson Lin on Tuesday, September 10, 2019
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day3</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day3</h2>
+                    <span  class="meta">Posted by Bobson Lin on Thursday, September 12, 2019
                         
                     </span>
                 </div>
@@ -167,19 +167,17 @@
                 
                     <aside>
                         <header>
-                        <h2>用 Flutter 開發一個 Android App 吧 - Day1</h2>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day3</h2>
                         </header>
                         <nav id="TableOfContents">
 <ul>
 <li>
 <ul>
-<li><a href="#day-1-前言-系列規劃">Day 1. 前言、系列規劃</a>
+<li><a href="#day-3-進入點-登入頁面">Day 3. 進入點、登入頁面</a>
 <ul>
-<li><a href="#緣起">緣起</a></li>
-<li><a href="#移動端的開發">移動端的開發</a></li>
-<li><a href="#dart-dartlang-語言的學習">Dart(Dartlang) 語言的學習</a></li>
-<li><a href="#flutter-的學習">Flutter 的學習</a></li>
-<li><a href="#30-天規劃">30 天規劃</a></li>
+<li><a href="#進入點">進入點</a></li>
+<li><a href="#登入頁面">登入頁面</a></li>
+<li><a href="#欸-暫停一下">欸!? 暫停一下</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -188,124 +186,169 @@
                 
                 
 
-<h2 id="day-1-前言-系列規劃">Day 1. 前言、系列規劃</h2>
+<h2 id="day-3-進入點-登入頁面">Day 3. 進入點、登入頁面</h2>
 
 <blockquote>
 <p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
 </blockquote>
 
-<h3 id="緣起">緣起</h3>
+<p>今天開始進入本系列的主線 - 第一階段 UI 部份</p>
 
-<p>老實說在學習 Flutter 並用在幾個專案後，一直想花時間整理成文章在自己的部落格。<br />
-但是寫成筆記形式，怕過於潦草之後會看不懂；寫成教學文，要讓別人看得懂勢必要花很多的時間去撰寫，這計畫就一直擱置到現，。</p>
+<h3 id="進入點">進入點</h3>
 
-<p>不過最近正好有一小段空檔期，又剛好看到鐵人賽要開始了，想藉此機來整理吧~</p>
+<p><code>lib/main.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:gitme_reborn/pages/login.dart&#34;</span>;
 
-<h3 id="移動端的開發">移動端的開發</h3>
+<span style="color:#66d9ef">void</span> main() <span style="color:#f92672">=&gt;</span> runApp(GitmeRebornApp());
 
-<ul>
-<li>Android/iOS - Java &amp; Kotlin/Objective-C &amp; Swift
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GitmeRebornApp</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> MaterialApp(
+      title: <span style="color:#e6db74">&#34;Gitme Reborn&#34;</span>,
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+      ),
+      home: LoginPage(),
+    );
+  }
+}</code></pre></div>
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day3-1.png?raw=true" alt="day3-1.png" /></p>
 
-<ul>
-<li>優勢:
+<p>基本上跟一般程式語言一樣進入點在 <code>void main</code> 這個函數，這裡頭直接調用 Flutter SDK 所提供的 <code>runApp</code> 函數，去啟動整個 Flutter App。</p>
 
-<ul>
-<li>用原生的語言開發，效能很好</li>
-<li>由於推出時間很久了，非常穩定以及能搜尋到的資源也很多</li>
-</ul></li>
-<li>劣勢:
+<p>我直接將 Flutter 預設創建出來的 MyApp 稍微作些改寫，並刪除些不要的部份，剩下 20 行不到。</p>
 
-<ul>
-<li>兩種平台須寫兩份不同語言的程式碼，開發及維護上需要較多人力資源</li>
-</ul></li>
-</ul></li>
-<li>React Native(RN) - Javascript
-
-<ul>
-<li>優勢:
-
-<ul>
-<li>只須一種語言能編成兩種平台的 App</li>
-<li>用前端語言開發，對於前端開發者較好上手</li>
-<li>推出時間有五年了，整體框架算穩定以及社群也較多</li>
-</ul></li>
-<li>劣勢:
-
-<ul>
-<li>需要先學習過 React 會比較好</li>
-</ul></li>
-</ul></li>
-<li>Flutter - Dartlang
-
-<ul>
-<li>優勢:
-
-<ul>
-<li>只須一種語言能編成兩種平台的 App</li>
-<li>Dartlang 為 Java-Like 的語言，學習過 Java 會滿好上手的</li>
-<li>Dartlang 是需要編譯的，效能上比較好</li>
-</ul></li>
-<li>劣勢:
-
-<ul>
-<li>推出時間短(到現在兩年半)，目前版本迭代速度滿快的</li>
-</ul></li>
-</ul></li>
-<li>NativeScript - Javascript
-
-<ul>
-<li>優勢:
-
-<ul>
-<li>只須一種語言能編成兩種平台的 App</li>
-<li>用前端語言開發，與幾個現在主流的前端框架(Angular、Vue.js)有作整合</li>
-</ul></li>
-<li>劣勢:
-
-<ul>
-<li>近一年來好像才比較穩定(?)(至少我是最近才有看到它跟 Vue.js 整合)</li>
-</ul></li>
-</ul></li>
-</ul>
+<p>而這裡 <code>runApp</code> 函數我們帶入 <code>GitmeRebornApp</code> 這個 Widget 給它(<code>StatelessWidget</code> 表示他是沒有附加狀態的 Widget)，後續 Flutter 都會幫你處理好。</p>
 
 <blockquote>
-<p>備註:<br />
-* Flutter 2018 5月釋出 Beta 3，經過兩版 Preview，在 2018 12月推出 1.0.0。
-* Flutter 2019 7月推出 1.7.8，目前已經過 3 個 stable 版本。<a href="https://flutter.dev/docs/development/tools/sdk/releases">Flutter SDK releases</a><br />
-* 我大概是 2018 5、6月時，在 Flutter 與 RN 兩個框架中作選擇，不過當初半路出家學習前端技術，較為熟悉的前端框架是 Vue.js，所以沒選擇 RN，而 NativeScript-Vue 還沒出現。
-* 當初選擇 Flutter，另外一個原因是 Android 是由 Google 在撐的手機作業系統，所以覺得會進 <a href="https://killedbygoogle.com/">Google Graveyard</a> 機率應該不高才對 &hellip; ?
-* <strong>其實還有很多其他的開發工具(框架)，而選擇工具為個人因素決定，並無絕對的好壞，只要能達成目的，且自己用的上手最重要。(❤ ✌ ? Love &amp; Peace)</strong></p>
-</blockquote>
-
-<h3 id="dart-dartlang-語言的學習">Dart(Dartlang) 語言的學習</h3>
-
-<p>還未接觸 Flutter 前，我是完全沒聽過這語言。<br />
-而在決定要學習 Flutter 後，Dartlang 這門語言就一定得學習了。<br />
-因為我個人工作經驗是有接觸過 Java 與 Python，在加上有自學 JavaScript，在學習程式語言上其實有很多概念是相通的，所以學習 Dartlang 上並沒有太大的負擔。</p>
-
-<p>我的學習來源是 YouTube 及 Dartlang 官方文件，個人也有整理幾篇 Dart 基礎系列文章在 <a href="https://bbsonlin.github.io/tags/dart/"><strong>個人部落格</strong></a>，還有發表在 <a href="https://juejin.im/user/59cc3f02f265da06700af973/posts?sort=popular"><strong>掘金個人專欄</strong></a> 上，有興趣的人可作參考；另外 <strong>Women Who Code Taipei</strong> 分享在 YouTube 上的 <a href="https://www.youtube.com/playlist?list=PLzUrwSu_9-1sA7LVlFWcm69ROnTXz6BNh"><strong>Dart 基礎授課直播</strong></a> 也可以參考看看喔~</p>
-
-<p>分享 Dartlang 教學不在這次鐵人賽的目標，所以我在這門語言上面就不多花筆墨了~</p>
-
-<h3 id="flutter-的學習">Flutter 的學習</h3>
-
-<p>其實到現在 Flutter 的學習資源已經滿多的了，<a href="https://flutter.dev"><strong>官方文件</strong></a> 提供的內容滿值得細讀的，對了解框架上有一定程度的幫助。</p>
-
-<p>另外 Flutter 官方維護的 <a href="https://www.youtube.com/channel/UCwXdFgeE9KYzlDdR7TG9cMw"><strong>YouTube 頻道</strong></a> 也有很多影片資源，尤其是其中的 <a href="https://www.youtube.com/playlist?list=PLjxrf2q8roU3ahJVrSgAnPjzkpGmL9Czl">The Boring Flutter Development Show</a> 我從這上面學到很多東西(完全可以看出當開發者的辛酸 XD)，也可看得出來這團隊的用心。</p>
-
-<h3 id="30-天規劃">30 天規劃</h3>
+<p>小提醒:</p>
 
 <ul>
-<li><strong>[Day 1-2]</strong> 前言 &amp; 簡單介紹</li>
-<li>UI 部份 [10~15 篇]</li>
-<li>API 串接 [5~10 篇]</li>
-<li>Store(State) 狀態管理 [5~8篇]</li>
-<li><strong>[Day 31+]</strong> Enhancement &amp; Others</li>
+<li>這裡使用 <code>MaterialApp</code>(<code>import &quot;package:flutter/material.dart&quot;;</code>)，它直接封裝了 Google 推出的 Material Design 的一些設定。</li>
+<li>如果想使用 Apple iOS 風格設計可使用 <code>CupertinoApp</code> 來建構，基本上直接使用 <code>MaterialApp</code>就有得玩了~</li>
+</ul>
+</blockquote>
+
+<h3 id="登入頁面">登入頁面</h3>
+
+<p><code>lib/pages/login.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Scaffold(
+      appBar: AppBar(
+        title: Text(<span style="color:#e6db74">&#34;Login&#34;</span>),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: <span style="color:#ae81ff">24.0</span>, vertical: <span style="color:#ae81ff">16.0</span>),
+              child: TextFormField(
+                decoration: <span style="color:#66d9ef">const</span> InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  labelText: <span style="color:#e6db74">&#34;Name *&#34;</span>,
+                  hintText: <span style="color:#e6db74">&#34;Your Github account username&#34;</span>,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: <span style="color:#ae81ff">24.0</span>, vertical: <span style="color:#ae81ff">16.0</span>),
+              child: TextFormField(
+                decoration: <span style="color:#66d9ef">const</span> InputDecoration(
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: Icon(Icons.remove_red_eye),
+                  labelText: <span style="color:#e6db74">&#34;Password *&#34;</span>,
+                  hintText: <span style="color:#e6db74">&#34;Your Github account password or ...&#34;</span>,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: <span style="color:#ae81ff">52.0</span>,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width <span style="color:#f92672">-</span> <span style="color:#ae81ff">48.0</span>,
+              height: <span style="color:#ae81ff">48.0</span>,
+              child: RaisedButton(
+                child: Text(<span style="color:#e6db74">&#34;Login&#34;</span>),
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre></div>
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day3-2.png?raw=true" alt="day3-2.png" /></p>
+
+<p>基本上在構建 UI 時，我都會想像上面分解圖(一開始寫 Flutter 時可以拿紙筆或其他工具畫出來，會更有感覺)。</p>
+
+<p>而從圖上我們可以看到，UI 是以一層層向內疊放的方式去構建的，畫出圖可以更容易的對應 Flutter 程式碼。</p>
+
+<p>在 <code>lib/main.dart</code> 裡可以看到程式碼中 <code>GitmeRebornApp</code> 的 <code>home</code> 屬性裡面我填了 <code>LoginPage</code>，這使得剛跑起 App 時就會自動顯示出我寫的登入的畫面 (<code>lib/pages/login.dart</code>)。</p>
+
+<blockquote>
+<p>小提醒:</p>
+
+<ul>
+<li>基本上我在撰寫新的 Widget 時都是以 <code>StatelessWidget</code> 起手。</li>
+<li>通常是在頁面使用到一些狀態改變(比如，使用者操作、讀取數據&hellip;等等事件發生時)，才會用到 <code>StatefulWidget</code>。</li>
+</ul>
+</blockquote>
+
+<p>&ndash;</p>
+
+<h3 id="欸-暫停一下">欸!? 暫停一下</h3>
+
+<blockquote>
+<ul>
+<li>blablabla 貼了一大堆程式碼，直接就進入業配(頁面)主題阿~~<br /></li>
+<li>根本無法承受阿~~~<br /></li>
+<li>一堆概念根本不知道怎麼來的阿&hellip;</li>
+</ul>
+</blockquote>
+
+<p>哦哦哦~ 我知道&hellip; 畢竟一開始我也是這樣的&hellip; (各種碰壁跟撞牆&hellip;)</p>
+
+<p>以下一些概念，是我透過官方文件或影片理解到的:</p>
+
+<ul>
+<li><p>Flutter 世界裡一切的東西都是 Widget。<br />
+所以在開發 Flutter App，很大部分是在構建 Widget Tree(Widget 樹)，而大部份的 UI 功能會操作這些 Widget 也就夠了。</p></li>
+
+<li><p>Flutter 很講重構建 UI 的方式應為陳述式(宣告式)(Declarative UI)的思考方式，這方式相對於以前 Android 或 Java Swing 的命令式(Imperative UI)。<br />
+所以在開發 Flutter App，如果仔細觀察，其實可以很容易的將規劃的 UI，直接對應到程式碼。
+<img src="https://flutter.dev/assets/development/data-and-backend/state-mgmt/ui-equals-function-of-state-54b01b000694caf9da439bd3f774ef22b00e92a62d3b2ade4f2e95c8555b8ca7.png" alt="Start thinking declaratively" /></p>
+
+<p>那什麼是陳述式 UI 呢？簡單來說，因為所有事件(操作)發生都會改變狀態，所以開發者應該直接思考的是</p>
+
+<blockquote>
+<p>如何將 <strong>輸入的狀態</strong> 轉換成 <strong>輸出的畫面</strong></p>
+</blockquote>
+
+<p>也就是開發者直接思考如何寫出上圖的 f 函數。而 Flutter 就是提供構建 f 函數的工具。</p></li>
+
+<li><p><strong>[深入探索]</strong> Flutter 內部在構建及渲染畫面的步驟是</p>
+
+<p><code>Widget Tree =&gt; Element Tree =&gt; RenderObject Tree</code></p>
+
+<p>可以大致想像 Element Tree 是中間人，它必須知道 Widget Tree 做了什麼狀態改變，然後它需要怎麼調整(重建) Element Tree，另外它還要通知 RenderObject Tree 去渲染新畫面。</p></li>
 </ul>
 
-<p>原則上，我不會一一的讀官方文檔來介紹，而是直接以作一個專案或 <em>開源項目(?)</em> 的形式，看碰到什麼問題或需求，來帶出 Flutter 使用方式及解決方法。</p>
+<p>好了，到這裡希望大家能多多少少理解到 Flutter 開發 UI 的概念，後續在看程式碼上也比較容易理解~</p>
 
-<p>如果有疑問、發現錯誤或語句不通順的部份，歡迎下面留言~ 😆</p>
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://flutter.dev/docs/development/data-and-backend/state-mgmt/declarative">Flutter.dev - Start thinking declaratively</a></li>
+<li><a href="https://youtu.be/wE7khGHVkYY">Flutter YouTube - Flutter Widgets 101 Ep. 1</a></li>
+<li><a href="https://book.flutterchina.club/chapter14/element_buildcontext.html">Flutter实战 - 14.2 Element与BuildContext</a></li>
+</ul>
 
         
                 
@@ -314,13 +357,9 @@
             <ul class="pager">
                 
                 <li class="previous">
-                    <a href="/post/2019-06-18-road-to-frontend-0/" data-toggle="tooltip" data-placement="top" title="前端之路 - 0 - 歷史課">&larr; Previous Post</a>
+                    <a href="/post/2019-09-11-build-android-app-with-flutter-2/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day2">&larr; Previous Post</a>
                 </li>
                 
-                
-                <li class="next">
-                    <a href="/post/2019-09-11-build-android-app-with-flutter-2/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day2">Next Post &rarr;</a>
-                </li>
                 
             </ul>
 
