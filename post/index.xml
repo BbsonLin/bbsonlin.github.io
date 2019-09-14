@@ -6,10 +6,48 @@
     <description>Recent content in Posts on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Sep 2019 09:28:44 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 20:37:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day5</title>
+      <link>https://bbsonlin.github.io/post/2019-09-14-build-android-app-with-flutter-5/</link>
+      <pubDate>Sat, 14 Sep 2019 20:37:34 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-14-build-android-app-with-flutter-5/</guid>
+      <description>Day 5. 登入登出、倉庫頁、近況頁與議題頁  本系列同步發表在 個人部落格，歡迎大家關注~
+ 登入/登出 登入按下登入按鈕後的時候，需要有一個 Loading 的 Modal。
+如圖
+而在 Flutter 所提供的 Material 元件裡找不到能直接使用的類似元件，這時候就到 Dart 的套件管理網站 https://pub.dev/flutter 去找找有沒有別人寫好的套件吧~
+滿幸運的是，我找到一個名為 flutter_progress_hud 的套件，整體狀態有 90 分呢~
+照著文件範例修改一下 lib/pages/login.dart
+ &amp;gt; 圖小，可點擊圖片看 Commit
+&amp;ndash;
+另外，登出的話需要跳出一個讓使用者確定登出的 AlertDialog。
+如圖
+AlertDialog 在 Flutter 就有提供對應的 Material 元件，修改 lib/pages/home.dart
+ &amp;gt; 圖小，可點擊圖片看 Commit
+ 小提醒:
+* pubspec.yaml dependencies 裡面需要新增 flutter_progress_hud: ^1.0.2 這套件。 * 參考: 官方文件 - Using packages
+ &amp;ndash;
+接下來，我們把後續的主頁面的排版先架構出來吧。
+在 Day3 主頁面時可以看到我笨笨的寫了好幾個 ListTile 和 Divider，這樣的作法也許在作 Demo 時還可以使用，但實際上若有數十個、數百個不就完了嗎？</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day4</title>
+      <link>https://bbsonlin.github.io/post/2019-09-13-build-android-app-with-flutter-4/</link>
+      <pubDate>Fri, 13 Sep 2019 20:34:12 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-13-build-android-app-with-flutter-4/</guid>
+      <description>Day 4. 首頁、路由  本系列同步發表在 第11屆鐵人賽
+ 中秋節到拉~ 先祝大家中秋快樂~ &amp;ndash;
+好了，廢話不多說，進入今天正題囉~
+主頁面 - 首頁 lib/pages/home.dart
+import &amp;#39;package:flutter/material.dart&amp;#39;; // 主頁面 class MainPage extends StatelessWidget { @override Widget build(BuildContext context) { return DefaultTabController( length: 4, child: Scaffold( appBar: AppBar( titleSpacing: 0.0, title: TabBar( labelPadding: EdgeInsets.zero, tabs: &amp;lt;Widget&amp;gt;[ Tab(text: &amp;#34;Home&amp;#34;), Tab(text: &amp;#34;Repo&amp;#34;), Tab(text: &amp;#34;Activity&amp;#34;), Tab(text: &amp;#34;Issues&amp;#34;), ], ), actions: &amp;lt;Widget&amp;gt;[ IconButton( icon: Icon(Icons.search), onPressed: () {}, ) ], ), body: TabBarView( children: &amp;lt;Widget&amp;gt;[ HomePage(), Text(&amp;#34;Repo&amp;#34;), Text(&amp;#34;Activity&amp;#34;), Text(&amp;#34;Issues&amp;#34;), ], ), drawer: Drawer( .</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day3</title>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="第 11 屆 iT 邦鐵人賽">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>用 Flutter 開發一個 Android App 吧 - Day4-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-13-build-android-app-with-flutter-4/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hugo-theme.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
+                        </a>
+                        
+                       <a class="tag" href="/tags/ironman2020" title="Ironman2020">
+                           Ironman2020
+                        </a>
+                        
+                    </div>
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day4</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day4</h2>
+                    <span  class="meta">Posted by Bobson Lin on Friday, September 13, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                    <aside>
+                        <header>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day4</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#day-4-首頁-路由">Day 4. 首頁、路由</a>
+<ul>
+<li><a href="#中秋節到拉-先祝大家中秋快樂">中秋節到拉~ 先祝大家中秋快樂~</a></li>
+<li><a href="#主頁面-首頁">主頁面 - 首頁</a></li>
+<li><a href="#欸-怪怪的">欸!? 怪怪的</a></li>
+<li><a href="#路由-route">路由 (Route)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                    </aside>
+                
+                
+
+<h2 id="day-4-首頁-路由">Day 4. 首頁、路由</h2>
+
+<blockquote>
+<p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
+</blockquote>
+
+<h3 id="中秋節到拉-先祝大家中秋快樂">中秋節到拉~ 先祝大家中秋快樂~</h3>
+
+<p>&ndash;</p>
+
+<p>好了，廢話不多說，進入今天正題囉~</p>
+
+<h3 id="主頁面-首頁">主頁面 - 首頁</h3>
+
+<p><code>lib/pages/home.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+
+<span style="color:#75715e">// 主頁面
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> DefaultTabController(
+      length: <span style="color:#ae81ff">4</span>,
+      child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: <span style="color:#ae81ff">0.0</span>,
+          title: TabBar(
+            labelPadding: EdgeInsets.zero,
+            tabs: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+              Tab(text: <span style="color:#e6db74">&#34;Home&#34;</span>),
+              Tab(text: <span style="color:#e6db74">&#34;Repo&#34;</span>),
+              Tab(text: <span style="color:#e6db74">&#34;Activity&#34;</span>),
+              Tab(text: <span style="color:#e6db74">&#34;Issues&#34;</span>),
+            ],
+          ),
+          actions: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            )
+          ],
+        ),
+        body: TabBarView(
+          children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+            HomePage(),
+            Text(<span style="color:#e6db74">&#34;Repo&#34;</span>),
+            Text(<span style="color:#e6db74">&#34;Activity&#34;</span>),
+            Text(<span style="color:#e6db74">&#34;Issues&#34;</span>),
+          ],
+        ),
+        drawer: Drawer(
+        ...(<span style="color:#960050;background-color:#1e0010">略</span>)
+        ),
+      ),
+    );
+  }
+}
+
+<span style="color:#75715e">// 首頁
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HomePage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Container(
+      child: ListView(
+        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+          Container(
+            child: Divider(
+              height: <span style="color:#ae81ff">8.0</span>,
+              color: Colors.grey[<span style="color:#ae81ff">200</span>],
+            ),
+            color: Colors.grey[<span style="color:#ae81ff">200</span>],
+          ),
+          ListTile(
+            dense: <span style="color:#66d9ef">true</span>,
+            title: Text(<span style="color:#e6db74">&#34;Hackernews Top&#34;</span>),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {},
+          ),
+          Divider(
+            height: <span style="color:#ae81ff">0.0</span>,
+          ),
+          ListTile(
+            title: Text(
+                <span style="color:#e6db74">&#34;Pre-industrial workers had a shorter workweek than today&#39;s&#34;</span>),
+            subtitle: Text(<span style="color:#e6db74">&#34;by jammygit 2 hours ago | 18 comments&#34;</span>),
+            onTap: () {},
+          ),
+          
+          
+          ...(<span style="color:#960050;background-color:#1e0010">中間省略</span>)
+          
+          ListTile(
+            title: Text(<span style="color:#e6db74">&#34;MisterBooo / LeetCodeAnimation&#34;</span>),
+            subtitle: Text(<span style="color:#e6db74">&#34;Java   38,443   6,483&#34;</span>),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}</code></pre></div>
+<p>這邊程式碼有點多，沒關係，先來簡單看個分解圖~</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day4-1.png?raw=true" alt="day4-1.png" /></p>
+
+<p>這邊登入後會進入主畫面(MainPage)，根據 TabBar 四個 Tab 分成四個頁面，首頁(HomePage)、倉庫頁(RepoPage)、近況頁(ActivityPage)、議題頁(IssuePage)</p>
+
+<p>可以注意到，主畫面跟登入頁一樣使用 <code>Scaffold</code> 這個 Widget，主要搭配 <code>MaterialApp</code> 作使用，它包含了</p>
+
+<ul>
+<li>Material Design 的元件(如屬性 appBar, bottomAppBar, floatingActionButton&hellip;)</li>
+<li>互動性的元素(如 drawers, snack bars, and bottom sheets)</li>
+<li>一定程度的可客製化(如 theme, l10n)</li>
+</ul>
+
+<p>對我這個沒什麼設計感的工程師可說是一大便利呢~</p>
+
+<p>一樣起手都是 <code>StatelessWidget</code>，上圖特別我用紅色框起來都是可以對應程式碼裡寫的 Widget，</p>
+
+<blockquote>
+<p>目前都只是再拉排版的動作，程式碼看起來不免看起來臃腫<br />
+之後都是需要慢慢重構，讓程式碼好維護管理</p>
+</blockquote>
+
+<p>&ndash;</p>
+
+<h3 id="欸-怪怪的">欸!? 怪怪的</h3>
+
+<p>眼尖(PM?)的同學可能看到有些地方 <strong>怪怪的</strong>&hellip;</p>
+
+<p><img src="https://attach.mobile01.com/attach/201905/mobile01-c8e9631ce34fb87db32211c73614aa21.jpg" alt="柯P-怪怪的" /></p>
+
+<p>對，沒錯上面的 TabBar 每個 Tab 根本文字展示不完全，而且離兩邊圖示有些落差&hellip;</p>
+
+<p>這時候就可以開啟 Flutter debug 工具或 Devtools<br />
+(在 VSCode 中可以 Ctrl+Shift+p 直接找 Flutter: Toggle Debug Painting 或 Dart: Open DevTools)</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day4-2.png?raw=true" alt="day4-2.png" /></p>
+
+<p>可以清楚看到 Layout 長什麼樣子，加上查詢文件後發現有兩處可調整</p>
+
+<ol>
+<li>Tab 根本文字展示不完全 =&gt; <code>TabBar.labelPadding: EdgeInsets.zero</code>,</li>
+<li>離兩邊圖示有些落差 =&gt; <code>AppBar.titleSpacing: 0.0</code></li>
+</ol>
+
+<p>修改完結果</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day4-3.gif?raw=true" alt="day4-3.gif" /></p>
+
+<h3 id="路由-route">路由 (Route)</h3>
+
+<p>好了，到現在我們有兩個頁面了，那要如何作跳轉呢？</p>
+
+<p>稍微用簡單的圖來表示</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">LoginPage (/login) &lt;== [Navigator] ==&gt; MainPage (/home)</pre></div>
+<p>Flutter 裡在 <code>Route</code> 切換時會有個中間人 <code>Navigator</code> 來作導覽。<br />
+而導覽機制跟 Stack 一樣用 pop/push 操作，詳細可以參考這篇 Medium 文章(<a href="https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31">Flutter: Push, Pop, Push</a>)</p>
+
+<p><code>routes.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GitmeRebornRoutes</span> {
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> root <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> login <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/login&#34;</span>;
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> home <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/home&#34;</span>;
+}</code></pre></div>
+<p>個人會習慣另外定義一個 Routes 類別，來對應路由名稱。</p>
+
+<p><img src="https://bbsonlin.github.io/images/2019-03-04-flutter-whats-in-materialapp/materialapp_variables.png" alt="materialapp_variables" /></p>
+
+<p>接下來簡單談一下 <code>MaterialApp</code> 裡是怎麼設定路由的。從上圖 <strong>紅框</strong> 中可以看到是影響頁面轉換的屬性。</p>
+
+<p>主要判斷頁面如何轉換的步驟為</p>
+
+<blockquote>
+<ol>
+<li>若有設定 home 屬性，便認之為 / ([root]根路由)</li>
+<li>否則查找 routes 屬性，有無對應路由設定。</li>
+<li>否則會調用 onGenerateRoute，來判斷是否有提供對應路由的回傳。</li>
+<li>若上述都沒成立，則會調用到 onUnknownRoute。</li>
+</ol>
+
+<p>(翻譯自 <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html">https://api.flutter.dev/flutter/material/MaterialApp-class.html</a> )</p>
+</blockquote>
+
+<p>接下來，我修改了些原本的程式碼</p>
+
+<p><code>lib/main.dart</code>
+<a href="https://github.com/BbsonLin/gitme_reborn/commit/9a64f723e70d09e3f29621ee78c524dfa8ab16e4#diff-fe53fad46868a294b309fc85ed138997"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day4-4.jpeg?raw=true" alt="day4-4.jpeg" /></a></p>
+
+<p>主要將 <code>home</code> 屬性移除，加上 <code>routes</code> 對應表格並且用 <code>onGenerateRoute</code> 來跳轉根路由到登入畫面(LoginPage)。</p>
+
+<p><code>lib/pages/home.dart</code> &amp; <code>lib/pages/login.dart</code>
+<a href="https://github.com/BbsonLin/gitme_reborn/commit/9a64f723e70d09e3f29621ee78c524dfa8ab16e4#diff-d3cda190df50f3330b22952d914ba8fe"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day4-5.jpeg?raw=true" alt="day4-5.jpeg" /></a></p>
+
+<p>再來，登入畫面中的登入按鈕和主畫面中的登出按鈕，當點擊他們時會使用 <code>Navigator</code> 導覽至新的頁面。</p>
+
+<p>今日成果</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day4-6.gif?raw=true" alt="day4-6.gif" /></p>
+
+<p>&ndash;</p>
+
+<p>好了，今日就先到這邊吧<br />
+看完可以去吃烤肉囉~</p>
+
+        
+                
+        
+            <hr>
+            <ul class="pager">
+                
+                <li class="previous">
+                    <a href="/post/2019-09-12-build-android-app-with-flutter-3/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day3">&larr; Previous Post</a>
+                </li>
+                
+                
+                <li class="next">
+                    <a href="/post/2019-09-14-build-android-app-with-flutter-5/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day5">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+
+            
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/flutter" title="flutter">
+                                flutter
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/ironman2020" title="ironman2020">
+                                ironman2020
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

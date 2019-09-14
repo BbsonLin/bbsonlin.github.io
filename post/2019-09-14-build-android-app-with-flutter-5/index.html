@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="第 11 屆 iT 邦鐵人賽">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>用 Flutter 開發一個 Android App 吧 - Day5-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-14-build-android-app-with-flutter-5/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hugo-theme.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
+                        </a>
+                        
+                       <a class="tag" href="/tags/ironman2020" title="Ironman2020">
+                           Ironman2020
+                        </a>
+                        
+                    </div>
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day5</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day5</h2>
+                    <span  class="meta">Posted by Bobson Lin on Saturday, September 14, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                    <aside>
+                        <header>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day5</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#day-5-登入登出-倉庫頁-近況頁與議題頁">Day 5. 登入登出、倉庫頁、近況頁與議題頁</a>
+<ul>
+<li><a href="#登入-登出">登入/登出</a></li>
+<li><a href="#倉庫頁-repopage">倉庫頁(RepoPage)</a></li>
+<li><a href="#近況頁-activitypage-與-議題頁-issuepage">近況頁(ActivityPage) 與 議題頁(IssuePage)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                    </aside>
+                
+                
+
+<h2 id="day-5-登入登出-倉庫頁-近況頁與議題頁">Day 5. 登入登出、倉庫頁、近況頁與議題頁</h2>
+
+<blockquote>
+<p>本系列同步發表在 <a href="https://bbsonlin.github.io/tags/flutter/"><strong>個人部落格</strong></a>，歡迎大家關注~</p>
+</blockquote>
+
+<h3 id="登入-登出">登入/登出</h3>
+
+<p>登入按下登入按鈕後的時候，需要有一個 Loading 的 Modal。<br />
+如圖</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day5-5.jpeg?raw=true" alt="day5-5.jpeg" /></p>
+
+<p>而在 Flutter 所提供的 Material 元件裡找不到能直接使用的類似元件，這時候就到 Dart 的套件管理網站 <a href="https://pub.dev/flutter">https://pub.dev/flutter</a> 去找找有沒有別人寫好的套件吧~</p>
+
+<p>滿幸運的是，我找到一個名為 <a href="https://pub.dev/packages/flutter_progress_hud">flutter_progress_hud</a> 的套件，整體狀態有 90 分呢~</p>
+
+<p>照著文件範例修改一下 <code>lib/pages/login.dart</code></p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/eb9c76de098952ee8049288abec13d223b484c03#diff-9f0df600d112c287183a6aa77167120d"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day5-1.jpeg?raw=true" alt="day5-1.jpeg" /></a>
+&gt; 圖小，可點擊圖片看 Commit</p>
+
+<p>&ndash;</p>
+
+<p>另外，登出的話需要跳出一個讓使用者確定登出的 AlertDialog。<br />
+如圖</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day5-6.jpeg?raw=true" alt="day5-6.jpeg" /></p>
+
+<p>AlertDialog 在 Flutter 就有提供對應的 Material 元件，修改 <code>lib/pages/home.dart</code></p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/eb9c76de098952ee8049288abec13d223b484c03#diff-d3cda190df50f3330b22952d914ba8fe"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day5-2.jpeg?raw=true" alt="day5-2.jpeg" /></a>
+&gt; 圖小，可點擊圖片看 Commit</p>
+
+<blockquote>
+<p>小提醒:<br />
+* <code>pubspec.yaml</code> dependencies 裡面需要新增 <code>flutter_progress_hud: ^1.0.2</code> 這套件。
+* 參考: <a href="https://flutter.dev/docs/development/packages-and-plugins/using-packages">官方文件 - Using packages</a></p>
+</blockquote>
+
+<p>&ndash;</p>
+
+<p>接下來，我們把後續的主頁面的排版先架構出來吧。</p>
+
+<p>在 Day3 主頁面時可以看到我笨笨的寫了好幾個 <code>ListTile</code> 和 <code>Divider</code>，這樣的作法也許在作 Demo 時還可以使用，但實際上若有數十個、數百個不就完了嗎？</p>
+
+<p>回想一下 Day3 講的 <code>Think declaratively</code>，其他頁面可以稍微改良一下，我們可以先用 <strong><em>暫時宣告的變數</em></strong> 當作狀態，在 <code>Widget build(BuildContext context)</code> 時可以直接使用 <strong><em>暫時宣告的變數</em></strong> 來構建畫面。</p>
+
+<p>什麼意思呢~ 接著往下看。</p>
+
+<h3 id="倉庫頁-repopage">倉庫頁(RepoPage)</h3>
+
+<p><code>lib/pages/repo.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RepoPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#66d9ef">final</span> List repoList <span style="color:#f92672">=</span> [
+    {
+      <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;BbsonLin/gitme_reborn&#34;</span>,
+      <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;No description provided.</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">★ 0&#34;</span>,
+      <span style="color:#e6db74">&#34;lang&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;● Dart&#34;</span>
+    },
+    {
+      <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;BbsonLin/ithome-ironman&#34;</span>,
+      <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;No description provided.</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">★ 0&#34;</span>,
+      <span style="color:#e6db74">&#34;lang&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>
+    },
+    {
+      <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;BbsonLin/flask-request-logger&#34;</span>,
+      <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span>
+          <span style="color:#e6db74">&#34;A Flask extension for recording requests and responses into database</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">★ 3&#34;</span>,
+      <span style="color:#e6db74">&#34;lang&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;● Python&#34;</span>
+    },
+  ];
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Container(
+      child: ListView.separated(
+        itemCount: repoList.length,
+        itemBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) {
+          <span style="color:#66d9ef">return</span> ListTile(
+            title: Text(repoList[index][<span style="color:#e6db74">&#34;title&#34;</span>]),
+            subtitle: Text(repoList[index][<span style="color:#e6db74">&#34;description&#34;</span>]),
+            trailing: Text(repoList[index][<span style="color:#e6db74">&#34;lang&#34;</span>]),
+            isThreeLine: <span style="color:#66d9ef">true</span>,
+            contentPadding: EdgeInsets.all(<span style="color:#ae81ff">16.0</span>),
+            onTap: () {},
+          );
+        },
+        separatorBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) <span style="color:#f92672">=&gt;</span>
+            <span style="color:#66d9ef">const</span> Divider(height: <span style="color:#ae81ff">0.0</span>),
+      ),
+    );
+  }
+}</code></pre></div>
+<p>宣告 <code>final List repoList</code> 來暫時當作未來會拿到的資料包(狀態)，而且在 UI 上面採用 <code>ListView.separated</code> 這方法可以更快速達成想要的畫面。</p>
+
+<p>程式碼看起來是不是更簡潔有力點了呢？</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day5-3.png?raw=true" alt="day5-3.png" /></p>
+
+<h3 id="近況頁-activitypage-與-議題頁-issuepage">近況頁(ActivityPage) 與 議題頁(IssuePage)</h3>
+
+<p>那麼這兩個頁面其實就是依樣畫葫蘆，偷懶一下就不貼程式碼上來了~?<br />
+詳細 commit 可以點擊成果 GIF 觀看~</p>
+
+<blockquote>
+<p>小提醒:</p>
+
+<p>這邊我在 <code>StatelessWidget</code> 裡用了 「暫時宣告的變數」 來儲存狀態，看似沒什麼問題，但想要達成交互式(Reactive) UI 需要使用 <code>StatefulWidget</code>，後續會慢慢使用到它~</p>
+</blockquote>
+
+<p>今日成果</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/6a837c743d9a792552ff32003171b0023c68d756"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day5-4.gif?raw=true" alt="day5-4.gif" /></a></p>
+
+        
+                
+        
+            <hr>
+            <ul class="pager">
+                
+                <li class="previous">
+                    <a href="/post/2019-09-13-build-android-app-with-flutter-4/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day4">&larr; Previous Post</a>
+                </li>
+                
+                
+            </ul>
+
+            
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/flutter" title="flutter">
+                                flutter
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/ironman2020" title="ironman2020">
+                                ironman2020
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
