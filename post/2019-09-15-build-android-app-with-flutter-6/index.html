@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="第 11 屆 iT 邦鐵人賽">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>用 Flutter 開發一個 Android App 吧 - Day6-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-15-build-android-app-with-flutter-6/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hugo-theme.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
+                        </a>
+                        
+                       <a class="tag" href="/tags/ironman2020" title="Ironman2020">
+                           Ironman2020
+                        </a>
+                        
+                    </div>
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day6</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day6</h2>
+                    <span  class="meta">Posted by Bobson Lin on Sunday, September 15, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                    <aside>
+                        <header>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day6</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#day-6-導覽選單-搜尋頁">Day 6. 導覽選單、搜尋頁</a>
+<ul>
+<li><a href="#導覽選單-drawer">導覽選單(Drawer)</a></li>
+<li><a href="#搜尋頁-search-page">搜尋頁(Search Page)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                    </aside>
+                
+                
+
+<h2 id="day-6-導覽選單-搜尋頁">Day 6. 導覽選單、搜尋頁</h2>
+
+<blockquote>
+<p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
+</blockquote>
+
+<h3 id="導覽選單-drawer">導覽選單(Drawer)</h3>
+
+<p>接下來完整導覽選單的部份，最上方 Header 的部份使用 <a href="https://api.flutter.dev/flutter/material/UserAccountsDrawerHeader-class.html"><code>UserAccountsDrawerHeader</code></a>，這是 Flutter 幫我們打造的 material Widget，來符合一致的 Material 風格。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">UserAccountsDrawerHeader(
+  decoration: BoxDecoration(
+    color: Colors.blueGrey,
+  ),
+  accountName: Text(<span style="color:#e6db74">&#34;Bbson Lin&#34;</span>),
+  accountEmail: Text(<span style="color:#e6db74">&#34;bobson801104@gmail.com&#34;</span>),
+  currentAccountPicture: CircleAvatar(
+    backgroundImage: NetworkImage(
+      <span style="color:#e6db74">&#34;https://avatars2.githubusercontent.com/u/18156421?s=400&amp;u=1f91dcf74134827fde071751f95522845223ed6a&amp;v=4&#34;</span>,
+    ),
+  ),
+  otherAccountsPictures: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+    Icon(Icons.edit, color: Colors.white),
+  ],
+),</code></pre></div>
+<p><code>UserAccountsDrawerHeader</code> 提供了幾個人性化的屬性，像是 <code>accountName</code>、<code>accountEmail</code>、<code>currentAccountPicture</code> &hellip;等，只要將這些屬性填上你想要的 Widget 就行了。</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day6-1.jpeg?raw=true" alt="day6-1.jpeg" /></p>
+
+<p>導覽選單部份是用幾個 <code>ListTile</code> 做出來的，我們在 title 屬性多加了圖示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">ListTile(
+  title: Row(
+    children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+      Icon(Icons.power_settings_new),
+      SizedBox(width: <span style="color:#ae81ff">24.0</span>),
+      Text(<span style="color:#e6db74">&#34;Sign out&#34;</span>),
+    ],
+  ),
+  onTap: () <span style="color:#66d9ef">async</span> {
+    <span style="color:#66d9ef">await</span> showDialog(
+      context: context,
+      barrierDismissible: <span style="color:#66d9ef">false</span>,
+      builder: (context) <span style="color:#f92672">=&gt;</span> AlertDialog(
+        content: Text(<span style="color:#e6db74">&#34;Are you sure to exit current account.&#34;</span>),
+        actions: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+          FlatButton(
+            child: Text(<span style="color:#e6db74">&#34;Cancel&#34;</span>),
+            onPressed: () <span style="color:#f92672">=&gt;</span> Navigator.pop(context),
+          ),
+          FlatButton(
+            child: Text(<span style="color:#e6db74">&#34;OK&#34;</span>),
+            onPressed: () <span style="color:#f92672">=&gt;</span> Navigator.pushNamedAndRemoveUntil(
+                context, <span style="color:#e6db74">&#34;/login&#34;</span>, ModalRoute.withName(<span style="color:#e6db74">&#39;/&#39;</span>)),
+          ),
+        ],
+      ),
+    );
+  },
+),</code></pre></div>
+<p>其實目前看起來已經是有點小小的冗長(30行)，若是好幾個都這樣寫，不光是看起來難過，之後維護修改起來也不容易。</p>
+
+<p>解決的方法，就是自己再封裝 Widget，之後可以重複利用，如同 <code>UserAccountsDrawerHeader</code> 一般。</p>
+
+<p><code>lib/components/drawer_tile.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DrawerTile</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#66d9ef">const</span> DrawerTile({
+    Key key,
+    <span style="color:#66d9ef">this</span>.icon,
+    <span style="color:#66d9ef">this</span>.text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,
+    <span style="color:#66d9ef">this</span>.onPressed,
+  }) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
+
+  <span style="color:#66d9ef">final</span> Icon icon;
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">String</span> text;
+  <span style="color:#66d9ef">final</span> Function onPressed;
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> ListTile(
+      title: Row(
+        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+          icon,
+          SizedBox(width: <span style="color:#ae81ff">24.0</span>),
+          Text(text),
+        ],
+      ),
+      onTap: onPressed <span style="color:#f92672">??</span> () {},
+    );
+  }
+}</code></pre></div>
+<p>個人習慣放自定義的 Widget 在 components 目錄裡面，<code>DrawerTile</code> 單純的封裝 <code>ListTile</code> 並把一些屬性定義出來 <code>icon</code>、<code>text</code>、<code>onPressed</code>。</p>
+
+<p>封裝完畢之後我們就可以非常簡易的作些使用，像是</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">...
+
+DrawerTile(
+  icon: Icon(Icons.trending_up),
+  text: <span style="color:#e6db74">&#34;Trending&#34;</span>,
+  onPressed: () {
+    print(<span style="color:#e6db74">&#34;Head to Trending Page&#34;</span>);
+  },
+),
+DrawerTile(
+  icon: Icon(Icons.settings),
+  text: <span style="color:#e6db74">&#34;Setting&#34;</span>,
+  onPressed: () {
+    print(<span style="color:#e6db74">&#34;Head to Setting Page&#34;</span>);
+  },
+),
+
+...</code></pre></div>
+<p>&ndash;</p>
+
+<p>成果</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/443ccdca5e20cb1e1a5c560ffc88806c78305483"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day6-2.png?raw=true" alt="day6-2.png" /></a></p>
+
+<h3 id="搜尋頁-search-page">搜尋頁(Search Page)</h3>
+
+<p>搜尋頁面 Flutter 內也有提供 <a href="https://api.flutter.dev/flutter/material/showSearch.html"><code>showSearch</code></a> 及搭配的 <a href="https://api.flutter.dev/flutter/material/SearchDelegate-class.html"><code>SearchDelegate</code></a>。</p>
+
+<p>渲染出來的頁面是符合 <a href="https://material.io/archive/guidelines/patterns/search.html#search-in-app-search">Material Design - Expandable search</a> 的設計。</p>
+
+<p>&ndash;</p>
+
+<p>那就來實際使用看看吧~</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day6-3.jpeg?raw=true" alt="day6-3.jpeg" /></p>
+
+<p>首先，要在按下搜尋按鈕時調用 <code>showSearch</code>。</p>
+
+<p>接下來，來實現搜尋頁，搜尋頁跟前面的其他頁面程式碼上會有點小不同。<br />
+這邊需直接繼承 <code>SearchDelegate</code> 來實現搜尋頁。</p>
+
+<p><code>lib/pages/search.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+
+enum SearchTypes {
+  repos,
+  users,
+}
+
+<span style="color:#75715e">// Use(Extends) SearchDelegate for Search Page
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GitmeRebornSearchDelegate</span> <span style="color:#66d9ef">extends</span> SearchDelegate {
+  SearchTypes _searchType <span style="color:#f92672">=</span> SearchTypes.repos;
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  ThemeData appBarTheme(BuildContext context) <span style="color:#f92672">=&gt;</span> Theme.of(context); <span style="color:#75715e">// AppBar 主題
+</span><span style="color:#75715e"></span>
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> buildActions(BuildContext context) { <span style="color:#75715e">// AppBar 右側
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        },
+      ),
+      PopupMenuButton(
+        onSelected: (SearchTypes type) {
+          _searchType <span style="color:#f92672">=</span> type;
+          showSuggestions(context);
+        },
+        itemBuilder: (BuildContext context) {
+          <span style="color:#66d9ef">return</span> [
+            CheckedPopupMenuItem<span style="color:#f92672">&lt;</span>SearchTypes<span style="color:#f92672">&gt;</span>(
+              value: SearchTypes.repos,
+              checked: _searchType <span style="color:#f92672">==</span> SearchTypes.repos,
+              child: <span style="color:#66d9ef">const</span> Text(<span style="color:#e6db74">&#34;Search Repos&#34;</span>),
+            ),
+            CheckedPopupMenuItem<span style="color:#f92672">&lt;</span>SearchTypes<span style="color:#f92672">&gt;</span>(
+              value: SearchTypes.users,
+              checked: _searchType <span style="color:#f92672">==</span> SearchTypes.users,
+              child: <span style="color:#66d9ef">const</span> Text(<span style="color:#e6db74">&#34;Search Users&#34;</span>),
+            ),
+          ];
+        },
+      ),
+    ];
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget buildLeading(BuildContext context) { <span style="color:#75715e">// AppBar 左側
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, <span style="color:#66d9ef">null</span>);
+      },
+    );
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget buildResults(BuildContext context) { <span style="color:#75715e">// 搜尋結果
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> SearchRepoResult();
+  }
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget buildSuggestions(BuildContext context) { <span style="color:#75715e">// 搜尋建議
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (query <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>) {
+      <span style="color:#66d9ef">switch</span> (_searchType) {
+        <span style="color:#66d9ef">case</span> SearchTypes.repos:
+          <span style="color:#66d9ef">return</span> Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.all(<span style="color:#ae81ff">32.0</span>),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                Text(
+                  <span style="color:#e6db74">&#34;Search Repos&#34;</span>,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).textSelectionColor,
+                  ),
+                ),
+              ],
+            ),
+          );
+        <span style="color:#66d9ef">case</span> SearchTypes.users:
+          <span style="color:#66d9ef">return</span> Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.all(<span style="color:#ae81ff">32.0</span>),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                Text(
+                  <span style="color:#e6db74">&#34;Search Users&#34;</span>,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).textSelectionColor,
+                  ),
+                ),
+              ],
+            ),
+          );
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+      }
+    }
+    <span style="color:#66d9ef">return</span> Center(child: Text(<span style="color:#e6db74">&#34;Search for </span><span style="color:#e6db74">$</span>query<span style="color:#e6db74"> ...&#34;</span>));
+  }
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SearchRepoResult</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  ... (<span style="color:#960050;background-color:#1e0010">略</span>)
+}</code></pre></div>
+<p>直接看完這麼長的程式碼可能有點霧煞煞，我們可以來看渲染出來的頁面，與其對應的關係。</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day6-4.png?raw=true" alt="day6-4.png" /></p>
+
+<p>對應後可以看得出 <code>GitmeRebornSearchDelegate</code> 裡 <code>buildActions</code> 函數就是建構紅框 actions。<br />
+依此類推 leading(<code>buildLeading</code>), suggestions(<code>buildResults</code>) 和 results(<code>buildResults</code>) 。</p>
+
+<blockquote>
+<p>小提醒:</p>
+
+<ul>
+<li><code>SearchDelegate</code> 只是個抽象類別，本身沒實現 buildActions 等函數，一定需要自己實現搜尋的 Delegate。</li>
+<li>調用 <code>showSearch</code> 時要帶入 delegate 屬性的是自己實現的 <code>GitmeRebornSearchDelegate</code>，並非 <code>SearchDelegate</code>，否則會跳出紅色錯誤頁面。</li>
+<li>Flutter 為何會這麼設計，原因之一無非是更彈性一點，你可以建構自己的 actions 區，又不失風格一致性。</li>
+</ul>
+</blockquote>
+
+<p>&ndash;</p>
+
+<p>成果</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/314d2bb9f941f91da79c8df6a2c081da07fe8497"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day6-5.gif?raw=true" alt="day6-5.gif" /></a></p>
+
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://medium.com/flutterpub/implementing-search-in-flutter-17dc5aa72018">Medium - Implementing search in Flutter</a></li>
+<li><a href="https://youtu.be/Wm3OiFBZ2xI">Flutter YouTube - Flutter&rsquo;s Search Support (The Boring Flutter Development Show, Ep. 10)</a></li>
+</ul>
+
+        
+                
+        
+            <hr>
+            <ul class="pager">
+                
+                <li class="previous">
+                    <a href="/post/2019-09-14-build-android-app-with-flutter-5/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day5">&larr; Previous Post</a>
+                </li>
+                
+                
+            </ul>
+
+            
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/flutter" title="flutter">
+                                flutter
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/ironman2020" title="ironman2020">
+                                ironman2020
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

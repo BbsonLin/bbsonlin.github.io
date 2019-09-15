@@ -6,10 +6,23 @@
     <description>Recent content in Flutter on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Sep 2019 20:37:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Sep 2019 12:55:26 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day6</title>
+      <link>https://bbsonlin.github.io/post/2019-09-15-build-android-app-with-flutter-6/</link>
+      <pubDate>Sun, 15 Sep 2019 12:55:26 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-15-build-android-app-with-flutter-6/</guid>
+      <description>Day 6. 導覽選單、搜尋頁  本系列同步發表在 第11屆鐵人賽
+ 導覽選單(Drawer) 接下來完整導覽選單的部份，最上方 Header 的部份使用 UserAccountsDrawerHeader，這是 Flutter 幫我們打造的 material Widget，來符合一致的 Material 風格。
+UserAccountsDrawerHeader( decoration: BoxDecoration( color: Colors.blueGrey, ), accountName: Text(&amp;#34;Bbson Lin&amp;#34;), accountEmail: Text(&amp;#34;bobson801104@gmail.com&amp;#34;), currentAccountPicture: CircleAvatar( backgroundImage: NetworkImage( &amp;#34;https://avatars2.githubusercontent.com/u/18156421?s=400&amp;amp;u=1f91dcf74134827fde071751f95522845223ed6a&amp;amp;v=4&amp;#34;, ), ), otherAccountsPictures: &amp;lt;Widget&amp;gt;[ Icon(Icons.edit, color: Colors.white), ], ), UserAccountsDrawerHeader 提供了幾個人性化的屬性，像是 accountName、accountEmail、currentAccountPicture &amp;hellip;等，只要將這些屬性填上你想要的 Widget 就行了。
+導覽選單部份是用幾個 ListTile 做出來的，我們在 title 屬性多加了圖示。
+ListTile( title: Row( children: &amp;lt;Widget&amp;gt;[ Icon(Icons.power_settings_new), SizedBox(width: 24.0), Text(&amp;#34;Sign out&amp;#34;), ], ), onTap: () async { await showDialog( context: context, barrierDismissible: false, builder: (context) =&amp;gt; AlertDialog( content: Text(&amp;#34;Are you sure to exit current account.</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day5</title>
@@ -17,7 +30,7 @@
       <pubDate>Sat, 14 Sep 2019 20:37:34 +0800</pubDate>
       
       <guid>https://bbsonlin.github.io/post/2019-09-14-build-android-app-with-flutter-5/</guid>
-      <description>Day 5. 登入登出、倉庫頁、近況頁與議題頁  本系列同步發表在 個人部落格，歡迎大家關注~
+      <description>Day 5. 登入登出、倉庫頁、近況頁與議題頁  本系列同步發表在 第11屆鐵人賽
  登入/登出 登入按下登入按鈕後的時候，需要有一個 Loading 的 Modal。
 如圖
 而在 Flutter 所提供的 Material 元件裡找不到能直接使用的類似元件，這時候就到 Dart 的套件管理網站 https://pub.dev/flutter 去找找有沒有別人寫好的套件吧~
