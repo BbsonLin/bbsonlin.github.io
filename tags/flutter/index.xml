@@ -6,10 +6,29 @@
     <description>Recent content in Flutter on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Sep 2019 12:55:26 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 17:51:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/tags/flutter/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day7</title>
+      <link>https://bbsonlin.github.io/post/2019-09-16-build-android-app-with-flutter-7/</link>
+      <pubDate>Mon, 16 Sep 2019 17:51:34 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-16-build-android-app-with-flutter-7/</guid>
+      <description>Day 7. 頁面刷新、修一些 Bug  本系列同步發表在 第11屆鐵人賽
+ 頁面刷新(Page Refresh) 和 StatefulWidget 今天來完成一下頁面刷新的部份，先拿 Day 5 完成的倉庫頁(RepoPage)來作些改變。
+首先把原本得 Container 替換成 RefreshIndicator 這個 Widget，而使用RefreshIndicator 有一個一定要填入的屬性 onRefresh。
+在 onRefresh 中，我們簡單的在先前宣告的 repoList 變數加上新的值，模擬頁面刷新時有新的資料加入。
+但事情總不像我這憨人想像的如此容易&amp;hellip;
+問題出在哪呢？ 我們可以把一些東西 print 出來看看
+咦，在 Debug Console 中，我們卻實實在在地看到 repoList 裡有新增 {&amp;quot;title&amp;quot;: &amp;quot;BbsonLin/new-item&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;lang&amp;quot;: &amp;quot;&amp;quot;} 阿，這是怎回事呢？
+原來，只是 Flutter 並不知道你的 repoList 要立即對應、更新你的頁面(因為我們這還是用 StatelessWidget&amp;hellip;)，那麼要怎樣作才能讓 Flutter 達成這效果呢？
+沒錯，聰明的同學一下就知道還有 StatefulWidget 的存在。 下面我們就著手把 StatelessWidget 變成 StatefulWidget 吧~
+ 小提醒:
+如果是使用 VSCode 作開發的話在 class 上方會出現燈泡點選之後，選擇 Convert to StatefulWidget，可以快速的變成 StatefulWidget 的形式喔。</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day6</title>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="第 11 屆 iT 邦鐵人賽">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>用 Flutter 開發一個 Android App 吧 - Day7-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-16-build-android-app-with-flutter-7/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hugo-theme.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
+                        </a>
+                        
+                       <a class="tag" href="/tags/ironman2020" title="Ironman2020">
+                           Ironman2020
+                        </a>
+                        
+                    </div>
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day7</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day7</h2>
+                    <span  class="meta">Posted by Bobson Lin on Monday, September 16, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                    <aside>
+                        <header>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day7</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#day-7-頁面刷新-修一些-bug">Day 7. 頁面刷新、修一些 Bug</a>
+<ul>
+<li><a href="#頁面刷新-page-refresh-和-statefulwidget">頁面刷新(Page Refresh) 和 StatefulWidget</a></li>
+<li><a href="#欸-修一些-bug-吧">欸!? 修一些 Bug 吧</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                    </aside>
+                
+                
+
+<h2 id="day-7-頁面刷新-修一些-bug">Day 7. 頁面刷新、修一些 Bug</h2>
+
+<blockquote>
+<p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
+</blockquote>
+
+<h3 id="頁面刷新-page-refresh-和-statefulwidget">頁面刷新(Page Refresh) 和 StatefulWidget</h3>
+
+<p>今天來完成一下頁面刷新的部份，先拿 Day 5 完成的倉庫頁(RepoPage)來作些改變。</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-1.png?raw=true" alt="day7-1.png" /></p>
+
+<p>首先把原本得 <code>Container</code> 替換成 <code>RefreshIndicator</code> 這個 Widget，而使用<code>RefreshIndicator</code> 有一個一定要填入的屬性 <code>onRefresh</code>。</p>
+
+<p>在 <code>onRefresh</code> 中，我們簡單的在先前宣告的 repoList 變數加上新的值，模擬頁面刷新時有新的資料加入。</p>
+
+<p>但事情總不像我這憨人想像的如此容易&hellip;</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-2.gif?raw=true" alt="day7-2.gif" /></p>
+
+<p>問題出在哪呢？ 我們可以把一些東西 print 出來看看</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-3.jpeg?raw=true" alt="day7-3.jpeg" /></p>
+
+<p>咦，在 Debug Console 中，我們卻實實在在地看到 repoList 裡有新增 <code>{&quot;title&quot;: &quot;BbsonLin/new-item&quot;, &quot;description&quot;: &quot;&quot;, &quot;lang&quot;: &quot;&quot;}</code> 阿，這是怎回事呢？</p>
+
+<p>原來，只是 Flutter 並不知道你的 repoList 要立即對應、更新你的頁面(因為我們這還是用 <code>StatelessWidget</code>&hellip;)，那麼要怎樣作才能讓 Flutter 達成這效果呢？</p>
+
+<p>沒錯，聰明的同學一下就知道還有 <code>StatefulWidget</code> 的存在。
+下面我們就著手把 <code>StatelessWidget</code> 變成 <code>StatefulWidget</code> 吧~</p>
+
+<blockquote>
+<p>小提醒:</p>
+
+<p>如果是使用 VSCode 作開發的話在 class 上方會出現燈泡點選之後，選擇 <code>Convert to StatefulWidget</code>，可以快速的變成 <code>StatefulWidget</code> 的形式喔。</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-4.png?raw=true" alt="day7-4.png" /></p>
+
+<p>這方式節省非常多時間，也是為何我都會從 <code>StatelessWidget</code> 起手的原因。</p>
+</blockquote>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/cfffac4df9a4c272ee4bd570a7e52c5f77b7730b#diff-ba48edd1b979d11d2fd7d4250ea4a6eb"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-5.jpeg?raw=true" alt="day7-5.jpeg" /></a></p>
+
+<p>變成 <code>StatefulWidget</code> 後有另一個重點，就是要使用 <code>setState</code> 這個函數，要變換的狀態必須要在這函數裡面才行。</p>
+
+<p>&ndash;</p>
+
+<h3 id="欸-修一些-bug-吧">欸!? 修一些 Bug 吧</h3>
+
+<p>對，沒錯，我想有些人看出不少的小問題</p>
+
+<p>所以這邊我想暫停一下，花一些篇幅來作 Fix bug 和 Enhancement</p>
+
+<p>這邊只敘述修改的項目和我找到哪些參考來解決他們，詳細的程式碼都可以 <strong>點選圖片連結觀看</strong> 喔~</p>
+
+<ol>
+<li><p>首頁的重構(Home Page - Refactor)</p>
+
+<blockquote>
+<p>修改的項目:
+* 一堆的 ListTile 改用 ListTile.divideTiles 取代
+* 加入頁面刷新
+* 改成 StatefulWidget</p>
+</blockquote>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/39a7e379be23df0142055828c7a49e67e7707762"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-6.jpeg?raw=true" alt="day7-6.jpeg" /></a></p></li>
+
+<li><p>Main Page - Scrollbar</p>
+
+<p>用 Flutter 內建的 <a href="https://api.flutter.dev/flutter/material/Scrollbar-class.html"><code>Scrollbar</code></a> Widget，滿簡單使用的，詳細可以參看文件。</p></li>
+
+<li><p>Main Page - Circle Avatar Button</p>
+
+<p>在主畫面的左上按鈕，UI 設計中為頭像按鈕，於是我另外創建了 <code>CircleAvatarButton</code> ，基本上就是將 <code>IconButton</code>中的 icon 換成 <code>CircleAvatar</code>。</p></li>
+</ol>
+
+<blockquote>
+<p>小提醒:</p>
+
+<ul>
+<li>在重構時我有用到 Dart 2.3 才引入的 Spread Operator，用法跟 JavaScript 的類似，詳細可以參考 <a href="https://medium.com/flutter-community/whats-new-in-dart-2-3-1a7050e2408d">Medium - What’s New In Dart 2.3?</a></li>
+</ul>
+</blockquote>
+
+<p>&ndash;</p>
+
+<p>今日成果</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/c75411b3de0a840f82236f98a242ab04b758bb57"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-7.gif?raw=true" alt="day7-7.gif" /></a></p>
+
+<p><em>參考</em></p>
+
+<ul>
+<li><a href="https://medium.com/flutterpub/adding-swipe-to-refresh-to-flutter-app-b234534f39a7">Medium - Adding Swipe To Refresh to Flutter app</a></li>
+<li><a href="https://www.reddit.com/r/FlutterDev/comments/7yma7y/how_do_you_open_a_drawer_in_a_scaffold_using_code/">Reddit - How do you open a drawer in a scaffold using code?</a></li>
+<li><a href="https://www.reddit.com/r/FlutterDev/comments/7yma7y/how_do_you_open_a_drawer_in_a_scaffold_using_code/">StackOverflow - Flutter rounded profile image appBar</a></li>
+</ul>
+
+        
+                
+        
+            <hr>
+            <ul class="pager">
+                
+                <li class="previous">
+                    <a href="/post/2019-09-15-build-android-app-with-flutter-6/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day6">&larr; Previous Post</a>
+                </li>
+                
+                
+            </ul>
+
+            
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/flutter" title="flutter">
+                                flutter
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/ironman2020" title="ironman2020">
+                                ironman2020
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
