@@ -6,10 +6,81 @@
     <description>Recent content in Tech on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Sep 2019 17:51:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 20 Sep 2019 14:13:29 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day11</title>
+      <link>https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/</link>
+      <pubDate>Fri, 20 Sep 2019 14:13:29 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/</guid>
+      <description>Day 11. 設定頁面  本系列同步發表在 第11屆鐵人賽
+ 設定頁面(SettingPage) 這次的鐵人賽在設定頁面上，我想完成 2 個設定功能，主題(Theme)和語言(Language)。
+從設計圖上可以看出來，設定頁面一部分是可以開合的列表。 這個一樣是源自 Material Design 的列表控制章節中的展開和閉合(Expand and collapse)
+Flutter 中對應的 Widget 就是 ExpansionTile，它可以跟 ListTile 一樣直接使用在 ListView 裡面。
+先直接來看看程式碼吧~
+lib/pages/setting/setting.dart
+import &amp;#34;package:flutter/material.dart&amp;#34;; import &amp;#39;package:gitme_reborn/components/setting/theme_option.dart&amp;#39;; class SettingPage extends StatelessWidget { @override Widget build(BuildContext context) { return Scaffold( appBar: AppBar( title: Text(&amp;#34;Setting&amp;#34;), ), body: ListView( children: &amp;lt;Widget&amp;gt;[ ExpansionTile( leading: Icon(Icons.palette), title: Text(&amp;#34;Theme&amp;#34;), children: &amp;lt;Widget&amp;gt;[ Wrap( spacing: 8.0, children: &amp;lt;Widget&amp;gt;[ ThemeOption(color: Colors.black), ThemeOption(color: Colors.</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day10</title>
+      <link>https://bbsonlin.github.io/post/2019-09-19-build-android-app-with-flutter-10/</link>
+      <pubDate>Thu, 19 Sep 2019 14:11:48 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-19-build-android-app-with-flutter-10/</guid>
+      <description>Day 10. 趨勢頁面  本系列同步發表在 第11屆鐵人賽
+ 趨勢頁面(Trending Page) 好久沒從 UI 設計圖來分解該怎麼轉換成程式碼了。
+今天就看個分解圖吧~
+lib/pages/trending/trending.dart
+import &amp;#39;package:flutter/material.dart&amp;#39;; import &amp;#39;package:gitme_reborn/pages/trending/developer.dart&amp;#39;; import &amp;#39;package:gitme_reborn/pages/trending/project.dart&amp;#39;; class TrendingPage extends StatelessWidget { @override Widget build(BuildContext context) { return DefaultTabController( length: 2, child: Scaffold( appBar: AppBar( title: TabBar( tabs: &amp;lt;Widget&amp;gt;[ Tab(text: &amp;#34;Project&amp;#34;), Tab(text: &amp;#34;Developer&amp;#34;), ], ), actions: &amp;lt;Widget&amp;gt;[ PopupMenuButton( itemBuilder: (BuildContext context) { return [ PopupMenuItem( child: Text(&amp;#34;Date range: daily&amp;#34;), ), ]; }, ), ], ), body: TabBarView( children: &amp;lt;Widget&amp;gt;[ TrendingProjects(), TrendingDevelopers(), ], ), ), ); } } 再來看看程式碼是不是清晰多了呢？ 原則上， TrendingPage 與 MainPage 差不多，我幾乎是同一套排版直接拿過來用的。</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day9</title>
+      <link>https://bbsonlin.github.io/post/2019-09-18-build-android-app-with-flutter-9/</link>
+      <pubDate>Wed, 18 Sep 2019 08:58:23 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-18-build-android-app-with-flutter-9/</guid>
+      <description>Day 9. 個人頁面(續)  本系列同步發表在 第11屆鐵人賽
+ 個人頁面(Profile Page) - 續 我們接續昨天的部份，接下來我們要完成個人頁面的下半部。
+首先，第一個 Tab 就是倉庫頁(RepoPage)，是不是有種似曾相似的感覺？
+沒錯，記得我們在 Day 5 時有創建一個 RepoPage 給主頁面使用嗎？
+在這裡可以直接拿來復用的，我們就不客氣拿來用吧~
+痾&amp;hellip;
+果然，一切不會想像中的順利阿&amp;hellip;
+在 RepoPage 裡向下滑動(捲動)，上面的 AppBar 竟然不會縮起來&amp;hellip;
+ 感性: 怎麼會這樣!?難道我寫錯了什麼嗎~~~ (崩潰
+理性: 沒事，遇到問題根本就是工程師日常麻~ 平常心拉 (笑
+感性: 那要怎麼解決呢? 揪命阿~~ (淚
+理性: 別緊張，聰明的你一定知道，請教 Google 大神吧~ 哈哈
+(腦內[腦補]小劇場)
+ 沒錯找 Google，一下就找到 StackOverflow - how to implement a sliverAppBar with a tabBar，裡頭有一個關鍵的 Widget: NestedScrollView。
+我們讀一下 NestedScrollView 文件吧~
+ 在捲動畫面(視圖)中裡面可以包含不只一個捲動畫面(視圖)，且他們都需要知道目前捲動到的位置。
+最常見的情況就是捲動畫面裡 SliverAppBar 中頂部包含一個 TabBar ，以及在 body 中使用 TabBarView (這樣作可基於 tab 來改變需捲動的內容)</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day8</title>
+      <link>https://bbsonlin.github.io/post/2019-09-17-build-android-app-with-flutter-8/</link>
+      <pubDate>Tue, 17 Sep 2019 08:53:38 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-17-build-android-app-with-flutter-8/</guid>
+      <description>Day 8. 再修 Bug、個人頁面  本系列同步發表在 第11屆鐵人賽
+ 欸!? 還沒改完? 恩&amp;hellip; 越看越多東西需要修改一下&amp;hellip;
+那麼接續昨天的議題。
+ Login Page - password text hide &amp;amp; text show/hide switch
+ 修正的項目: * 密碼隱藏輸入字元 * 可切換密碼字元 顯示/隱藏
+ 隱藏輸入字元可藉著 TextFormField.obscureText 屬性來調整。
+切換密碼字元 顯示/隱藏，參考 YouTube - Flutter - toggle password visibility
+ Login Page - loading modal
+ 修正的項目: * Loading 底下有雙黃線 * 按下登入紐收起鍵盤
+ Loading 字樣有雙黃線，參考了 StackOverflow - Yellow lines under Text Widgets in Flutter? 及相關 Issue Text in Hero red when animating #30647</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day7</title>

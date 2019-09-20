@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/</loc>
+    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-19-build-android-app-with-flutter-10/</loc>
+    <lastmod>2019-09-19T14:11:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-18-build-android-app-with-flutter-9/</loc>
+    <lastmod>2019-09-18T08:58:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-17-build-android-app-with-flutter-8/</loc>
+    <lastmod>2019-09-17T08:53:38+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/post/2019-09-16-build-android-app-with-flutter-7/</loc>
     <lastmod>2019-09-16T17:51:34+08:00</lastmod>
   </url>
@@ -130,7 +150,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/</loc>
-    <lastmod>2019-09-16T17:51:34+08:00</lastmod>
+    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -147,7 +167,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/flutter/</loc>
-    <lastmod>2019-09-16T17:51:34+08:00</lastmod>
+    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -183,7 +203,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/ironman2020/</loc>
-    <lastmod>2019-09-16T17:51:34+08:00</lastmod>
+    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -195,7 +215,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/post/</loc>
-    <lastmod>2019-09-16T17:51:34+08:00</lastmod>
+    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -213,7 +233,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/categories/tech/</loc>
-    <lastmod>2019-09-16T17:51:34+08:00</lastmod>
+    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -13,9 +13,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Flutter 開發一個 Android App 吧 - Day7-</title>
+    <title>用 Flutter 開發一個 Android App 吧 - Day11-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-16-build-android-app-with-flutter-7/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -140,9 +140,9 @@
                         </a>
                         
                     </div>
-                    <h1>用 Flutter 開發一個 Android App 吧 - Day7</h1>
-                    <h2 class="subheading">Build Android app with Flutter - Day7</h2>
-                    <span  class="meta">Posted by Bobson Lin on Monday, September 16, 2019
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day11</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day11</h2>
+                    <span  class="meta">Posted by Bobson Lin on Friday, September 20, 2019
                         
                     </span>
                 </div>
@@ -167,16 +167,16 @@
                 
                     <aside>
                         <header>
-                        <h2>用 Flutter 開發一個 Android App 吧 - Day7</h2>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day11</h2>
                         </header>
                         <nav id="TableOfContents">
 <ul>
 <li>
 <ul>
-<li><a href="#day-7-頁面刷新-修一些-bug">Day 7. 頁面刷新、修一些 Bug</a>
+<li><a href="#day-11-設定頁面">Day 11. 設定頁面</a>
 <ul>
-<li><a href="#頁面刷新-page-refresh-和-statefulwidget">頁面刷新(Page Refresh) 和 StatefulWidget</a></li>
-<li><a href="#欸-修一些-bug-吧">欸!? 修一些 Bug 吧</a></li>
+<li><a href="#設定頁面-settingpage">設定頁面(SettingPage)</a></li>
+<li><a href="#設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -185,102 +185,138 @@
                 
                 
 
-<h2 id="day-7-頁面刷新-修一些-bug">Day 7. 頁面刷新、修一些 Bug</h2>
+<h2 id="day-11-設定頁面">Day 11. 設定頁面</h2>
 
 <blockquote>
 <p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
 </blockquote>
 
-<h3 id="頁面刷新-page-refresh-和-statefulwidget">頁面刷新(Page Refresh) 和 StatefulWidget</h3>
+<h3 id="設定頁面-settingpage">設定頁面(SettingPage)</h3>
 
-<p>今天來完成一下頁面刷新的部份，先拿 Day 5 完成的倉庫頁(RepoPage)來作些改變。</p>
+<p>這次的鐵人賽在設定頁面上，我想完成 2 個設定功能，主題(Theme)和語言(Language)。</p>
 
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-1.png?raw=true" alt="day7-1.png" /></p>
+<p>從設計圖上可以看出來，設定頁面一部分是可以開合的列表。
+這個一樣是源自 Material Design 的列表控制章節中的展開和閉合(Expand and collapse)</p>
 
-<p>首先把原本得 <code>Container</code> 替換成 <code>RefreshIndicator</code> 這個 Widget，而使用<code>RefreshIndicator</code> 有一個一定要填入的屬性 <code>onRefresh</code>。</p>
+<p>Flutter 中對應的 Widget 就是 <code>ExpansionTile</code>，它可以跟 <code>ListTile</code> 一樣直接使用在 <code>ListView</code> 裡面。</p>
 
-<p>在 <code>onRefresh</code> 中，我們簡單的在先前宣告的 repoList 變數加上新的值，模擬頁面刷新時有新的資料加入。</p>
+<p>先直接來看看程式碼吧~</p>
 
-<p>但事情總不像我這憨人想像的如此容易&hellip;</p>
+<p><code>lib/pages/setting/setting.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/components/setting/theme_option.dart&#39;</span>;
 
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-2.gif?raw=true" alt="day7-2.gif" /></p>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SettingPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Scaffold(
+      appBar: AppBar(
+        title: Text(<span style="color:#e6db74">&#34;Setting&#34;</span>),
+      ),
+      body: ListView(
+        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+          ExpansionTile(
+            leading: Icon(Icons.palette),
+            title: Text(<span style="color:#e6db74">&#34;Theme&#34;</span>),
+            children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+              Wrap(
+                spacing: <span style="color:#ae81ff">8.0</span>,
+                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                  ThemeOption(color: Colors.black),
+                  ThemeOption(color: Colors.blue),
+                  ThemeOption(color: Colors.blueGrey)
+                ],
+              )
+            ],
+          ),
+          ListTile(
+            leading: Icon(Icons.language),
+            title: Text(<span style="color:#e6db74">&#34;Language&#34;</span>),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                Text(<span style="color:#e6db74">&#34;English&#34;</span>),
+                Icon(Icons.keyboard_arrow_right),
+              ],
+            ),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}</code></pre></div>
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-1.png?raw=true" alt="day11-1.png" /></p>
 
-<p>問題出在哪呢？ 我們可以把一些東西 print 出來看看</p>
+<p><code>ThemeOption</code> 是我自己寫的 Widget，基本上就是一個可點選的顏色方塊。<br />
+至於顏色切換的功能，牽扯到我這系列規劃的第三部份-狀態管理，所以這功能後續才會完成喔~</p>
 
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-3.jpeg?raw=true" alt="day7-3.jpeg" /></p>
+<p><code>lib/components/setting/theme_option.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
 
-<p>咦，在 Debug Console 中，我們卻實實在在地看到 repoList 裡有新增 <code>{&quot;title&quot;: &quot;BbsonLin/new-item&quot;, &quot;description&quot;: &quot;&quot;, &quot;lang&quot;: &quot;&quot;}</code> 阿，這是怎回事呢？</p>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThemeOption</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#66d9ef">const</span> ThemeOption({
+    Key key,
+    <span style="color:#66d9ef">this</span>.color,
+  }) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
 
-<p>原來，只是 Flutter 並不知道你的 repoList 要立即對應、更新你的頁面(因為我們這還是用 <code>StatelessWidget</code>&hellip;)，那麼要怎樣作才能讓 Flutter 達成這效果呢？</p>
+  <span style="color:#66d9ef">final</span> Color color;
 
-<p>沒錯，聰明的同學一下就知道還有 <code>StatefulWidget</code> 的存在。
-下面我們就著手把 <code>StatelessWidget</code> 變成 <code>StatefulWidget</code> 吧~</p>
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> GestureDetector(
+      child: Padding(
+        padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">8.0</span>),
+        child: SizedBox(
+          width: <span style="color:#ae81ff">42.0</span>,
+          height: <span style="color:#ae81ff">42.0</span>,
+          child: DecoratedBox(
+            decoration: BoxDecoration(color: color),
+          ),
+        ),
+      ),
+      onTap: () {},
+    );
+  }
+}</code></pre></div>
+<h3 id="設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</h3>
 
-<blockquote>
-<p>小提醒:</p>
+<p>先來看看完成的樣子吧~</p>
 
-<p>如果是使用 VSCode 作開發的話在 class 上方會出現燈泡點選之後，選擇 <code>Convert to StatefulWidget</code>，可以快速的變成 <code>StatefulWidget</code> 的形式喔。</p>
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/00197cbf511e5aa4346b890687650ef53c5f00cd"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-2.gif?raw=true" alt="day11-2.gif" /></a>
+&gt; 點選 GIF 可直接看 Commit</p>
 
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-4.png?raw=true" alt="day7-4.png" /></p>
-
-<p>這方式節省非常多時間，也是為何我都會從 <code>StatelessWidget</code> 起手的原因。</p>
-</blockquote>
-
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/cfffac4df9a4c272ee4bd570a7e52c5f77b7730b#diff-ba48edd1b979d11d2fd7d4250ea4a6eb"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-5.jpeg?raw=true" alt="day7-5.jpeg" /></a></p>
-
-<p>變成 <code>StatefulWidget</code> 後有另一個重點，就是要使用 <code>setState</code> 這個函數，要變換的狀態必須要在這函數裡面才行。</p>
-
-<p>&ndash;</p>
-
-<h3 id="欸-修一些-bug-吧">欸!? 修一些 Bug 吧</h3>
-
-<p>對，沒錯，我想有些人看出不少的小問題</p>
-
-<p>所以這邊我想暫停一下，花一些篇幅來作 Fix bug 和 Enhancement</p>
-
-<p>這邊只敘述修改的項目和我找到哪些參考來解決他們，詳細的程式碼都可以 <strong>點選圖片連結觀看</strong> 喔~</p>
-
-<ol>
-<li><p>首頁的重構(Home Page - Refactor)</p>
-
-<blockquote>
-<p>修改的項目:
-* 一堆的 ListTile 改用 ListTile.divideTiles 取代
-* 加入頁面刷新
-* 改成 StatefulWidget</p>
-</blockquote>
-
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/39a7e379be23df0142055828c7a49e67e7707762"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-6.jpeg?raw=true" alt="day7-6.jpeg" /></a></p></li>
-
-<li><p>Main Page - Scrollbar</p>
-
-<p>用 Flutter 內建的 <a href="https://api.flutter.dev/flutter/material/Scrollbar-class.html"><code>Scrollbar</code></a> Widget，滿簡單使用的，詳細可以參看文件。</p></li>
-
-<li><p>Main Page - Circle Avatar Button</p>
-
-<p>在主畫面的左上按鈕，UI 設計中為頭像按鈕，於是我另外創建了 <code>CircleAvatarButton</code> ，基本上就是將 <code>IconButton</code>中的 icon 換成 <code>CircleAvatar</code>。</p></li>
-</ol>
+<p>這邊又使用到另一種的 ListTile - <code>RadioListTile</code>，一樣也是可以直接使用在 <code>ListView</code> 裡面，它所完成的是單選擇功能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">RadioListTile(
+  title: Text(<span style="color:#e6db74">&#34;繁體中文&#34;</span>),
+  value: Language.traditionalChinese,
+  groupValue: _language,
+  onChanged: (Language value) {
+    setState(() {
+      _language <span style="color:#f92672">=</span> Language.traditionalChinese;
+    });
+  },
+),</code></pre></div>
+<p><code>SettingLanguagePage</code> 的詳細程式碼我就不貼上來了。<br />
+有興趣的人，可點選上面的 GIF，到 Gitme Reborn repo 看看~</p>
 
 <blockquote>
 <p>小提醒:</p>
 
 <ul>
-<li>在重構時我有用到 Dart 2.3 才引入的 Spread Operator，用法跟 JavaScript 的類似，詳細可以參考 <a href="https://medium.com/flutter-community/whats-new-in-dart-2-3-1a7050e2408d">Medium - What’s New In Dart 2.3?</a></li>
+<li>設定頁面實際功能都牽扯到這系列規劃的第三部份-狀態管理，後續將會慢慢完成喔~<br /></li>
+<li>歡迎大家到 GitHub Star 這開源項目且持續關注~ 😉</li>
 </ul>
 </blockquote>
 
-<p>&ndash;</p>
-
-<p>今日成果</p>
-
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/c75411b3de0a840f82236f98a242ab04b758bb57"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day7-7.gif?raw=true" alt="day7-7.gif" /></a></p>
+<p>今天就容許小弟偷懶些，Day11 就先寫到這邊拉~~ (累</p>
 
 <p><em>參考</em></p>
 
 <ul>
-<li><a href="https://medium.com/flutterpub/adding-swipe-to-refresh-to-flutter-app-b234534f39a7">Medium - Adding Swipe To Refresh to Flutter app</a></li>
-<li><a href="https://www.reddit.com/r/FlutterDev/comments/7yma7y/how_do_you_open_a_drawer_in_a_scaffold_using_code/">Reddit - How do you open a drawer in a scaffold using code?</a></li>
-<li><a href="https://www.reddit.com/r/FlutterDev/comments/7yma7y/how_do_you_open_a_drawer_in_a_scaffold_using_code/">StackOverflow - Flutter rounded profile image appBar</a></li>
+<li><a href="https://youtu.be/z5iw2SeFx2M">Flutter YouTube - Wrap (Flutter Widget of the Week)</a></li>
+<li><a href="https://stackoverflow.com/questions/48857858/how-to-create-colour-box-with-fixed-width-and-height-in-flutter">StackOverflow - How to create colour box with fixed width and height in flutter?</a></li>
+<li><a href="https://material.io/components/lists/#types">Material Design - List types</a></li>
 </ul>
 
         
@@ -290,13 +326,9 @@
             <ul class="pager">
                 
                 <li class="previous">
-                    <a href="/post/2019-09-15-build-android-app-with-flutter-6/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day6">&larr; Previous Post</a>
+                    <a href="/post/2019-09-19-build-android-app-with-flutter-10/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day10">&larr; Previous Post</a>
                 </li>
                 
-                
-                <li class="next">
-                    <a href="/post/2019-09-17-build-android-app-with-flutter-8/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day8">Next Post &rarr;</a>
-                </li>
                 
             </ul>
 

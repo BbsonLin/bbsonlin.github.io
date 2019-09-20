@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><head>
+    <meta name="google-site-verification" content="9vIieCe-Qpd78QOmBl63rGtIVbhY6sYyuxX3j8XWBA4" />
+    <meta name="baidu-site-verification" content="LRrmH41lz7" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="第 11 屆 iT 邦鐵人賽">
+    
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
+
+    <title>用 Flutter 開發一個 Android App 吧 - Day10-</title>
+
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-19-build-android-app-with-flutter-10/">
+
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/hugo-theme.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="https://bbsonlin.github.io/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="https://bbsonlin.github.io/js/jquery.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://bbsonlin.github.io/js/hux-blog.min.js"></script>
+</head>
+</head>
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bbsonlin.github.io//">Bobson&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://bbsonlin.github.io//">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/gossip">gossip</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://bbsonlin.github.io/categories/tech">tech</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://bbsonlin.github.io/images/bg-otaru-canal.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                       
+                       <a class="tag" href="/tags/flutter" title="Flutter">
+                           Flutter
+                        </a>
+                        
+                       <a class="tag" href="/tags/ironman2020" title="Ironman2020">
+                           Ironman2020
+                        </a>
+                        
+                    </div>
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day10</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day10</h2>
+                    <span  class="meta">Posted by Bobson Lin on Thursday, September 19, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                    <aside>
+                        <header>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day10</h2>
+                        </header>
+                        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#day-10-趨勢頁面">Day 10. 趨勢頁面</a>
+<ul>
+<li><a href="#趨勢頁面-trending-page">趨勢頁面(Trending Page)</a></li>
+<li><a href="#趨勢專案-trendingprojects">趨勢專案(TrendingProjects)</a></li>
+<li><a href="#趨勢開發者-trendingdevelopers">趨勢開發者(TrendingDevelopers)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                    </aside>
+                
+                
+
+<h2 id="day-10-趨勢頁面">Day 10. 趨勢頁面</h2>
+
+<blockquote>
+<p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
+</blockquote>
+
+<h3 id="趨勢頁面-trending-page">趨勢頁面(Trending Page)</h3>
+
+<p>好久沒從 UI 設計圖來分解該怎麼轉換成程式碼了。</p>
+
+<p>今天就看個分解圖吧~</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day10-1.png?raw=true" alt="day10-1.png" /></p>
+
+<p><code>lib/pages/trending/trending.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/pages/trending/developer.dart&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/pages/trending/project.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TrendingPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> DefaultTabController(
+      length: <span style="color:#ae81ff">2</span>,
+      child: Scaffold(
+        appBar: AppBar(
+          title: TabBar(
+            tabs: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+              Tab(text: <span style="color:#e6db74">&#34;Project&#34;</span>),
+              Tab(text: <span style="color:#e6db74">&#34;Developer&#34;</span>),
+            ],
+          ),
+          actions: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                <span style="color:#66d9ef">return</span> [
+                  PopupMenuItem(
+                    child: Text(<span style="color:#e6db74">&#34;Date range: daily&#34;</span>),
+                  ),
+                ];
+              },
+            ),
+          ],
+        ),
+        body: TabBarView(
+          children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+            TrendingProjects(),
+            TrendingDevelopers(),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre></div>
+<p>再來看看程式碼是不是清晰多了呢？
+原則上， <code>TrendingPage</code> 與 <code>MainPage</code> 差不多，我幾乎是同一套排版直接拿過來用的。</p>
+
+<p>原設計圖上是分成 Repos 和 Users，不過之後我用的 API 會是使用 <a href="https://github.com/huchenme/github-trending-api"><code>github-trending-api</code></a>。</p>
+
+<p>github-trending-api 中的分類是 Projects 和 Developers，所以我乾脆改成 <code>TrendingProjects</code> 和 <code>TrendingDevelopers</code> 囉~</p>
+
+<h3 id="趨勢專案-trendingprojects">趨勢專案(TrendingProjects)</h3>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day10-2.png?raw=true" alt="day10-2.png" /></p>
+
+<p><code>lib/pages/trending/project.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/utils.dart&#39;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TrendingProjects</span> <span style="color:#66d9ef">extends</span> StatefulWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  _TrendingProjectsState createState() <span style="color:#f92672">=&gt;</span> _TrendingProjectsState();
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_TrendingProjectsState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>TrendingProjects<span style="color:#f92672">&gt;</span> {
+  List trendProjectList <span style="color:#f92672">=</span> [
+    {
+      <span style="color:#e6db74">&#34;author&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;google&#34;</span>,
+      <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;gvisor&#34;</span>,
+      <span style="color:#e6db74">&#34;avatar&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://github.com/google.png&#34;</span>,
+      <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://github.com/google/gvisor&#34;</span>,
+      <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Container Runtime Sandbox&#34;</span>,
+      <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Go&#34;</span>,
+      <span style="color:#e6db74">&#34;languageColor&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#3572A5&#34;</span>,
+      <span style="color:#e6db74">&#34;stars&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3320</span>,
+      <span style="color:#e6db74">&#34;forks&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">118</span>,
+      <span style="color:#e6db74">&#34;currentPeriodStars&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1624</span>,
+      <span style="color:#e6db74">&#34;builtBy&#34;</span><span style="color:#f92672">:</span> [
+        {
+          <span style="color:#e6db74">&#34;href&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://github.com/viatsko&#34;</span>,
+          <span style="color:#e6db74">&#34;avatar&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://avatars0.githubusercontent.com/u/376065&#34;</span>,
+          <span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;viatsko&#34;</span>
+        }
+      ]
+    },
+    ...(<span style="color:#960050;background-color:#1e0010">略</span>)
+  ];
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Scrollbar(
+      child: RefreshIndicator(
+        child: ListView.separated(
+          padding: EdgeInsets.all(<span style="color:#ae81ff">0.0</span>),
+          itemCount: trendProjectList.length,
+          itemBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) {
+            <span style="color:#66d9ef">return</span> ListTile(
+              title: Text(
+                  <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>trendProjectList[index][<span style="color:#e6db74">&#34;author&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> / </span><span style="color:#e6db74">${</span>trendProjectList[index][<span style="color:#e6db74">&#34;name&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                  SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                  Text(
+                      <span style="color:#e6db74">&#34;★ </span><span style="color:#e6db74">${</span>trendProjectList[index][<span style="color:#e6db74">&#34;currentPeriodStars&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> stars today&#34;</span>),
+                  SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                  Text(trendProjectList[index][<span style="color:#e6db74">&#34;description&#34;</span>]),
+                  SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                  Row(
+                      children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                        Text(<span style="color:#e6db74">&#34;★ </span><span style="color:#e6db74">${</span>trendProjectList[index][<span style="color:#e6db74">&#34;stars&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>),
+                        SizedBox(width: <span style="color:#ae81ff">16.0</span>),
+                        ...buildBuiltByList(trendProjectList[index][<span style="color:#e6db74">&#34;builtBy&#34;</span>]),
+                      ],
+                    )
+                ],
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                  Text(<span style="color:#e6db74">&#34;● &#34;</span>, style: TextStyle(color: hexToColor(trendProjectList[index][<span style="color:#e6db74">&#34;languageColor&#34;</span>]), fontSize: <span style="color:#ae81ff">24.0</span>),),
+                  Text(trendProjectList[index][<span style="color:#e6db74">&#34;language&#34;</span>]),
+                ],
+              ),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: <span style="color:#ae81ff">8.0</span>, horizontal: <span style="color:#ae81ff">16.0</span>),
+              onTap: () {},
+            );
+          },
+          separatorBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) <span style="color:#f92672">=&gt;</span>
+              <span style="color:#66d9ef">const</span> Divider(height: <span style="color:#ae81ff">0.0</span>),
+        ),
+        onRefresh: () <span style="color:#66d9ef">async</span> {
+          <span style="color:#66d9ef">return</span> Future.delayed(Duration(seconds: <span style="color:#ae81ff">2</span>), () {});
+        },
+      ),
+    );
+  }
+
+  List<span style="color:#f92672">&lt;</span>Padding<span style="color:#f92672">&gt;</span> buildBuiltByList(List builtByList) {
+    List builtBys <span style="color:#f92672">=</span> builtByList.map((builtBy) {
+      <span style="color:#66d9ef">return</span> Padding(
+        padding: <span style="color:#66d9ef">const</span> EdgeInsets.symmetric(horizontal: <span style="color:#ae81ff">2.0</span>),
+        child: CircleAvatar(
+          radius: <span style="color:#ae81ff">10.0</span>,
+          backgroundImage: NetworkImage(builtBy[<span style="color:#e6db74">&#34;avatar&#34;</span>]),
+        ),
+      );
+    }).toList();
+    <span style="color:#66d9ef">if</span> (builtBys.length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span>) {
+      <span style="color:#66d9ef">return</span> builtBys.sublist(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">6</span>);
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span> builtBys;
+    }
+  }
+}</code></pre></div>
+<p>如果對照的分析圖看，<code>ListTile</code> 的部份應該沒什麼問題。</p>
+
+<p>不過值得一提得是 CircleAvatar(s)，這部份是自己寫了 <code>buildBuiltByList</code> 這個函數來實現，讓它能拿成好幾個頭像並列。</p>
+
+<blockquote>
+<p>小提醒:</p>
+
+<ul>
+<li>說個小插曲，其實一開始我在 <code>List.trailing</code> 裡，用 <code>Row</code> 來排列兩個 <code>Text</code> 時有噴出錯誤，不過後來參考 <a href="https://stackoverflow.com/questions/54548853/placing-two-trailing-icons-in-listtile">StackOverflow - Placing two trailing icons in ListTile</a> 解決。</li>
+<li><code>trendProjectList</code> 裡面的資料是暫時從 <a href="https://github.com/huchenme/github-trending-api"><code>github-trending-api</code></a> README.md 中借來的。</li>
+<li>顯示語言顏色標籤，由於 Flutter 不能直接吃 <code>#001122</code> 這種色碼字串，於是我又找來 <a href="https://stackoverflow.com/questions/50381968/flutter-dart-convert-hex-color-string-to-color/50382196">StackOverflow - Flutter/Dart: Convert HEX color string to Color?</a> 作支援~</li>
+</ul>
+</blockquote>
+
+<h3 id="趨勢開發者-trendingdevelopers">趨勢開發者(TrendingDevelopers)</h3>
+
+<p>沒錯，今天的套路就是先放分解圖~</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day10-3.png?raw=true" alt="day10-3.png" /></p>
+
+<p><code>lib/pages/trending/developer.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TrendingDevelopers</span> <span style="color:#66d9ef">extends</span> StatefulWidget {
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  _TrendingDevelopersState createState() <span style="color:#f92672">=&gt;</span> _TrendingDevelopersState();
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_TrendingDevelopersState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>TrendingDevelopers<span style="color:#f92672">&gt;</span> {
+  List trendDeveloperList <span style="color:#f92672">=</span> [
+    {
+      <span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;google&#34;</span>,
+      <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Google&#34;</span>,
+      <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;organization&#34;</span>,
+      <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://github.com/google&#34;</span>,
+      <span style="color:#e6db74">&#34;avatar&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://avatars0.githubusercontent.com/u/1342004&#34;</span>,
+      <span style="color:#e6db74">&#34;repo&#34;</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;traceur-compiler&#34;</span>,
+        <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span>
+            <span style="color:#e6db74">&#34;Traceur is a JavaScript.next-to-JavaScript-of-today compiler&#34;</span>,
+        <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://github.com/google/traceur-compiler&#34;</span>
+      }
+    },
+    ...(<span style="color:#960050;background-color:#1e0010">略</span>)
+  ];
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Scrollbar(
+      child: RefreshIndicator(
+        child: ListView.separated(
+          padding: EdgeInsets.all(<span style="color:#ae81ff">0.0</span>),
+          itemCount: trendDeveloperList.length,
+          itemBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) {
+            <span style="color:#66d9ef">return</span> ListTile(
+              leading: CircleAvatar(
+                backgroundImage:
+                    NetworkImage(trendDeveloperList[index][<span style="color:#e6db74">&#34;avatar&#34;</span>]),
+                radius: <span style="color:#ae81ff">28.0</span>,
+              ),
+              title: Row(
+                <span style="color:#75715e">// crossAxisAlignment: CrossAxisAlignment.start,
+</span><span style="color:#75715e"></span>                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                  Text(trendDeveloperList[index][<span style="color:#e6db74">&#34;name&#34;</span>]),
+                  SizedBox(width: <span style="color:#ae81ff">16.0</span>),
+                  Text(trendDeveloperList[index][<span style="color:#e6db74">&#34;username&#34;</span>]),
+                ],
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                  SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                  Text(
+                      <span style="color:#e6db74">&#34;🔥 </span><span style="color:#e6db74">${</span>trendDeveloperList[index][<span style="color:#e6db74">&#34;repo&#34;</span>][<span style="color:#e6db74">&#34;name&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>),
+                  SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                  Text(trendDeveloperList[index][<span style="color:#e6db74">&#34;repo&#34;</span>][<span style="color:#e6db74">&#34;description&#34;</span>]),
+                ],
+              ),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: <span style="color:#ae81ff">8.0</span>, horizontal: <span style="color:#ae81ff">16.0</span>),
+              onTap: () {},
+            );
+          },
+          separatorBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) <span style="color:#f92672">=&gt;</span>
+              <span style="color:#66d9ef">const</span> Divider(height: <span style="color:#ae81ff">0.0</span>),
+        ),
+        onRefresh: () <span style="color:#66d9ef">async</span> {
+          <span style="color:#66d9ef">return</span> Future.delayed(Duration(seconds: <span style="color:#ae81ff">2</span>), () {});
+        },
+      ),
+    );
+  }
+}</code></pre></div>
+<p>理解了 <code>TrendingPrjects</code>，這個就簡單多了，只需要注意 <code>ListTile</code> 的屬性填入了什麼就好~</p>
+
+<blockquote>
+<p>小提醒:</p>
+
+<ul>
+<li>如果想作的極致點，想再縮短一點程式碼，還可以將 <code>ListTile</code> 個別封裝成 Widget，不過目前看起來還沒有必要性，所以就先這樣吧~</li>
+</ul>
+</blockquote>
+
+<p>&ndash;</p>
+
+<p>成果</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/baac456540a3b45aa23733f6543c1ac40c406c29"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day10-4.gif?raw=true" alt="day10-4.gif" /></a>
+&gt; 點選 GIF 可直接看 Commit</p>
+
+<p>感覺起來好像沒作很多操作，但其實了很多時間調整怎麼用 Widget 到最大效果~
+也是挺燒腦的&hellip; (暈</p>
+
+<p>30 天中，UI 部份也終於要到尾聲了~
+如果看拉 UI 有些煩的同學，加油! 再撐個 2-3 天囉~ 😂</p>
+
+        
+                
+        
+            <hr>
+            <ul class="pager">
+                
+                <li class="previous">
+                    <a href="/post/2019-09-18-build-android-app-with-flutter-9/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day9">&larr; Previous Post</a>
+                </li>
+                
+                
+                <li class="next">
+                    <a href="/post/2019-09-20-build-android-app-with-flutter-11/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day11">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+
+            
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                     
+                    
+                        
+                    
+                        
+                            <a href="/tags/dart" title="dart">
+                                dart
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/flutter" title="flutter">
+                                flutter
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <a href="/tags/ironman2020" title="ironman2020">
+                                ironman2020
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/opencv" title="opencv">
+                                opencv
+                            </a>
+                        
+                    
+                        
+                            <a href="/tags/python" title="python">
+                                python
+                            </a>
+                        
+                    
+                    </div>
+                </section>
+
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Bobson&#39;s Blog , 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+       bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else{
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
