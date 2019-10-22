@@ -6,10 +6,86 @@
     <description>Recent content in Ironman2020 on Bobson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Sep 2019 14:13:29 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Sep 2019 14:14:36 +0800</lastBuildDate>
     
 	<atom:link href="https://bbsonlin.github.io/tags/ironman2020/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day15</title>
+      <link>https://bbsonlin.github.io/post/2019-09-24-build-android-app-with-flutter-15/</link>
+      <pubDate>Tue, 24 Sep 2019 14:14:36 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-24-build-android-app-with-flutter-15/</guid>
+      <description>Day 15.  本系列同步發表在 第11屆鐵人賽
+ GitHub API 初體驗 本人在這專案之前是完全沒使用過 GitHub API 的，所以我是以新手之姿來串接它。
+如果有理解錯的，希望大家留言告訴我囉~
+目前我使用步驟是
+ 首先要有個 GitHub 帳號(廢話) 再到個人的設定頁面拿 Personal access token，開發測試時使用。 最後拿 token 就可以對接 GitHub REST API v3 了。   小提醒:
+ Personal access token 我個人認知是拿來自己開發測試用，之後若有開放出來給別人下載使用的話，應該要建立 Oauth App 的，用 Oauth2 認證方式來拿到別的用戶授權。 GitHub API 目前的想法是以搭配 github 這個套件來作串接。   倉庫頁 - 改 接下來我們就直接實際上使用看看。
+我先在創建一個新的檔案 lib/services/github_api.dart
+import &amp;#39;package:flutter_dotenv/flutter_dotenv.dart&amp;#39;; import &amp;#39;package:github/server.dart&amp;#39;; GitHub githubClient = GitHub( auth: Authentication.withToken(DotEnv().env[&amp;#34;GITHUB_PERSONAL_ACCESS_TOKEN&amp;#34;]), ); 主要目的是要宣告出一個全域變數 githubClient，方便後續其他頁面也能使用。</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day14</title>
+      <link>https://bbsonlin.github.io/post/2019-09-23-build-android-app-with-flutter-14/</link>
+      <pubDate>Mon, 23 Sep 2019 14:14:36 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-23-build-android-app-with-flutter-14/</guid>
+      <description>Day 14.  本系列同步發表在 第11屆鐵人賽
+ 現在各式各樣的資料都存放在雲端，App 本身不會存太多資訊，所以接 Web API 幾乎是現代 App 必然要作的事。
+ 想當初高中的時候，聽個音樂都還要下載放到 MP3，現在都是各種串流阿&amp;hellip;
+ &amp;ndash;
+欸!? 哪些 API 阿？ 其實這階段總共有三個 API 要串接。
+首先既然是 GitHub App，就一定要串接 GitHub API 拉~
+其他分別是 Hacker News API 和 GitHub Trending API
+而且說是串接，不過你也知道，如果有別人作好的套件，為何不用呢？
+很幸運的是，前兩個 API，我會分別使用 github 和 hnpwa_client 這兩個套件。
+但很殘念的是，GitHub Trending API 看來是必須自己架構程式碼&amp;hellip;
+所以 GitHub Trending API 這部份，我打算放到這階段最後再講。
+&amp;ndash;
+好拉，話不多說!
+我直接進入主題吧~
+hnpwa_client 這個套件呢，其實它並不是直接整合官方的 Hacker News API， 而是連接 HNPWA api 這個 Project 的 API。</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day13</title>
+      <link>https://bbsonlin.github.io/post/2019-09-22-build-android-app-with-flutter-13/</link>
+      <pubDate>Sun, 22 Sep 2019 14:14:36 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-22-build-android-app-with-flutter-13/</guid>
+      <description>Day 13.  本系列同步發表在 第11屆鐵人賽
+ 登入頁面的圖片 因為目前此專案為 Gitme 的 Reborn 版本，基本上我還是會盡量還原原版 Gitme 的設計。
+在登入頁面上新增一個圖片。
+修改後，如圖
+
+App 縮圖 還有另一個小問題，目前在 App 縮圖的部份，還是使用 Flutter 預設的 icon。
+如果想換掉它，該怎麼做呢？
+非常感人的是，又剛好有第三方套件可以使用。 由 Flutter Community 提供的 flutter_launcher_icons
+執行步驟非常簡單:
+ 在 pubspec.yaml 的 dependency 加入 flutter_launcher_icons: ^0.7.3 加入 flutter_icons 設定  flutter_icons: android: &amp;quot;launcher_icon&amp;quot; ios: true image_path: &amp;quot;assets/icons/gitme-reborn-logo.png&amp;quot;  在 terminal 中執行 flutter pub run flutter_launcher_icons:main 在 android 跟 ios 的資料夾中會自動產生 launcher_icon.png  $ flutter pub run flutter_launcher_icons:main Android minSdkVersion = 16 Creating default icons Android Adding a new Android launcher icon Overwriting default iOS launcher icon with new icon   三步就大功告成拉~</description>
+    </item>
+    
+    <item>
+      <title>用 Flutter 開發一個 Android App 吧 - Day12</title>
+      <link>https://bbsonlin.github.io/post/2019-09-21-build-android-app-with-flutter-12/</link>
+      <pubDate>Sat, 21 Sep 2019 14:14:36 +0800</pubDate>
+      
+      <guid>https://bbsonlin.github.io/post/2019-09-21-build-android-app-with-flutter-12/</guid>
+      <description>Day 12. 關於頁面  本系列同步發表在 第11屆鐵人賽
+ 關於頁面(AboutPage) 關於頁面中，目前只想顯示些簡單的資訊，App Icon 跟 版本資訊。
+就先顯示這兩個東西吧~
+App 資源管理 我們先不急著看程式碼，首先先想一個問題。
+App 有時需要用到些內嵌的檔案。
+例如，Logo、背景圖之類的檔案，在 Flutter 都稱為資源(asset)。
+而很方便的是，Flutter 有一種方法能很快的讓它們加入到 App 中。
+就是在 pubspec.yaml 檔案中描述要加入的 assets。
+要在 lib/ 底下的 *.dart 都裡能使用到 assets，主要有幾個步驟:
+ 先像上圖那樣在專案中新增 assets 資料夾，並將圖片資源放在其中。 在 pubspec.yaml 加入 assets 描述。 在 Flutter SDK 裡最常使用 Image.asset 和 AssetImage 來顯示圖片。  Show me the code~~ 講了半天，還是實際上看些程式碼感受一下比較快。
+import &amp;#34;package:flutter/material.dart&amp;#34;; class AboutPage extends StatelessWidget { @override Widget build(BuildContext context) { return Scaffold( appBar: AppBar( title: Text(&amp;#34;About&amp;#34;), ), body: LayoutBuilder( builder: (BuildContext context, BoxConstraints viewportConstraints) { return SingleChildScrollView( child: ConstrainedBox( constraints: BoxConstraints( minWidth: viewportConstraints.</description>
+    </item>
     
     <item>
       <title>用 Flutter 開發一個 Android App 吧 - Day11</title>

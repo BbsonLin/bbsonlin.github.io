@@ -13,9 +13,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Flutter 開發一個 Android App 吧 - Day11-</title>
+    <title>用 Flutter 開發一個 Android App 吧 - Day13-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-22-build-android-app-with-flutter-13/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -140,9 +140,9 @@
                         </a>
                         
                     </div>
-                    <h1>用 Flutter 開發一個 Android App 吧 - Day11</h1>
-                    <h2 class="subheading">Build Android app with Flutter - Day11</h2>
-                    <span  class="meta">Posted by Bobson Lin on Friday, September 20, 2019
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day13</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day13</h2>
+                    <span  class="meta">Posted by Bobson Lin on Sunday, September 22, 2019
                         
                     </span>
                 </div>
@@ -167,16 +167,18 @@
                 
                     <aside>
                         <header>
-                        <h2>用 Flutter 開發一個 Android App 吧 - Day11</h2>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day13</h2>
                         </header>
                         <nav id="TableOfContents">
 <ul>
 <li>
 <ul>
-<li><a href="#day-11-設定頁面">Day 11. 設定頁面</a>
+<li><a href="#day-13">Day 13.</a>
 <ul>
-<li><a href="#設定頁面-settingpage">設定頁面(SettingPage)</a></li>
-<li><a href="#設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</a></li>
+<li><a href="#登入頁面的圖片">登入頁面的圖片</a></li>
+<li><a href="#app-縮圖">App 縮圖</a></li>
+<li><a href="#0-0-1-版">0.0.1 版</a></li>
+<li><a href="#小結">小結</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -185,139 +187,92 @@
                 
                 
 
-<h2 id="day-11-設定頁面">Day 11. 設定頁面</h2>
+<h2 id="day-13">Day 13.</h2>
 
 <blockquote>
 <p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
 </blockquote>
 
-<h3 id="設定頁面-settingpage">設定頁面(SettingPage)</h3>
+<h3 id="登入頁面的圖片">登入頁面的圖片</h3>
 
-<p>這次的鐵人賽在設定頁面上，我想完成 2 個設定功能，主題(Theme)和語言(Language)。</p>
+<p>因為目前此專案為 Gitme 的 Reborn 版本，基本上我還是會盡量還原原版 Gitme 的設計。<br />
+在登入頁面上新增一個圖片。</p>
 
-<p>從設計圖上可以看出來，設定頁面一部分是可以開合的列表。
-這個一樣是源自 Material Design 的列表控制章節中的展開和閉合(Expand and collapse)</p>
+<p>修改後，如圖</p>
 
-<p>Flutter 中對應的 Widget 就是 <code>ExpansionTile</code>，它可以跟 <code>ListTile</code> 一樣直接使用在 <code>ListView</code> 裡面。</p>
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/bc0a9f1c9aba3e8aaf4a96ed02c1d9a93912ac57"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day13-1.png?raw=true" alt="day13-1.png" /></a></p>
 
-<p>先直接來看看程式碼吧~</p>
+<h3 id="app-縮圖">App 縮圖</h3>
 
-<p><code>lib/pages/setting/setting.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/components/setting/theme_option.dart&#39;</span>;
+<p>還有另一個小問題，目前在 App 縮圖的部份，還是使用 Flutter 預設的 icon。</p>
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SettingPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> Scaffold(
-      appBar: AppBar(
-        title: Text(<span style="color:#e6db74">&#34;Setting&#34;</span>),
-      ),
-      body: ListView(
-        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-          ExpansionTile(
-            leading: Icon(Icons.palette),
-            title: Text(<span style="color:#e6db74">&#34;Theme&#34;</span>),
-            children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-              Wrap(
-                spacing: <span style="color:#ae81ff">8.0</span>,
-                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                  ThemeOption(color: Colors.black),
-                  ThemeOption(color: Colors.blue),
-                  ThemeOption(color: Colors.blueGrey)
-                ],
-              )
-            ],
-          ),
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text(<span style="color:#e6db74">&#34;Language&#34;</span>),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                Text(<span style="color:#e6db74">&#34;English&#34;</span>),
-                Icon(Icons.keyboard_arrow_right),
-              ],
-            ),
-            onTap: () {},
-          ),
-        ],
-      ),
-    );
-  }
-}</code></pre></div>
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-1.png?raw=true" alt="day11-1.png" /></p>
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day13-2.jpeg?raw=true" alt="day13-2.jpeg" /></p>
 
-<p><code>ThemeOption</code> 是我自己寫的 Widget，基本上就是一個可點選的顏色方塊。<br />
-至於顏色切換的功能，牽扯到我這系列規劃的第三部份-狀態管理，所以這功能後續才會完成喔~</p>
+<p>如果想換掉它，該怎麼做呢？</p>
 
-<p><code>lib/components/setting/theme_option.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
+<p>非常感人的是，又剛好有第三方套件可以使用。
+由 Flutter Community 提供的 <a href="https://pub.dev/packages/flutter_launcher_icons#-readme-tab-">flutter_launcher_icons</a></p>
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThemeOption</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#66d9ef">const</span> ThemeOption({
-    Key key,
-    <span style="color:#66d9ef">this</span>.color,
-  }) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
+<p>執行步驟非常簡單:</p>
 
-  <span style="color:#66d9ef">final</span> Color color;
+<ol>
+<li>在 <code>pubspec.yaml</code> 的 dependency 加入 <code>flutter_launcher_icons: ^0.7.3</code></li>
+<li>加入 flutter_icons 設定
+<code>
+flutter_icons:
+  android: &quot;launcher_icon&quot; 
+  ios: true
+  image_path: &quot;assets/icons/gitme-reborn-logo.png&quot;
+</code></li>
+<li>在 terminal 中執行 <code>flutter pub run flutter_launcher_icons:main</code> 在 android 跟 ios 的資料夾中會自動產生 launcher_icon.png
+<code>
+$ flutter pub run flutter_launcher_icons:main
+Android minSdkVersion = 16
+Creating default icons Android
+Adding a new Android launcher icon
+Overwriting default iOS launcher icon with new icon
+</code></li>
+</ol>
 
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> GestureDetector(
-      child: Padding(
-        padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">8.0</span>),
-        child: SizedBox(
-          width: <span style="color:#ae81ff">42.0</span>,
-          height: <span style="color:#ae81ff">42.0</span>,
-          child: DecoratedBox(
-            decoration: BoxDecoration(color: color),
-          ),
-        ),
-      ),
-      onTap: () {},
-    );
-  }
-}</code></pre></div>
-<h3 id="設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</h3>
+<p>三步就大功告成拉~</p>
 
-<p>先來看看完成的樣子吧~</p>
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day13-3.gif?raw=true" alt="day13-3.gif" /></p>
 
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/00197cbf511e5aa4346b890687650ef53c5f00cd"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-2.gif?raw=true" alt="day11-2.gif" /></a>
-&gt; 點選 GIF 可直接看 Commit</p>
+<h3 id="0-0-1-版">0.0.1 版</h3>
 
-<p>這邊又使用到另一種的 ListTile - <code>RadioListTile</code>，一樣也是可以直接使用在 <code>ListView</code> 裡面，它所完成的是單選擇功能。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">RadioListTile(
-  title: Text(<span style="color:#e6db74">&#34;繁體中文&#34;</span>),
-  value: Language.traditionalChinese,
-  groupValue: _language,
-  onChanged: (Language value) {
-    setState(() {
-      _language <span style="color:#f92672">=</span> Language.traditionalChinese;
-    });
-  },
-),</code></pre></div>
-<p><code>SettingLanguagePage</code> 的詳細程式碼我就不貼上來了。<br />
-有興趣的人，可點選上面的 GIF，到 Gitme Reborn repo 看看~</p>
+<p>燈燈~ 完成了第一階段同時，也發布 Pre 版本 <a href="https://github.com/BbsonLin/gitme_reborn/releases/tag/v0.0.1">Gitme-reborn v0.0.1</a></p>
 
-<blockquote>
-<p>小提醒:</p>
+<p>發布這版本呢，主要是兩個目的:</p>
 
-<ul>
-<li>設定頁面實際功能都牽扯到這系列規劃的第三部份-狀態管理，後續將會慢慢完成喔~<br /></li>
-<li>歡迎大家到 GitHub Star 這開源項目且持續關注~ 😉</li>
-</ul>
-</blockquote>
+<ol>
+<li><p>試試 Flutter App 的相容性及效能，Flutter 最低可以支援到 Android SDK 16 (也就是 Android 4.1 之後的應該都能跑)；另外官方還宣稱至少能有 60 fps 甚至 120 fps。</p>
 
-<p>今天就容許小弟偷懶些，Day11 就先寫到這邊拉~~ (累</p>
+<p>於是乎，我就拿我手邊另一個性能較差的 Android 手機來試試
+&gt; Android SDK: 23<br />
+&gt; Android 版本: 6.0.1<br />
+&gt; 手機裝置: Samsung Galaxy J2 Prime</p>
 
-<p><em>參考</em></p>
+<p><a href="http://www.youtube.com/watch?v=82GDTpJoIx4"><img src="http://img.youtube.com/vi/82GDTpJoIx4/0.jpg" alt="Flutter App - Gitme Reborn v0.0.1 Demo" /></a>
+&gt; YouTube 影片 Flutter App - Gitme Reborn v0.0.1 Demo</p>
 
-<ul>
-<li><a href="https://youtu.be/z5iw2SeFx2M">Flutter YouTube - Wrap (Flutter Widget of the Week)</a></li>
-<li><a href="https://stackoverflow.com/questions/48857858/how-to-create-colour-box-with-fixed-width-and-height-in-flutter">StackOverflow - How to create colour box with fixed width and height in flutter?</a></li>
-<li><a href="https://material.io/components/lists/#types">Material Design - List types</a></li>
-</ul>
+<p>這台手機記憶體才 1.5GB， Gitme-reborn v0.0.1 只佔記憶體 84.3 MB。<br />
+從影片可以看到，App 操作起來真的是滿順的呢~!</p></li>
+
+<li><p>希望大家能幫我試試這 App 囉~ 大家也可以到 <a href="https://github.com/BbsonLin/gitme_reborn"><strong>GitHub</strong></a> 按 star 喔<br />
+有 Bug 用力的跟我說！</p></li>
+</ol>
+
+<h3 id="小結">小結</h3>
+
+<p>終於結束此系列的第一階段 - UI 部份了~~ 🤘<br />
+也成功的撐完鐵人賽 <sup>1</sup>&frasl;<sub>3</sub> 了~~ 🎉</p>
+
+<p>老實說，用 Flutter 拉手機 App UI 算是好上手的。<br />
+但是要詳細弄懂內部原理，實在是需要花滿多時間的。</p>
+
+<p>希望有幫助到遇到相同問題的人<br />
+第二階段來作 API 的串接<br />
+那麼明天見囉~~</p>
 
         
                 
@@ -326,12 +281,12 @@
             <ul class="pager">
                 
                 <li class="previous">
-                    <a href="/post/2019-09-19-build-android-app-with-flutter-10/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day10">&larr; Previous Post</a>
+                    <a href="/post/2019-09-21-build-android-app-with-flutter-12/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day12">&larr; Previous Post</a>
                 </li>
                 
                 
                 <li class="next">
-                    <a href="/post/2019-09-21-build-android-app-with-flutter-12/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day12">Next Post &rarr;</a>
+                    <a href="/post/2019-09-23-build-android-app-with-flutter-14/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day14">Next Post &rarr;</a>
                 </li>
                 
             </ul>

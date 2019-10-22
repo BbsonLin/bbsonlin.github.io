@@ -13,9 +13,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Flutter 開發一個 Android App 吧 - Day11-</title>
+    <title>用 Flutter 開發一個 Android App 吧 - Day15-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-24-build-android-app-with-flutter-15/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -140,9 +140,9 @@
                         </a>
                         
                     </div>
-                    <h1>用 Flutter 開發一個 Android App 吧 - Day11</h1>
-                    <h2 class="subheading">Build Android app with Flutter - Day11</h2>
-                    <span  class="meta">Posted by Bobson Lin on Friday, September 20, 2019
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day15</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day15</h2>
+                    <span  class="meta">Posted by Bobson Lin on Tuesday, September 24, 2019
                         
                     </span>
                 </div>
@@ -167,16 +167,16 @@
                 
                     <aside>
                         <header>
-                        <h2>用 Flutter 開發一個 Android App 吧 - Day11</h2>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day15</h2>
                         </header>
                         <nav id="TableOfContents">
 <ul>
 <li>
 <ul>
-<li><a href="#day-11-設定頁面">Day 11. 設定頁面</a>
+<li><a href="#day-15">Day 15.</a>
 <ul>
-<li><a href="#設定頁面-settingpage">設定頁面(SettingPage)</a></li>
-<li><a href="#設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</a></li>
+<li><a href="#github-api-初體驗">GitHub API 初體驗</a></li>
+<li><a href="#倉庫頁-改">倉庫頁 - 改</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -185,139 +185,144 @@
                 
                 
 
-<h2 id="day-11-設定頁面">Day 11. 設定頁面</h2>
+<h2 id="day-15">Day 15.</h2>
 
 <blockquote>
 <p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
 </blockquote>
 
-<h3 id="設定頁面-settingpage">設定頁面(SettingPage)</h3>
+<h3 id="github-api-初體驗">GitHub API 初體驗</h3>
 
-<p>這次的鐵人賽在設定頁面上，我想完成 2 個設定功能，主題(Theme)和語言(Language)。</p>
+<p>本人在這專案之前是完全沒使用過 GitHub API 的，所以我是以新手之姿來串接它。<br />
+如果有理解錯的，希望大家留言告訴我囉~</p>
 
-<p>從設計圖上可以看出來，設定頁面一部分是可以開合的列表。
-這個一樣是源自 Material Design 的列表控制章節中的展開和閉合(Expand and collapse)</p>
+<p>目前我使用步驟是</p>
 
-<p>Flutter 中對應的 Widget 就是 <code>ExpansionTile</code>，它可以跟 <code>ListTile</code> 一樣直接使用在 <code>ListView</code> 裡面。</p>
-
-<p>先直接來看看程式碼吧~</p>
-
-<p><code>lib/pages/setting/setting.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/components/setting/theme_option.dart&#39;</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SettingPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> Scaffold(
-      appBar: AppBar(
-        title: Text(<span style="color:#e6db74">&#34;Setting&#34;</span>),
-      ),
-      body: ListView(
-        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-          ExpansionTile(
-            leading: Icon(Icons.palette),
-            title: Text(<span style="color:#e6db74">&#34;Theme&#34;</span>),
-            children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-              Wrap(
-                spacing: <span style="color:#ae81ff">8.0</span>,
-                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                  ThemeOption(color: Colors.black),
-                  ThemeOption(color: Colors.blue),
-                  ThemeOption(color: Colors.blueGrey)
-                ],
-              )
-            ],
-          ),
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text(<span style="color:#e6db74">&#34;Language&#34;</span>),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                Text(<span style="color:#e6db74">&#34;English&#34;</span>),
-                Icon(Icons.keyboard_arrow_right),
-              ],
-            ),
-            onTap: () {},
-          ),
-        ],
-      ),
-    );
-  }
-}</code></pre></div>
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-1.png?raw=true" alt="day11-1.png" /></p>
-
-<p><code>ThemeOption</code> 是我自己寫的 Widget，基本上就是一個可點選的顏色方塊。<br />
-至於顏色切換的功能，牽扯到我這系列規劃的第三部份-狀態管理，所以這功能後續才會完成喔~</p>
-
-<p><code>lib/components/setting/theme_option.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThemeOption</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#66d9ef">const</span> ThemeOption({
-    Key key,
-    <span style="color:#66d9ef">this</span>.color,
-  }) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
-
-  <span style="color:#66d9ef">final</span> Color color;
-
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> GestureDetector(
-      child: Padding(
-        padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">8.0</span>),
-        child: SizedBox(
-          width: <span style="color:#ae81ff">42.0</span>,
-          height: <span style="color:#ae81ff">42.0</span>,
-          child: DecoratedBox(
-            decoration: BoxDecoration(color: color),
-          ),
-        ),
-      ),
-      onTap: () {},
-    );
-  }
-}</code></pre></div>
-<h3 id="設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</h3>
-
-<p>先來看看完成的樣子吧~</p>
-
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/00197cbf511e5aa4346b890687650ef53c5f00cd"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-2.gif?raw=true" alt="day11-2.gif" /></a>
-&gt; 點選 GIF 可直接看 Commit</p>
-
-<p>這邊又使用到另一種的 ListTile - <code>RadioListTile</code>，一樣也是可以直接使用在 <code>ListView</code> 裡面，它所完成的是單選擇功能。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">RadioListTile(
-  title: Text(<span style="color:#e6db74">&#34;繁體中文&#34;</span>),
-  value: Language.traditionalChinese,
-  groupValue: _language,
-  onChanged: (Language value) {
-    setState(() {
-      _language <span style="color:#f92672">=</span> Language.traditionalChinese;
-    });
-  },
-),</code></pre></div>
-<p><code>SettingLanguagePage</code> 的詳細程式碼我就不貼上來了。<br />
-有興趣的人，可點選上面的 GIF，到 Gitme Reborn repo 看看~</p>
+<ol>
+<li>首先要有個 GitHub 帳號(廢話)</li>
+<li>再到個人的設定頁面拿 <a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">Personal access token</a>，開發測試時使用。</li>
+<li>最後拿 token 就可以對接 GitHub REST API v3 了。</li>
+</ol>
 
 <blockquote>
 <p>小提醒:</p>
 
 <ul>
-<li>設定頁面實際功能都牽扯到這系列規劃的第三部份-狀態管理，後續將會慢慢完成喔~<br /></li>
-<li>歡迎大家到 GitHub Star 這開源項目且持續關注~ 😉</li>
+<li>Personal access token 我個人認知是拿來自己開發測試用，之後若有開放出來給別人下載使用的話，應該要建立 <a href="https://developer.github.com/v3/guides/basics-of-authentication/">Oauth App</a> 的，用 Oauth2 認證方式來拿到別的用戶授權。</li>
+<li>GitHub API 目前的想法是以搭配 <a href="https://pub.dev/packages/github"><code>github</code></a> 這個套件來作串接。</li>
 </ul>
 </blockquote>
 
-<p>今天就容許小弟偷懶些，Day11 就先寫到這邊拉~~ (累</p>
+<h3 id="倉庫頁-改">倉庫頁 - 改</h3>
 
-<p><em>參考</em></p>
+<p>接下來我們就直接實際上使用看看。</p>
+
+<p>我先在創建一個新的檔案 <code>lib/services/github_api.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter_dotenv/flutter_dotenv.dart&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:github/server.dart&#39;</span>;
+
+GitHub githubClient <span style="color:#f92672">=</span> GitHub(
+  auth: Authentication.withToken(DotEnv().env[<span style="color:#e6db74">&#34;GITHUB_PERSONAL_ACCESS_TOKEN&#34;</span>]),
+);</code></pre></div>
+<p>主要目的是要宣告出一個全域變數 <code>githubClient</code>，方便後續其他頁面也能使用。</p>
+
+<p>這裡和作天一樣我創建了 <code>fetchRepos()</code> 函數，裡頭來獲取我個人的所有 repo。<br />
+接著在 <code>initState()</code> 函數裡將 <code>fetchRepos()</code> assign 給 <code>repoList</code>，這樣前置作業就算完成拉~</p>
+
+<p>最後比較複雜的部份，我選擇使用 Flutter 原生提供一個方便的 Widget &ndash; <code>FutureBuilder</code>。<br />
+將最主要的內容部份以這個 Widget 來作些改寫，先來看看程式碼。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">...
+
+  <span style="color:#960050;background-color:#1e0010">@</span>override
+  Widget build(BuildContext context) {
+    <span style="color:#66d9ef">return</span> Scrollbar(
+      child: RefreshIndicator(
+        child: FutureBuilder(
+          future: repoList,
+          builder:
+              (BuildContext context, AsyncSnapshot<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Repository<span style="color:#f92672">&gt;&gt;</span> snapshot) {
+            <span style="color:#66d9ef">switch</span> (snapshot.connectionState) {
+              <span style="color:#66d9ef">case</span> ConnectionState.done:
+                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>snapshot.hasError) {
+                  <span style="color:#66d9ef">return</span> ListView.separated(
+                    padding: EdgeInsets.all(<span style="color:#ae81ff">0.0</span>),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) {
+                      <span style="color:#66d9ef">return</span> ListTile(
+                        title: Text(
+                            <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>snapshot.data[index].owner.login<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>snapshot.data[index].name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                            SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                            snapshot.data[index].description <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>
+                                <span style="color:#f92672">?</span> Text(snapshot.data[index].description)
+                                <span style="color:#f92672">:</span> Text(<span style="color:#e6db74">&#34;No description provided.&#34;</span>),
+                            SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                            Text(<span style="color:#e6db74">&#34;★ </span><span style="color:#e6db74">${</span>snapshot.data[index].stargazersCount<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>),
+                          ],
+                        ),
+                        trailing: snapshot.data[index].language <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>
+                            <span style="color:#f92672">?</span> Text(snapshot.data[index].language)
+                            <span style="color:#f92672">:</span> SizedBox(),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: <span style="color:#ae81ff">8.0</span>, horizontal: <span style="color:#ae81ff">16.0</span>),
+                        onTap: () {},
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, <span style="color:#66d9ef">int</span> index) <span style="color:#f92672">=&gt;</span>
+                        <span style="color:#66d9ef">const</span> Divider(height: <span style="color:#ae81ff">0.0</span>),
+                  );
+                } <span style="color:#66d9ef">else</span> {
+                  <span style="color:#66d9ef">return</span> Center(child: Text(<span style="color:#e6db74">&#34;No Data&#34;</span>));
+                }
+                <span style="color:#66d9ef">break</span>;
+              <span style="color:#66d9ef">case</span> ConnectionState.none:
+              <span style="color:#66d9ef">case</span> ConnectionState.active:
+              <span style="color:#66d9ef">case</span> ConnectionState.waiting:
+                <span style="color:#66d9ef">return</span> Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        onRefresh: () <span style="color:#66d9ef">async</span> {
+          <span style="color:#66d9ef">await</span> Future.delayed(Duration(seconds: <span style="color:#ae81ff">1</span>));
+          setState(() {
+            repoList <span style="color:#f92672">=</span> fetchRepos();
+          });
+        },
+      ),
+    );
+  }
+  
+  Future<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Repository<span style="color:#f92672">&gt;&gt;</span> fetchRepos() <span style="color:#66d9ef">async</span> {
+    ...
+  }</code></pre></div>
+<p>程式碼看起來很長，但最主要的概念就是我將原本 <code>ListView.separated</code> 的部份包進了 <code>FutureBuilder</code> 裡。</p>
+
+<p>而使用 <code>FutureBuilder</code> 有兩大重點:
+* <code>future</code> 屬性需要帶入你要執行的異步任務(這裡就是指獲取 repos)
+* <code>builder</code> 屬性需要填入你所想要創建的內容，而執行異步任務完的結果，可以在函數第二個參數 <code>AsyncSnapshot snapshot</code> 來作使用。</p>
+
+<blockquote>
+<p>小提醒:</p>
 
 <ul>
-<li><a href="https://youtu.be/z5iw2SeFx2M">Flutter YouTube - Wrap (Flutter Widget of the Week)</a></li>
-<li><a href="https://stackoverflow.com/questions/48857858/how-to-create-colour-box-with-fixed-width-and-height-in-flutter">StackOverflow - How to create colour box with fixed width and height in flutter?</a></li>
-<li><a href="https://material.io/components/lists/#types">Material Design - List types</a></li>
+<li>使用 <code>FutureBuilder</code> 其實還有一個好處，可以在 <code>build</code> 裡面處理 <code>snapshot.connectionState</code> ，比如有 連線異常 或 載入資料中的情況，能直接用 switch case 切換 Widget 來表示這些狀態。</li>
+<li>在開發途中發現如果搭配 <code>FutureBuilder</code> 的話，<code>RefreshIndicator.onRefresh</code> 的使用上需作些修改。(參考: <a href="https://inducesmile.com/google-flutter/how-to-refresh-futurebuilder-on-button-click-in-flutter/">HOW TO REFRESH FUTUREBUILDER ON BUTTON CLICK IN FLUTTER</a>)</li>
+<li>關於 Personal access token 我使用 <a href="https://pub.dev/packages/flutter_dotenv"><code>flutter_dotenv</code></a> 這套件來載入我的 <code>.env</code> 設定檔，主要是為些安全上作考量囉~</li>
 </ul>
+</blockquote>
+
+<p>&ndash;</p>
+
+<p>成果</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/0883d33da2569f0983f6f267b0ba215c0bac58ae"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day15-1.gif?raw=true" alt="day15-1.gif" /></a></p>
+
+<p>&ndash;</p>
+
+<p>鐵人賽默默的也過了一半了~<br />
+這幾天小弟較忙，原諒小弟今天先以簡短的內容做收~</p>
 
         
                 
@@ -326,13 +331,9 @@
             <ul class="pager">
                 
                 <li class="previous">
-                    <a href="/post/2019-09-19-build-android-app-with-flutter-10/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day10">&larr; Previous Post</a>
+                    <a href="/post/2019-09-23-build-android-app-with-flutter-14/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day14">&larr; Previous Post</a>
                 </li>
                 
-                
-                <li class="next">
-                    <a href="/post/2019-09-21-build-android-app-with-flutter-12/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day12">Next Post &rarr;</a>
-                </li>
                 
             </ul>
 

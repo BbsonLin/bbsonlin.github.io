@@ -13,9 +13,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Flutter 開發一個 Android App 吧 - Day11-</title>
+    <title>用 Flutter 開發一個 Android App 吧 - Day12-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-21-build-android-app-with-flutter-12/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -140,9 +140,9 @@
                         </a>
                         
                     </div>
-                    <h1>用 Flutter 開發一個 Android App 吧 - Day11</h1>
-                    <h2 class="subheading">Build Android app with Flutter - Day11</h2>
-                    <span  class="meta">Posted by Bobson Lin on Friday, September 20, 2019
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day12</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day12</h2>
+                    <span  class="meta">Posted by Bobson Lin on Saturday, September 21, 2019
                         
                     </span>
                 </div>
@@ -167,16 +167,18 @@
                 
                     <aside>
                         <header>
-                        <h2>用 Flutter 開發一個 Android App 吧 - Day11</h2>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day12</h2>
                         </header>
                         <nav id="TableOfContents">
 <ul>
 <li>
 <ul>
-<li><a href="#day-11-設定頁面">Day 11. 設定頁面</a>
+<li><a href="#day-12-關於頁面">Day 12. 關於頁面</a>
 <ul>
-<li><a href="#設定頁面-settingpage">設定頁面(SettingPage)</a></li>
-<li><a href="#設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</a></li>
+<li><a href="#關於頁面-aboutpage">關於頁面(AboutPage)</a></li>
+<li><a href="#app-資源管理">App 資源管理</a></li>
+<li><a href="#show-me-the-code">Show me the code~~</a></li>
+<li><a href="#app-版本">App 版本</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -185,138 +187,153 @@
                 
                 
 
-<h2 id="day-11-設定頁面">Day 11. 設定頁面</h2>
+<h2 id="day-12-關於頁面">Day 12. 關於頁面</h2>
 
 <blockquote>
 <p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
 </blockquote>
 
-<h3 id="設定頁面-settingpage">設定頁面(SettingPage)</h3>
+<h3 id="關於頁面-aboutpage">關於頁面(AboutPage)</h3>
 
-<p>這次的鐵人賽在設定頁面上，我想完成 2 個設定功能，主題(Theme)和語言(Language)。</p>
+<p>關於頁面中，目前只想顯示些簡單的資訊，App Icon 跟 版本資訊。</p>
 
-<p>從設計圖上可以看出來，設定頁面一部分是可以開合的列表。
-這個一樣是源自 Material Design 的列表控制章節中的展開和閉合(Expand and collapse)</p>
+<p>就先顯示這兩個東西吧~</p>
 
-<p>Flutter 中對應的 Widget 就是 <code>ExpansionTile</code>，它可以跟 <code>ListTile</code> 一樣直接使用在 <code>ListView</code> 裡面。</p>
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day12-1.png?raw=true" alt="day12-1.png" /></p>
 
-<p>先直接來看看程式碼吧~</p>
+<h3 id="app-資源管理">App 資源管理</h3>
 
-<p><code>lib/pages/setting/setting.dart</code></p>
+<p>我們先不急著看程式碼，首先先想一個問題。</p>
+
+<p>App 有時需要用到些內嵌的檔案。<br />
+例如，Logo、背景圖之類的檔案，在 Flutter 都稱為資源(asset)。</p>
+
+<p>而很方便的是，Flutter 有一種方法能很快的讓它們加入到 App 中。<br />
+就是在 <code>pubspec.yaml</code> 檔案中描述要加入的 assets。</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day12-2.jpeg?raw=true" alt="day12-2.jpeg" /></p>
+
+<p>要在 lib/ 底下的 *.dart 都裡能使用到 assets，主要有幾個步驟:</p>
+
+<ol>
+<li>先像上圖那樣在專案中新增 assets 資料夾，並將圖片資源放在其中。</li>
+<li>在 <code>pubspec.yaml</code> 加入 assets 描述。</li>
+<li>在 Flutter SDK 裡最常使用 <code>Image.asset</code> 和 <code>AssetImage</code> 來顯示圖片。</li>
+</ol>
+
+<h3 id="show-me-the-code">Show me the code~~</h3>
+
+<p>講了半天，還是實際上看些程式碼感受一下比較快。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/components/setting/theme_option.dart&#39;</span>;
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SettingPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AboutPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
   <span style="color:#960050;background-color:#1e0010">@</span>override
   Widget build(BuildContext context) {
     <span style="color:#66d9ef">return</span> Scaffold(
       appBar: AppBar(
-        title: Text(<span style="color:#e6db74">&#34;Setting&#34;</span>),
+        title: Text(<span style="color:#e6db74">&#34;About&#34;</span>),
       ),
-      body: ListView(
-        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-          ExpansionTile(
-            leading: Icon(Icons.palette),
-            title: Text(<span style="color:#e6db74">&#34;Theme&#34;</span>),
-            children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-              Wrap(
-                spacing: <span style="color:#ae81ff">8.0</span>,
-                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                  ThemeOption(color: Colors.black),
-                  ThemeOption(color: Colors.blue),
-                  ThemeOption(color: Colors.blueGrey)
-                ],
-              )
-            ],
-          ),
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text(<span style="color:#e6db74">&#34;Language&#34;</span>),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                Text(<span style="color:#e6db74">&#34;English&#34;</span>),
-                Icon(Icons.keyboard_arrow_right),
-              ],
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+          <span style="color:#66d9ef">return</span> SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: viewportConstraints.maxWidth,
+                minHeight: viewportConstraints.maxHeight,
+              ),
+              child: Padding(
+                padding: <span style="color:#66d9ef">const</span> EdgeInsets.symmetric(vertical: <span style="color:#ae81ff">24.0</span>),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+
+                        <span style="color:#75715e">// vvv Assets 圖片用在這裡喔~~
+</span><span style="color:#75715e"></span>                        CircleAvatar(
+                          backgroundImage:
+                              AssetImage(<span style="color:#e6db74">&#34;assets/images/gitme-reborn-logo.png&#34;</span>),
+                          radius: <span style="color:#ae81ff">40.0</span>,
+                        ),
+                        SizedBox(height: <span style="color:#ae81ff">8.0</span>),
+                        Text(<span style="color:#e6db74">&#34;gitme reborn&#34;</span>,
+                            style: Theme.of(context).textTheme.title),
+                        SizedBox(height: <span style="color:#ae81ff">4.0</span>),
+                        Text(<span style="color:#e6db74">&#34;0.0.1&#34;</span>,
+                            style: Theme.of(context).textTheme.subtitle),
+                      ],
+                    ),
+                    Column(
+                      children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
+                        Text(<span style="color:#e6db74">&#34;Made by BbsonLin&#34;</span>,
+                            style: Theme.of(context).textTheme.caption),
+                        Text(<span style="color:#e6db74">&#34;License MIT&#34;</span>,
+                            style: Theme.of(context).textTheme.caption),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-            onTap: () {},
-          ),
-        ],
+          );
+        },
       ),
     );
   }
 }</code></pre></div>
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-1.png?raw=true" alt="day11-1.png" /></p>
+<p>雖然只有 60 行，但 <code>LayoutBuilder</code> 和 <code>ConstrainedBox</code> 這兩位 Widget 挺陌生的&hellip;</p>
 
-<p><code>ThemeOption</code> 是我自己寫的 Widget，基本上就是一個可點選的顏色方塊。<br />
-至於顏色切換的功能，牽扯到我這系列規劃的第三部份-狀態管理，所以這功能後續才會完成喔~</p>
+<p>這邊就需要解釋一下了，在 <a href="https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html"><code>SingleChildScrollView</code></a> 文件中有寫到，<code>SingleChildScrollView</code> 跟 <code>Column</code> 這兩個 Widget 其實有點衝突。<br />
+<code>Column</code> 會撐畫面滿到盡可能的大，而 <code>SingleChildScrollView</code> 會提供無限的空間給 <code>child</code>。</p>
 
-<p><code>lib/components/setting/theme_option.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
+<p>那這樣豈不是就沒有任何限制了嗎！？<br />
+對，所以你給 <code>Column</code> <code>crossAxisAlignment: CrossAxisAlignment.center</code>，它也不知道該怎麼置中&hellip;</p>
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThemeOption</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#66d9ef">const</span> ThemeOption({
-    Key key,
-    <span style="color:#66d9ef">this</span>.color,
-  }) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
+<p>解決的方法就是給它 <strong>限制</strong> 。</p>
 
-  <span style="color:#66d9ef">final</span> Color color;
-
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> GestureDetector(
-      child: Padding(
-        padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">8.0</span>),
-        child: SizedBox(
-          width: <span style="color:#ae81ff">42.0</span>,
-          height: <span style="color:#ae81ff">42.0</span>,
-          child: DecoratedBox(
-            decoration: BoxDecoration(color: color),
-          ),
-        ),
-      ),
-      onTap: () {},
-    );
-  }
-}</code></pre></div>
-<h3 id="設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</h3>
-
-<p>先來看看完成的樣子吧~</p>
-
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/00197cbf511e5aa4346b890687650ef53c5f00cd"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-2.gif?raw=true" alt="day11-2.gif" /></a>
-&gt; 點選 GIF 可直接看 Commit</p>
-
-<p>這邊又使用到另一種的 ListTile - <code>RadioListTile</code>，一樣也是可以直接使用在 <code>ListView</code> 裡面，它所完成的是單選擇功能。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">RadioListTile(
-  title: Text(<span style="color:#e6db74">&#34;繁體中文&#34;</span>),
-  value: Language.traditionalChinese,
-  groupValue: _language,
-  onChanged: (Language value) {
-    setState(() {
-      _language <span style="color:#f92672">=</span> Language.traditionalChinese;
-    });
-  },
-),</code></pre></div>
-<p><code>SettingLanguagePage</code> 的詳細程式碼我就不貼上來了。<br />
-有興趣的人，可點選上面的 GIF，到 Gitme Reborn repo 看看~</p>
+<p>文件裡給的方法是利用 <code>LayoutBuilder</code> <code>builder</code> 函數中的 <code>viewportConstraints</code> 參數來搭配 <code>ConstrainedBox</code> 給 <code>SingleChildScrollView</code> 的 <code>child</code> 限制，以達成 <code>Column</code> 置中。</p>
 
 <blockquote>
-<p>小提醒:</p>
-
-<ul>
-<li>設定頁面實際功能都牽扯到這系列規劃的第三部份-狀態管理，後續將會慢慢完成喔~<br /></li>
-<li>歡迎大家到 GitHub Star 這開源項目且持續關注~ 😉</li>
-</ul>
+<p>這邊是我個人的理解，如果有理解錯誤，歡迎底下留言告知~~</p>
 </blockquote>
 
-<p>今天就容許小弟偷懶些，Day11 就先寫到這邊拉~~ (累</p>
+<h3 id="app-版本">App 版本</h3>
+
+<p>這邊還有一向問題要解決的，就是版本 0.0.1 目前是寫死在程式碼裡的，要怎麼讓它動態的知道我們版本更新了呢？</p>
+
+<p>還記得在 Day 5 時，我們有使用過第三方套件來處理登入 modal。<br />
+我們必須在 <code>pubspec.yaml</code> 的 dependency 裡加上 <code>[pacakge_name]: [semantic version]</code>。</p>
+
+<p>基本上，我們撰寫的 gitme_reborn 的 <code>pubspec.yaml</code> 在最前面就有一個欄位為 <code>version</code></p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day12-3.jpeg?raw=true" alt="day12-3.jpeg" /></p>
+
+<p>那麼我們在 App 運行時怎抓到它的值呢?</p>
+
+<p>其實 Flutter Team 有維護一個 package 為 <a href="https://pub.dev/packages/package_info"><code>package_info</code></a>，就是在提供此功能的套件。</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/b2a1166d5c11dd04faef4ce1d3b87e3590525f15#diff-65c778983e796050c76bd0729428c54b"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day12-4.jpeg?raw=true" alt="day12-4.jpeg" /></a></p>
+
+<p>&ndash;</p>
+
+<p>成果</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day12-5.gif?raw=true" alt="day12-5.gif" /></p>
+
+<p>&ndash;</p>
+
+<p>呼~ 真的還滿多細節需要注意的&hellip;<br />
+明天會是 UI 最後部份，有些小地方需要加強的<br />
+明天接續囉~~</p>
 
 <p><em>參考</em></p>
 
 <ul>
-<li><a href="https://youtu.be/z5iw2SeFx2M">Flutter YouTube - Wrap (Flutter Widget of the Week)</a></li>
-<li><a href="https://stackoverflow.com/questions/48857858/how-to-create-colour-box-with-fixed-width-and-height-in-flutter">StackOverflow - How to create colour box with fixed width and height in flutter?</a></li>
-<li><a href="https://material.io/components/lists/#types">Material Design - List types</a></li>
+<li><a href="https://flutter.dev/docs/development/ui/assets-and-images">Flutter.dev Documentation - Adding assets and images</a></li>
 </ul>
 
         
@@ -326,12 +343,12 @@
             <ul class="pager">
                 
                 <li class="previous">
-                    <a href="/post/2019-09-19-build-android-app-with-flutter-10/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day10">&larr; Previous Post</a>
+                    <a href="/post/2019-09-20-build-android-app-with-flutter-11/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day11">&larr; Previous Post</a>
                 </li>
                 
                 
                 <li class="next">
-                    <a href="/post/2019-09-21-build-android-app-with-flutter-12/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day12">Next Post &rarr;</a>
+                    <a href="/post/2019-09-22-build-android-app-with-flutter-13/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day13">Next Post &rarr;</a>
                 </li>
                 
             </ul>

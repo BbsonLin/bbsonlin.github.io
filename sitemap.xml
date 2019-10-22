@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-24-build-android-app-with-flutter-15/</loc>
+    <lastmod>2019-09-24T14:14:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-23-build-android-app-with-flutter-14/</loc>
+    <lastmod>2019-09-23T14:14:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-22-build-android-app-with-flutter-13/</loc>
+    <lastmod>2019-09-22T14:14:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bbsonlin.github.io/post/2019-09-21-build-android-app-with-flutter-12/</loc>
+    <lastmod>2019-09-21T14:14:36+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/</loc>
     <lastmod>2019-09-20T14:13:29+08:00</lastmod>
   </url>
@@ -150,7 +170,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/</loc>
-    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
+    <lastmod>2019-09-24T14:14:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -167,7 +187,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/flutter/</loc>
-    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
+    <lastmod>2019-09-24T14:14:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -184,13 +204,13 @@
   </url>
   
   <url>
-    <loc>https://bbsonlin.github.io/tags/gossip/</loc>
+    <loc>https://bbsonlin.github.io/categories/gossip/</loc>
     <lastmod>2019-01-24T21:40:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://bbsonlin.github.io/categories/gossip/</loc>
+    <loc>https://bbsonlin.github.io/tags/gossip/</loc>
     <lastmod>2019-01-24T21:40:45+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -203,7 +223,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/tags/ironman2020/</loc>
-    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
+    <lastmod>2019-09-24T14:14:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -215,7 +235,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/post/</loc>
-    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
+    <lastmod>2019-09-24T14:14:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -233,7 +253,7 @@
   
   <url>
     <loc>https://bbsonlin.github.io/categories/tech/</loc>
-    <lastmod>2019-09-20T14:13:29+08:00</lastmod>
+    <lastmod>2019-09-24T14:14:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   

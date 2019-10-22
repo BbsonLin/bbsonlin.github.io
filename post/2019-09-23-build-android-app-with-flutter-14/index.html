@@ -13,9 +13,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://bbsonlin.github.io/img/favicon.ico">
 
-    <title>用 Flutter 開發一個 Android App 吧 - Day11-</title>
+    <title>用 Flutter 開發一個 Android App 吧 - Day14-</title>
 
-    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-20-build-android-app-with-flutter-11/">
+    <link rel="canonical" href="https://bbsonlin.github.io/post/2019-09-23-build-android-app-with-flutter-14/">
 
     <link rel="stylesheet" href="https://bbsonlin.github.io/css/iDisqus.min.css"/>
 	
@@ -140,9 +140,9 @@
                         </a>
                         
                     </div>
-                    <h1>用 Flutter 開發一個 Android App 吧 - Day11</h1>
-                    <h2 class="subheading">Build Android app with Flutter - Day11</h2>
-                    <span  class="meta">Posted by Bobson Lin on Friday, September 20, 2019
+                    <h1>用 Flutter 開發一個 Android App 吧 - Day14</h1>
+                    <h2 class="subheading">Build Android app with Flutter - Day14</h2>
+                    <span  class="meta">Posted by Bobson Lin on Monday, September 23, 2019
                         
                     </span>
                 </div>
@@ -167,16 +167,16 @@
                 
                     <aside>
                         <header>
-                        <h2>用 Flutter 開發一個 Android App 吧 - Day11</h2>
+                        <h2>用 Flutter 開發一個 Android App 吧 - Day14</h2>
                         </header>
                         <nav id="TableOfContents">
 <ul>
 <li>
 <ul>
-<li><a href="#day-11-設定頁面">Day 11. 設定頁面</a>
+<li><a href="#day-14">Day 14.</a>
 <ul>
-<li><a href="#設定頁面-settingpage">設定頁面(SettingPage)</a></li>
-<li><a href="#設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</a></li>
+<li><a href="#欸-哪些-api-阿">欸!? 哪些 API 阿？</a></li>
+<li><a href="#開啟-hack-news-連結">開啟 Hack News 連結</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -185,139 +185,93 @@
                 
                 
 
-<h2 id="day-11-設定頁面">Day 11. 設定頁面</h2>
+<h2 id="day-14">Day 14.</h2>
 
 <blockquote>
 <p>本系列同步發表在 <a href="https://ithelp.ithome.com.tw/users/20103043/ironman/2186"><strong>第11屆鐵人賽</strong></a></p>
 </blockquote>
 
-<h3 id="設定頁面-settingpage">設定頁面(SettingPage)</h3>
-
-<p>這次的鐵人賽在設定頁面上，我想完成 2 個設定功能，主題(Theme)和語言(Language)。</p>
-
-<p>從設計圖上可以看出來，設定頁面一部分是可以開合的列表。
-這個一樣是源自 Material Design 的列表控制章節中的展開和閉合(Expand and collapse)</p>
-
-<p>Flutter 中對應的 Widget 就是 <code>ExpansionTile</code>，它可以跟 <code>ListTile</code> 一樣直接使用在 <code>ListView</code> 裡面。</p>
-
-<p>先直接來看看程式碼吧~</p>
-
-<p><code>lib/pages/setting/setting.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:gitme_reborn/components/setting/theme_option.dart&#39;</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SettingPage</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> Scaffold(
-      appBar: AppBar(
-        title: Text(<span style="color:#e6db74">&#34;Setting&#34;</span>),
-      ),
-      body: ListView(
-        children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-          ExpansionTile(
-            leading: Icon(Icons.palette),
-            title: Text(<span style="color:#e6db74">&#34;Theme&#34;</span>),
-            children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-              Wrap(
-                spacing: <span style="color:#ae81ff">8.0</span>,
-                children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                  ThemeOption(color: Colors.black),
-                  ThemeOption(color: Colors.blue),
-                  ThemeOption(color: Colors.blueGrey)
-                ],
-              )
-            ],
-          ),
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text(<span style="color:#e6db74">&#34;Language&#34;</span>),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span>[
-                Text(<span style="color:#e6db74">&#34;English&#34;</span>),
-                Icon(Icons.keyboard_arrow_right),
-              ],
-            ),
-            onTap: () {},
-          ),
-        ],
-      ),
-    );
-  }
-}</code></pre></div>
-<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-1.png?raw=true" alt="day11-1.png" /></p>
-
-<p><code>ThemeOption</code> 是我自己寫的 Widget，基本上就是一個可點選的顏色方塊。<br />
-至於顏色切換的功能，牽扯到我這系列規劃的第三部份-狀態管理，所以這功能後續才會完成喔~</p>
-
-<p><code>lib/components/setting/theme_option.dart</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;package:flutter/material.dart&#34;</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThemeOption</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
-  <span style="color:#66d9ef">const</span> ThemeOption({
-    Key key,
-    <span style="color:#66d9ef">this</span>.color,
-  }) <span style="color:#f92672">:</span> <span style="color:#66d9ef">super</span>(key: key);
-
-  <span style="color:#66d9ef">final</span> Color color;
-
-  <span style="color:#960050;background-color:#1e0010">@</span>override
-  Widget build(BuildContext context) {
-    <span style="color:#66d9ef">return</span> GestureDetector(
-      child: Padding(
-        padding: <span style="color:#66d9ef">const</span> EdgeInsets.all(<span style="color:#ae81ff">8.0</span>),
-        child: SizedBox(
-          width: <span style="color:#ae81ff">42.0</span>,
-          height: <span style="color:#ae81ff">42.0</span>,
-          child: DecoratedBox(
-            decoration: BoxDecoration(color: color),
-          ),
-        ),
-      ),
-      onTap: () {},
-    );
-  }
-}</code></pre></div>
-<h3 id="設定語言頁面-settinglanguagepage">設定語言頁面(SettingLanguagePage)</h3>
-
-<p>先來看看完成的樣子吧~</p>
-
-<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/00197cbf511e5aa4346b890687650ef53c5f00cd"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day11-2.gif?raw=true" alt="day11-2.gif" /></a>
-&gt; 點選 GIF 可直接看 Commit</p>
-
-<p>這邊又使用到另一種的 ListTile - <code>RadioListTile</code>，一樣也是可以直接使用在 <code>ListView</code> 裡面，它所完成的是單選擇功能。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">RadioListTile(
-  title: Text(<span style="color:#e6db74">&#34;繁體中文&#34;</span>),
-  value: Language.traditionalChinese,
-  groupValue: _language,
-  onChanged: (Language value) {
-    setState(() {
-      _language <span style="color:#f92672">=</span> Language.traditionalChinese;
-    });
-  },
-),</code></pre></div>
-<p><code>SettingLanguagePage</code> 的詳細程式碼我就不貼上來了。<br />
-有興趣的人，可點選上面的 GIF，到 Gitme Reborn repo 看看~</p>
+<p>現在各式各樣的資料都存放在雲端，App 本身不會存太多資訊，所以接 Web API 幾乎是現代 App 必然要作的事。</p>
 
 <blockquote>
-<p>小提醒:</p>
-
-<ul>
-<li>設定頁面實際功能都牽扯到這系列規劃的第三部份-狀態管理，後續將會慢慢完成喔~<br /></li>
-<li>歡迎大家到 GitHub Star 這開源項目且持續關注~ 😉</li>
-</ul>
+<p>想當初高中的時候，聽個音樂都還要下載放到 MP3，現在都是各種串流阿&hellip;</p>
 </blockquote>
 
-<p>今天就容許小弟偷懶些，Day11 就先寫到這邊拉~~ (累</p>
+<p>&ndash;</p>
 
-<p><em>參考</em></p>
+<h3 id="欸-哪些-api-阿">欸!? 哪些 API 阿？</h3>
 
-<ul>
-<li><a href="https://youtu.be/z5iw2SeFx2M">Flutter YouTube - Wrap (Flutter Widget of the Week)</a></li>
-<li><a href="https://stackoverflow.com/questions/48857858/how-to-create-colour-box-with-fixed-width-and-height-in-flutter">StackOverflow - How to create colour box with fixed width and height in flutter?</a></li>
-<li><a href="https://material.io/components/lists/#types">Material Design - List types</a></li>
-</ul>
+<p>其實這階段總共有三個 API 要串接。<br />
+首先既然是 GitHub App，就一定要串接 GitHub API 拉~<br />
+其他分別是 Hacker News API 和 GitHub Trending API</p>
+
+<p>而且說是串接，不過你也知道，如果有別人作好的套件，為何不用呢？</p>
+
+<p>很幸運的是，前兩個 API，我會分別使用 <a href="https://pub.dev/packages/github"><code>github</code></a> 和 <a href="https://pub.dev/packages/hnpwa_client"><code>hnpwa_client</code></a> 這兩個套件。</p>
+
+<p>但很殘念的是，GitHub Trending API 看來是必須自己架構程式碼&hellip;<br />
+所以 GitHub Trending API 這部份，我打算放到這階段最後再講。</p>
+
+<p>&ndash;</p>
+
+<p>好拉，話不多說!<br />
+我直接進入主題吧~</p>
+
+<p><code>hnpwa_client</code> 這個套件呢，其實它並不是直接整合官方的 Hacker News API，
+而是連接 <a href="https://github.com/tastejs/hacker-news-pwas"><code>HNPWA api</code></a> 這個 Project 的 API。</p>
+
+<p>個人覺得原因在於:
+1. <code>HNPWA api</code> 是專門為 PWA 或 Mobile App 設計的。
+2. 設計的比官方的 API 還好使用。</p>
+
+<p>先來看一下 Commit</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/ba59ff7a3b589c64ee1fe8193fe591220fb141c4"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day14-1.jpeg?raw=true" alt="day14-1.jpeg" /></a></p>
+
+<p>我修改的步驟很簡單:</p>
+
+<ol>
+<li>在 <code>_HomePageState</code> 裡寫 <code>final HnpwaClient hnClient = HnpwaClient();</code>，宣告 <code>hnClient</code> 這個變數方便在這個 State 裡面使用。</li>
+<li>重寫(override) <code>initState()</code> 方法，並調用我自己寫的異步任務 <code>fetchHNData()</code></li>
+<li><code>fetchHNData()</code> 裡面調用 <code>hnpwa_client</code> 的方法 <code>hnClient.news()</code> 和 <code>hnClient.newest()</code>。</li>
+<li>在 setState 函數裡指定值給 <code>_hnTops</code> 和 <code>_hnNews</code> 這兩個變數。
+<code>
+_hnTops = hnNew.items;
+_hnNews = hnNewest.items;
+</code></li>
+</ol>
+
+<p>改完之後，在有連線狀態時一進到首頁就會讀取 Hacker News 囉~</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day14-2.gif?raw=true" alt="day14-2.gif" /></p>
+
+<h3 id="開啟-hack-news-連結">開啟 Hack News 連結</h3>
+
+<p>這邊稍微再做一個簡易的功能，就是點擊 Hack News 的 ListTile 後會自動用瀏覽器開啟連結。</p>
+
+<p>而達成此功能只須依賴另一個 Flutter Team 開發的套件 <a href="https://pub.dev/packages/url_launcher"><code>url_launcher</code></a>。<br />
+它會幫你自動的用你手機系統(iOS 跟 Android 都支援)預設的方式開啟 URL，不論是 <code>http(s)</code> 、<code>mailto</code>、<code>tel</code> 跟 <code>sms</code> 都會處理喔~</p>
+
+<p><a href="https://github.com/BbsonLin/gitme_reborn/commit/343a2cfc4f4ab18e73f79863797b99a9be5db1a3#diff-d3cda190df50f3330b22952d914ba8fe"><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day14-3.jpeg?raw=true" alt="day14-3.jpeg" /></a></p>
+
+<p><code>lib/utils.dart</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Future launchURL(url) <span style="color:#66d9ef">async</span> {
+  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">await</span> canLaunch(url)) {
+    <span style="color:#66d9ef">await</span> launch(url);
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Could not launch </span><span style="color:#e6db74">$</span>url<span style="color:#e6db74">&#39;</span>;
+  }
+}</code></pre></div>
+<p>程式上非常簡單，在 <code>ListTile</code> 的 <code>onTap</code> 調用 <code>launchURL</code>，這樣就可以囉~</p>
+
+<p>&ndash;</p>
+
+<p>今日成果</p>
+
+<p><img src="https://github.com/BbsonLin/ithome-ironman/blob/master/2019-09/images/day14-4.gif?raw=true" alt="day14-4.gif" /></p>
+
+<p>今天主要是進入第二階段的第一天，先小試身手，程式碼的部份並不難。<br />
+之後會慢慢進入最主要的 GitHub API 囉~</p>
 
         
                 
@@ -326,12 +280,12 @@
             <ul class="pager">
                 
                 <li class="previous">
-                    <a href="/post/2019-09-19-build-android-app-with-flutter-10/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day10">&larr; Previous Post</a>
+                    <a href="/post/2019-09-22-build-android-app-with-flutter-13/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day13">&larr; Previous Post</a>
                 </li>
                 
                 
                 <li class="next">
-                    <a href="/post/2019-09-21-build-android-app-with-flutter-12/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day12">Next Post &rarr;</a>
+                    <a href="/post/2019-09-24-build-android-app-with-flutter-15/" data-toggle="tooltip" data-placement="top" title="用 Flutter 開發一個 Android App 吧 - Day15">Next Post &rarr;</a>
                 </li>
                 
             </ul>
